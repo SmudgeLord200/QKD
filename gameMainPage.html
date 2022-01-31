@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <title>Game</title>
+    <style>
+        Canvas {
+            background-color: #f1f1f1;
+            display: block;
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body onload="startGame()">
+
+    <script>
+        var alice, bob, eve, line, photon, pol_H_A, pol_H_B, pol_V_A, pol_V_B, pol_P45_A, pol_P45_B, pol_N45_A, pol_N45_B, pol_H_E1, pol_H_E2, pol_V_E1, pol_V_E2, pol_P45_E1, pol_P45_E2, pol_N45_E1, pol_45_E2;
+
+        function startGame() {
+            //Draw the required elements into the canvas
+            alice = new component(80, 100, "Alice.jpg", 10, 20, "image");
+            bob = new component(80, 100, "Bob.jpg", 1140, 20, "image");
+            eve = new component(80, 100, "Eve.jpg", 550, 20, "image");
+            line = new component(1050, 1, "black", 90, 70);
+            photon = new component(30, 30, "red", 90, 60);
+
+            //Polarization Bases of Alice and Bob
+            pol_H_A = new component(90, 100, "Pol-H.png", 100, 10, "image");
+            pol_H_B = new component(90, 100, "Pol-H.png", 1030, 10, "image");
+            pol_V_A = new component(90, 100, "Pol-V.png", 100, 10, "image");
+            pol_V_B = new component(90, 100, "Pol-V.png", 1030, 10, "image");
+            pol_P45_A = new component(90, 100, "Pol-P45.png", 100, 10, "image");
+            pol_P45_B = new component(90, 100, "Pol-P45.png", 1030, 10, "image");
+            pol_N45_A = new component(90, 100, "Pol-N45.png", 100, 10, "image");
+            pol_N45_B = new component(90, 100, "Pol-N45.png", 1030, 10, "image");
+
+            //Polarization Bases of Eve
+            pol_H_E1 = new component(90, 100, "Pol-H.png", 450, 10, "image");
+            pol_H_E2 = new component(90, 100, "Pol-H.png", 650, 10, "image");
+            pol_V_E1 = new component(90, 100, "Pol-V.png", 450, 10, "image");
+            pol_V_E2 = new component(90, 100, "Pol-V.png", 450, 10, "image");
+            pol_P45_E1 = new component(90, 100, "Pol-P45.png", 150, 10, "image");
+            pol_P45_E2 = new component(90, 100, "Pol-P45.png", 150, 10, "image");
+            pol_N45_E1 = new component(90, 100, "Pol-N45.png", 150, 10, "image");
+            pol_N45_E2 = new component(90, 100, "Pol-N45.png", 150, 10, "image");
+
+            //Start the game
+            myGameArea.start();
+        }
+
+        var myGameArea = {
+            canvas: document.createElement("canvas"),
+            start: function () {
+                this.canvas.width = 1235;
+                this.canvas.height = 110;
+                this.context = this.canvas.getContext("2d");
+                document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                this.interval = setInterval(updateGameArea, 5);
+            },
+            clear: function () {
+                this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            }
+        }
+
+        function component(width, height, color, x, y, type) {
+            this.type = type;
+            if (type == "image") {
+                this.image = new Image();
+                this.image.src = color;
+            }
+            this.width = width;
+            this.height = height;
+            this.x = x;
+            this.y = y;
+            this.update = function () {
+                ctx = myGameArea.context;
+                if (type == "image") {
+                    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+                } else {
+                    ctx.fillStyle = color;
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
+                }
+            }
+        }
+
+        var eve_display = false;
+        var eve_state = 0; //whether eavdesdrop state is present, 0 is none, 1 is present
+        var alice_45 = false, bob_45 = false;
+
+        function updateGameArea() {
+            myGameArea.clear();
+            alice.update();
+            bob.update();
+            line.update();
+
+            //Toggle between the display of Eve
+            document.getElementById("eavesdrop").onclick = function () {
+                if (!eve_display) {
+                    document.getElementById("eavesdrop").innerHTML = "Stop Eavdesdropping";
+                    eve_display = true;
+                    eve_state = 1;
+                } else {
+                    document.getElementById("eavesdrop").innerHTML = "Eavdesdrop";
+                    eve_display = false;
+                    eve_state = 0;
+                }
+            }
+
+            if (eve_display == true) {
+                eve.update();
+                pol_H_E1.update();
+                pol_H_E2.update();
+            }
+
+
+            //aliceOptHV, aliceOpt45, randomP, fixedP, bobOptHV, bobOpt45
+            document.getElementById("randomP").onclick = function () {
+                document.getElementById("aliceOptHV").disabled = true;
+                document.getElementById("aliceOpt45").disabled = true;
+                document.getElementById("bobOptHV").disabled = true;
+                document.getElementById("bobOpt45").disabled = true;
+            }
+
+            document.getElementById("fixedP").onclick = function () {
+                document.getElementById("aliceOptHV").disabled = false;
+                document.getElementById("aliceOpt45").disabled = false;
+                document.getElementById("bobOptHV").disabled = false;
+                document.getElementById("bobOpt45").disabled = false;
+            }
+
+            //pol_H_A.update();
+            //pol_H_B.update();
+
+            if (document.getElementById("aliceOptHV").checked) {
+                pol_H_A.update();
+            } else {
+                alice_45 = true;
+            }
+
+            if (alice_45 == true) {
+                pol_P45_A.update();
+            }
+
+            if (document.getElementById("bobOptHV").checked) {
+                pol_H_B.update();
+            } else {
+                bob_45 = true;
+            }
+
+            if (bob_45 == true) {
+                pol_P45_B.update();
+            }
+
+            photon.update();
+            //photon.x += 1;
+        }
+    </script>
+
+    <div class="container-fluid">
+
+        <!--Polarization Base Settings-->
+        <div class="row border g-0">
+            <p class="text-center mb-0"><u>Polarization Base</u></p>
+
+            <!--Alice Polarization Base Settings-->
+            <div class="col-4 text-center border">
+                <p class="mb-0"><u>Alice's Base</u></p>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="aliceOptHV" name="Alice" value="AHV" checked>
+                    <label class="form-check-label" for="aliceOptHV">H/V</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="aliceOpt45" name="Alice" value="A45">
+                    <label class="form-check-label" for="aliceOpt45">+45/-45</label>
+                </div>
+            </div>
+
+            <!--Overall Polarization Base Settings-->
+            <div class="col-4 text-center my-auto">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="randomP" name="overallPB" value="Radnom">
+                    <label class="form-check-label" for="randomP">Radnom</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="fixedP" name="overallPB" value="Fixed" checked>
+                    <label class="form-check-label" for="fixedP">Fixed</label>
+                </div>
+            </div>
+
+            <!--Bob Polarization Base Settings-->
+            <div class="col-4 text-center border">
+                <p class="mb-0"><u>Bob's Base</u></p>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="bobOptHV" name="Bob" value="BHV" checked>
+                    <label class="form-check-label" for="bobOptHV">H/V</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="bobOpt45" name="Bob" value="B45">
+                    <label class="form-check-label" for="bobOpt45">+45/-45</label>
+                </div>
+            </div>
+        </div>
+
+        <!--Polarization State Settings-->
+        <div class="row border g-0 mt-2">
+            <div class="col-3 border text-center">
+                <p class="mb-0"><u>Polarization State</u></p>
+                <img src="Polarization-State-01.jpg" alt="Polarization-State-01" class="img-fluid"
+                    style="height: 255px;">
+                <!--<div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="1" name="overallPS" value="1">
+                    <label class="form-check-label" for="1"><img src="Polarization-State-01.jpg" alt="Polarization-State-01"></label>
+                </div>-->
+                <!--<div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" id="2" name="overallPS" value="2">
+                    <label class="form-check-label" for="2">Pic 2</label>
+                </div>-->
+
+                <div class="border mt-3">
+                    <p class="mb-1"><u>Main Controls</u></p>
+                    <div class="d-grid gap-2 d-block mx-auto col-9 pb-3">
+                        <button type="button" class="btn btn-primary btn-sm" onclick="document.location='#'">Send Single
+                            Photon</button>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="document.location='#'">Send
+                            Continuously</button>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="document.location='#'">Fast
+                            Forward 15 Photons</button>
+                        <button id="eavesdrop" type="button" class="btn btn-primary btn-sm">Eavesdrop</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-9 border">
+                <table class="table table-bordered table-sm">
+                    <thead class="th-sm">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Alice</th>
+                            <th scope="col">Bob</th>
+                            <th scope="col">Eve</th>
+                            <th scope="col">Same Base?</th>
+                            <th scope="col">Resulting Bit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-bordered table-sm">
+                    <thead class="th-sm">
+                        <tr>
+                            <th scope="col">Alice (of the same base)</th>
+                            <th scope="col">Bob (of the same base)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="d-grid d-block mx-auto col-5"><button type="button" class="btn btn-primary btn-sm"
+                        onclick="document.location='/compareBits.html'">Compare 15 Photons</button></div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end border-top pt-1 mt-2">
+            <button type="button" class="btn btn-primary btn-md"
+                onclick="document.location='/gameForeword.html'">Back</button>
+        </div>
+    </div>
+</body>
+
+</html>
