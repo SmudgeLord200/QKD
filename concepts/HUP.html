@@ -63,7 +63,7 @@
         }
 
         .imgBtn:hover img {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
         }
 
         .big {
@@ -75,6 +75,32 @@
             padding: 0px 350px;
             height: 250px;
         }
+
+        .zero {
+            font-size: 40px;
+            border: 5px solid #ffc107;
+            border-right: transparent;
+            box-shadow: 8px 7px 5px 2px rgba(0, 0, 0, .5);
+        }
+
+        .one {
+            font-size: 40px;
+            background-color: black;
+            color: white;
+            border: 5px solid #ffc107;
+            border-left: transparent;
+            box-shadow: 8px 7px 5px 2px rgba(0, 0, 0, .5);
+        }
+
+        .zero:hover {
+            background-color: black;
+            color: white;
+        }
+
+        .zero:hover+.one {
+            background-color: white;
+            color: black;
+        }
     </style>
 </head>
 
@@ -85,7 +111,7 @@
         </div>
 
         <div class="row">
-            <div class="row align-items-center mt-2">
+            <div class="row align-items-center mt-2 mx-auto">
                 <div class="col-8 text-center">Proposed by German Physicist <span class="fw-bold">Werner
                         Heisenberg</span> in 1927, <br /> it is the fundamental principle of quantum physics.</div>
                 <div class="col-4">
@@ -94,25 +120,27 @@
                             class="img-fluid"></a>
                 </div>
 
-                <div class="row text-center mt-4">
-                    <p>
+                <div class="row align-items-center mt-5 mx-auto">
+                    <p class="text-center">
                         It states that the probability of the outcome of a bit 0 or 1 is <span
                             class="fw-bold big">always 50%</span>, i.e., it is
                         impossible to guess the outcome correctly.
                     </p>
                     <div class="row mt-2 box">
-                        <div class="col-6 border zero">0</div>
-                        <div class="col-6 border one">1</div>
+                        <div class="col-6 zero d-flex justify-content-center align-items-center fw-bold">0</div>
+                        <div class="col-6 one d-flex justify-content-center align-items-center fw-bold">1</div>
                     </div>
                 </div>
 
             </div>
 
             <div class="d-flex justify-content-end border-top pt-1 mt-2">
-                <button type="button" class="btn btn-primary btn-md"
+                <button type="button" class="btn btn-warning btn-md"
                     onclick="document.location='/conceptsLobby.html'">Back</button>
             </div>
         </div>
+
+    </div>
 </body>
 
 </html>
