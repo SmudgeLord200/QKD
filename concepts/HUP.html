@@ -12,6 +12,60 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <title>Heisenberg's Uncertainty Principle</title>
+
+    <style>
+        #wh {
+            width: 190px;
+            height: 250px;
+        }
+
+        .imgBtn {
+            position: relative;
+        }
+
+        .imgBtn img {
+            transform: translateY(0);
+            transition: all .4s ease-out;
+            border: .5em solid #ffc107;
+            -webkit-box-shadow: 8px 7px 5px 0px rgba(0, 0, 0, .3);
+            -moz-box-shadow: 8px 7px 5px 0px rgba(0, 0, 0, .3);
+            box-shadow: 8px 7px 5px 0px rgba(0, 0, 0, .3);
+        }
+
+        .one:before {
+            content: "I propose it!";
+        }
+
+        .imgBtn:before {
+            position: absolute;
+            padding: 10px 15px;
+            left: -40px;
+            bottom: -10px;
+            font-size: 20px;
+            font-family: "Lucida Console", "Times New Roman";
+            color: #0745ff;
+            background: #ffffff;
+            transition: all .4s ease-out;
+            transform: translateY(150px);
+            opacity: 0;
+            z-index: 1;
+            border-radius: 100px;
+            font-weight: bold;
+            border: .2em solid #ffffff;
+            -webkit-box-shadow: 8px 7px 5px 0px rgba(0, 0, 0, .5);
+            -moz-box-shadow: 8px 7px 5px 0px rgba(0, 0, 0, .5);
+            box-shadow: 8px 7px 5px 2px rgba(0, 0, 0, .5);
+        }
+
+        .imgBtn:hover:before {
+            bottom: 40px;
+            opacity: 1;
+        }
+
+        .imgBtn:hover img {
+            transform: translateY(-10px);
+        }
+    </style>
 </head>
 
 <body>
@@ -21,14 +75,30 @@
         </div>
 
         <div class="row">
+            <div class="row align-items-center mt-2">
+                <div class="col-8 text-center">Proposed by German Physicist <span class="fw-bold">Werner
+                        Heisenberg</span> in 1927, <br /> it is the fundamental principle of quantum physics.</div>
+                <div class="col-4">
+                    <a target="_self" href="#" class="imgBtn one">
+                        <img id="wh" src="/concepts/Werner_Heisenberg.jpg" alt="Werner Heisenberg" class="img-fluid"></a>
+                </div>
 
-        </div>
+                <div class="row text-center">
+                    <p>
+                        It states that the probability of the outcome of a bit 0 or 1 is always 50%, i.e., it is
+                        impossible
+                        to guess
+                        the outcome correctly.
+                    </p>
+                </div>
 
-        <div class="d-flex justify-content-end border-top pt-1 mt-2">
-            <button type="button" class="btn btn-primary btn-md"
-                onclick="document.location='/conceptsLobby.html'">Back</button>
+            </div>
+
+            <div class="d-flex justify-content-end border-top pt-1 mt-2">
+                <button type="button" class="btn btn-primary btn-md"
+                    onclick="document.location='/conceptsLobby.html'">Back</button>
+            </div>
         </div>
-    </div>
 </body>
 
 </html>
