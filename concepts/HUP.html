@@ -15,8 +15,8 @@
 
     <style>
         #wh {
-            width: 190px;
-            height: 250px;
+            width: 200px;
+            height: 280px;
         }
 
         .imgBtn {
@@ -32,7 +32,7 @@
             box-shadow: 8px 7px 5px 0px rgba(0, 0, 0, .3);
         }
 
-        .one:before {
+        .imgText:before {
             content: "I propose it!";
         }
 
@@ -65,6 +65,16 @@
         .imgBtn:hover img {
             transform: translateY(-10px);
         }
+
+        .big {
+            font-style: oblique;
+            font-size: 22px;
+        }
+
+        .box {
+            padding: 0px 350px;
+            height: 250px;
+        }
     </style>
 </head>
 
@@ -79,17 +89,21 @@
                 <div class="col-8 text-center">Proposed by German Physicist <span class="fw-bold">Werner
                         Heisenberg</span> in 1927, <br /> it is the fundamental principle of quantum physics.</div>
                 <div class="col-4">
-                    <a target="_self" href="#" class="imgBtn one">
-                        <img id="wh" src="/concepts/Werner_Heisenberg.jpg" alt="Werner Heisenberg" class="img-fluid"></a>
+                    <a target="_self" href="#" class="imgBtn imgText">
+                        <img id="wh" src="/concepts/Werner_Heisenberg.jpg" alt="Werner Heisenberg"
+                            class="img-fluid"></a>
                 </div>
 
-                <div class="row text-center">
+                <div class="row text-center mt-4">
                     <p>
-                        It states that the probability of the outcome of a bit 0 or 1 is always 50%, i.e., it is
-                        impossible
-                        to guess
-                        the outcome correctly.
+                        It states that the probability of the outcome of a bit 0 or 1 is <span
+                            class="fw-bold big">always 50%</span>, i.e., it is
+                        impossible to guess the outcome correctly.
                     </p>
+                    <div class="row mt-2 box">
+                        <div class="col-6 border zero">0</div>
+                        <div class="col-6 border one">1</div>
+                    </div>
                 </div>
 
             </div>
