@@ -12,6 +12,18 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <title>Polarization Base/State</title>
+    <style>
+        .table-c {
+            width: 1000px;
+            margin: auto;
+            border-color: black;
+        }
+
+        .big {
+            font-size: 26px;
+            font-style: oblique;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,7 +33,43 @@
         </div>
 
         <div class="row">
+            <div class="row mt-2 mx-auto text-center">
+                <p>QKD uses <span class="fw-bold" style="font-size: 30px;">TWO</span> polarization bases: <br/> <span class="big">Rectilinear (horizontal and vertical)</span> and <span class="big">Diagonal basis (+45
+                    º/-45º)</span> <br/> throughout the transmission. <br />
+                    The photons pass through the photon detectors by <span class="fst-italic fw-bold">randomly switching between the two polarization
+                    bases.</span></p>
 
+                <table class="table table-striped table-c table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <!--<th scope="col">Polarization Base</th>-->
+                            <th scope="col">Rectilinear</th>
+                            <th scope="col">Diagonal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!--<th scope="row">Diagonal</th>-->
+                            <td><p class="mb-0"><u>Vertical</u></p><img src="/Pol-V.png" alt="Vertical" class="img-fluid"></td> 
+                            <td><p class="mb-0"><u>+45º</u></p><img src="/Pol-P45.png" alt="Diagonal +45" class="img-fluid"></td>  
+                        </tr>
+                        <tr>
+                            <!--<th scope="row">Rectilinear</th>-->
+                            <td><p class="mb-0"><u>Horizontal</u></p><img src="/Pol-H.png" alt="Horizontal" class="img-fluid"></td>               
+                            <td><p class="mb-0"><u>-45º</u></p><img src="/Pol-N45.png" alt="Diagonal +45" class="img-fluid"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div calss="row">
+                <p>It is the same when comes to encoding the photon, aka “qubits”, such as bit 0 can be presented either
+                    as
+                    vertical state or -45º diagonal one; bit 1 can be presented as either horizontal state or +45º
+                    diagonal
+                    one. </p>
+            </div>
         </div>
 
         <div class="d-flex justify-content-end border-top pt-1 mt-2">
