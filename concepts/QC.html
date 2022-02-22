@@ -12,6 +12,12 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <title>Quantum Cryptography</title>
+
+    <style>
+        .qc {
+            box-shadow: 8px 7px 5px 4px rgba(0, 0, 0, .5);
+        }
+    </style>
 </head>
 
 <body>
@@ -21,17 +27,26 @@
         </div>
 
         <div class="row mx-auto">
-            <p class="text-center">
-                Quantum Cryptography exploits the fundamental law of quantum physics, making use of the properties of
-                quantum states, such as superposition, to perform encryption/decryption more efficiently. Also,
-                according to the nature of quantum physics, a slight observation of the photon disturbs it in an
-                irreversible way. In brief, the presence of an eavesdropper can be ensured if an incorrect pattern
-                occurs. It provides absolute security on the transmission between two remote parties as bounded by the
-                nature of quantum physics.
+            <div class="mx-auto text-center">
+                <img src="quantum_phy.jpg" alt="Quantum Cryptography" class="img-fluid qc">
+            </div>
+            <p class="text-center mt-4">
+                <span class="fw-bold">Quantum Cryptography</span> exploits the <span class="fst-italic">fundamental law of quantum physics</span>, making use of the properties of
+                quantum states, such as superposition, to perform encryption/decryption <span class="fst-italic">more efficiently.</span> Also, according to the nature of quantum physics, 
+                <blockquote
+                    cite="https://marketing.idquantique.com/acton/attachment/11868/f-020d/1/-/-/-/-/Understanding%20Quantum%20Cryptography_White%20Paper.pdf" class="text-center mb-0">
+                    <q>A slight observation of the photon disturbs it in an irreversible way.</q>
+                </blockquote>
             </p>
+          
+        <p class="text-center">
+            In brief, the presence of an eavesdropper can be ensured <u>if an incorrect pattern occurs</u>. <br />
+            It provides <span class="fw-bold text-danger">absolute security</span> on the transmission between two remote parties as bounded by <span class="fst-italic">the
+            nature of quantum physics.</span>
+        </p>
         </div>
 
-        <div class="d-flex justify-content-end border-top pt-1 mt-2">
+        <div class="d-flex justify-content-end mt-1">
             <button type="button" class="btn btn-dark btn-md"
                 onclick="document.location='/conceptsLobby.html'">Back</button>
         </div>
