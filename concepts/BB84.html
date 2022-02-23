@@ -20,8 +20,55 @@
             <h4 class=" pt-3 pb-3 bg-primary text-white text-center"><u>The BB84 Protocol</u></h4>
         </div>
 
-        <div class="row">
+        <div class="row mx-auto">
+            <p>
+                There are three major steps in the BB84 protocol, namely Key Exchange, Error Correction, Privacy Amplification. 
+            </p>
+              <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                        Key Exchange
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body clearfix">
+                      <p><strong>During Key Exchange,</strong>  the two parties transmit photons using photon detectors equipped with polaroid filters.</p> 
+                      <div>
+                          <img src="/concepts/p_filter_02.jpg" alt="Polaroid Filter" class="img-fluid float-end">
+                          <img src="/concepts/photon_detector.jpg" alt="Polaroid Detector" class="img-fluid float-end">
+                        </div>
+                      They randomly switch between the two polarization bases, i.e., rectilinear (horizontal and vertical), and diagonal (+45 º/-45º) basis, to transmit the photons. The correct photons will be filtered out if and only if the polarization base chosen by both parties is the same. Otherwise, there is a 50% probability that a wrong photon will be filtered out (Heisenberg's Uncertainty Principle). 
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                        Error Correction
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                      <strong>During Error Correction,</strong>  the two parties compare their chosen polarization bases during key exchange via a public channel. They keep the correct photons and discard the incorrect ones. According to the nature of quantum physics, a slight observation of the photon disturbs it in an irreversible way. In brief, if an eavesdropper intercepts the transmission, the photon will be disturbed, and all of its previous state information is lost. The two parties can sure detect this irregular photon pattern in the error correction phase, thus knowing the presence of an eavesdropper. 
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                        Privacy Amplification
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                    <div class="accordion-body">
+                      <strong>During Privacy Amplification,</strong>  if the two parties confirm no presence of an eavesdropper, they can use the key directly. If the two parties confirm the presence of an eavesdropper, they can take countermeasures, such as compressing the key length. After that, the key is safe to go. It is noted that this step will not be demonstrated in the game. 
+                    </div>
+                  </div>
+                </div>
+              </div>
 
+              
         </div>
 
         <div class="d-flex justify-content-end border-top pt-1 mt-2">
