@@ -30,6 +30,9 @@
 
     <script>
         var alice, bob, eve, line, photon, pol_H_A, pol_H_B, pol_V_A, pol_V_B, pol_P45_A, pol_P45_B, pol_N45_A, pol_N45_B, pol_H_E1, pol_H_E2, pol_V_E1, pol_V_E2, pol_P45_E1, pol_P45_E2, pol_N45_E1, pol_45_E2;
+        var eve_display = false; //whether to summon Eve or not
+        var eve_state = 0; //0: no eavesdrop, 1: has eavesdrop
+        var alice_45 = false, bob_45 = false; //false: Rectilinear, true: Diagonal
 
         function startGame() {
             //Draw the required elements into the canvas
@@ -63,6 +66,7 @@
             myGameArea.start();
         }
 
+        //This is where the game starts, we draw the canvas into the page
         var myGameArea = {
             canvas: document.createElement("canvas"),
             start: function () {
@@ -72,11 +76,13 @@
                 document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                 this.interval = setInterval(updateGameArea, 5);
             },
+            //this function is to clear the images that we draw on the canvas
             clear: function () {
                 this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
             }
         }
 
+        //This is the method of how the images are drawn
         function component(width, height, color, x, y, type) {
             this.type = type;
             if (type == "image") {
@@ -98,12 +104,14 @@
             }
         }
 
-        var eve_display = false;
-        var eve_state = 0; //whether eavdesdrop state is present, 0 is none, 1 is present
-        var alice_45 = false, bob_45 = false;
 
+        //This is the control for animation in the canvas and the related functions
         function updateGameArea() {
+
+            //first clear the canvas
             myGameArea.clear();
+
+            //then draw the image into it
             alice.update();
             bob.update();
             line.update();
@@ -111,16 +119,17 @@
             //Toggle between the display of Eve
             document.getElementById("eavesdrop").onclick = function () {
                 if (!eve_display) {
-                    document.getElementById("eavesdrop").innerHTML = "Stop Eavdesdropping";
-                    eve_display = true;
-                    eve_state = 1;
+                    document.getElementById("eavesdrop").innerHTML = "Stop Eavdesdropping"; //change the button text
+                    eve_display = true; //display Eve in the canvas
+                    eve_state = 1; //Has eavesdropping
                 } else {
-                    document.getElementById("eavesdrop").innerHTML = "Eavdesdrop";
-                    eve_display = false;
-                    eve_state = 0;
+                    document.getElementById("eavesdrop").innerHTML = "Eavdesdrop"; //chnage the button text
+                    eve_display = false; //remove Eve from the canvas
+                    eve_state = 0; //No eavesdropping
                 }
             }
 
+            //Then, we draw Eve
             if (eve_display == true) {
                 eve.update();
                 pol_V_E1.update();
@@ -128,7 +137,9 @@
             }
 
 
+            //Toggle between the radio buttons on the polarization base selection
             //aliceOptHV, aliceOpt45, randomP, fixedP, bobOptHV, bobOpt45
+            //If random polarization base is checked, all other selection buttons are disabled
             document.getElementById("randomP").onclick = function () {
                 document.getElementById("aliceOptHV").disabled = true;
                 document.getElementById("aliceOpt45").disabled = true;
@@ -136,6 +147,7 @@
                 document.getElementById("bobOpt45").disabled = true;
             }
 
+            //If fixed polarization base is checked, all other selection buttons are released
             document.getElementById("fixedP").onclick = function () {
                 document.getElementById("aliceOptHV").disabled = false;
                 document.getElementById("aliceOpt45").disabled = false;
@@ -146,20 +158,22 @@
             //pol_H_A.update();
             //pol_H_B.update();
 
+            //Show the corresponding image according to the selected radio button
             if (document.getElementById("aliceOptHV").checked) {
                 pol_V_A.update();
             } else {
-                alice_45 = true;
+                alice_45 = true; //Diagonal basis
                 pol_P45_A.update();
             }
 
             if (document.getElementById("bobOptHV").checked) {
                 pol_V_B.update();
             } else {
-                bob_45 = true;
+                bob_45 = true; //Diagonal basis
                 pol_P45_B.update();
             }
 
+            //Draw the photon to the canvas
             photon.update();
             //photon.x += 1;
         }
@@ -222,7 +236,7 @@
                 </div>-->
                 <!--<div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" id="2" name="overallPS" value="2">
-                    <label class="form-check-label" for="2">Pic 2</label>
+                    <label class="form-check-label" for="2"><img src="Polarization-State-02.jpg" alt="Polarization-State-02"></label>
                 </div>-->
 
                 <div class="border mt-3">
