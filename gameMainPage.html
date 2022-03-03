@@ -33,6 +33,9 @@
         var eve_display = false; //whether to summon Eve or not
         var eve_state = 0; //0: no eavesdrop, 1: has eavesdrop
         var alice_45 = false, bob_45 = false; //false: Rectilinear, true: Diagonal
+        var Alice = [], Bob = []; //Initialize two arrays for storing bit sequences
+        var h = 0, v = 0, p45 = 0, n45 = 0; //Bit orientation
+        var x = 0, y = 0 , z = 0;
 
         function startGame() {
             //Draw the required elements into the canvas
@@ -74,7 +77,7 @@
                 this.canvas.height = 110;
                 this.context = this.canvas.getContext("2d");
                 document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-                this.interval = setInterval(updateGameArea, 5);
+                this.interval = setInterval(updateGameArea, 1);
             },
             //this function is to clear the images that we draw on the canvas
             clear: function () {
@@ -173,6 +176,67 @@
                 pol_P45_B.update();
             }
 
+            if (document.getElementById("1").checked) {
+                h = 1;
+                v = 0;
+                p45 = 1;
+                n45 = 0;
+            } else {
+                h = 0;
+                v = 1;
+                p45 = 0;
+                n45 = 1;
+            }
+
+            document.getElementById("single").onclick = function () {
+
+                //Fixed Basis
+                if (document.getElementById("fixedP").checked) {
+
+                    //Rectilinear Basis
+                    if (alice_45 === false && bob_45 === false) {
+                        //Radnomly switch between horizontal and vertical basis
+                        x = Math.floor(Math.random()*2);
+                        //0 is V, 1 is A 
+                        if (x == 0) {
+                            pol_V_A.update();
+                            console.log("Vertical");
+                            Alice.push(v);
+                            console.log("Alice: ", Alice)
+                        } else {
+                            pol_H_A.update();
+                            console.log("Horizontal");
+                            Alice.push(h);
+                            console.log("Alice: ", Alice)
+                        }
+                        //Assign corresponding bit value to both arrays
+                        //Display the bit sequence to the tables                        
+                    }
+                    //Diagonal
+                    else if (alice_45 === true && bob_45 === true) {
+                        //Radnomly switch between P45 and N45 basis
+                        //Assign corresponding bit value to both arrays
+                        //Display the bit sequence to the tables        
+                    }
+                    //If the two bases are not equal
+                    else {
+                        //Radnomly switch between their own basis
+                        //A switch statement to obtain their corresponding basis
+                        //Maybe two random methods here
+                        //Assign corresponding bit value to both arrays
+                        //Display the bit sequence to the tables          
+                    }
+                }
+
+                //Random Basis
+                else {
+                    //Randomly switch between Rectilinear and Diagonal Basis
+                    //Maybe two random methods here
+                    //Assign corresponding bit value to both arrays
+                    //Display the bit sequence to the tables 
+                }
+            }
+
             //Draw the photon to the canvas
             photon.update();
             //photon.x += 1;
@@ -224,31 +288,33 @@
             </div>
         </div>
 
-        <!--Polarization State Settings-->
         <div class="row border g-0 mt-2">
+            <!--Polarization State Settings-->
             <div class="col-3 border text-center">
                 <p class="mb-0"><u>Polarization State</u></p>
-                <img src="Polarization-State-01.jpg" alt="Polarization-State-01" class="img-fluid"
-                    style="height: 255px;">
-                <!--<div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" id="1" name="overallPS" value="1">
-                    <label class="form-check-label" for="1"><img src="Polarization-State-01.jpg" alt="Polarization-State-01"></label>
-                </div>-->
-                <!--<div class="form-check form-check-inline">
+                <div class="form-check form-check-inline col-5" style="margin-left: 5px;">
+                    <input class="form-check-input" type="radio" id="1" name="overallPS" value="1" checked>
+                    <label class="form-check-label" for="1"><img src="Polarization-State-01.jpg"
+                            alt="Polarization-State-01" class="img-fluid" style="height: 170px;"></label>
+                </div>
+                <div class="form-check form-check-inline col-5">
                     <input class="form-check-input" type="radio" id="2" name="overallPS" value="2">
-                    <label class="form-check-label" for="2"><img src="Polarization-State-02.jpg" alt="Polarization-State-02"></label>
-                </div>-->
+                    <label class="form-check-label" for="2"><img src="Polarization-State-02.jpg"
+                            alt="Polarization-State-02" class="img-fluid" style="height: 170px;"></label>
+                </div>
 
+                <!--Main Control Buttons-->
                 <div class="border mt-3">
                     <p class="mb-1"><u>Main Controls</u></p>
                     <div class="d-grid gap-2 d-block mx-auto col-9 pb-3">
-                        <button type="button" class="btn btn-primary btn-sm" onclick="document.location='#'">Send Single
+                        <button id="single" type="button" class="btn btn-primary btn-sm">Send Single
                             Photon</button>
-                        <button type="button" class="btn btn-primary btn-sm" onclick="document.location='#'">Send
+                        <button id="continuous" type="button" class="btn btn-primary btn-sm">Send
                             Continuously</button>
-                        <button type="button" class="btn btn-primary btn-sm" onclick="document.location='#'">Fast
+                        <button id="fast" type="button" class="btn btn-primary btn-sm">Fast
                             Forward 15 Photons</button>
                         <button id="eavesdrop" type="button" class="btn btn-primary btn-sm">Eavesdrop</button>
+                        <button id="clear" type="button" class="btn btn-primary btn-sm">Clear</button>
                     </div>
                 </div>
             </div>
