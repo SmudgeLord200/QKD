@@ -35,7 +35,8 @@
         var alice_45 = false, bob_45 = false; //false: Rectilinear, true: Diagonal
         var Alice = [], Bob = []; //Initialize two arrays for storing bit sequences
         var h = 0, v = 0, p45 = 0, n45 = 0; //Bit orientation
-        var xR = 0, yR = 0 , xD = 0, yD = 0;
+        var xR = 0, yR = 0, xD = 0, yD = 0; //Randoms
+        var aB = 0, bB = 0; //Randoms for Alice's and Bob's in random basis
 
         function startGame() {
             //Draw the required elements into the canvas
@@ -176,6 +177,7 @@
                 pol_P45_B.update();
             }
 
+            //Polarization State Assignment
             if (document.getElementById("1").checked) {
                 h = 1;
                 v = 0;
@@ -196,31 +198,31 @@
                     //Rectilinear Basis
                     if (alice_45 === false && bob_45 === false) {
                         //Radnomly switch between horizontal and vertical basis
-                        xR = Math.floor(Math.random()*2);
+                        xR = Math.floor(Math.random() * 2);
                         //0 is V, 1 is A 
                         if (xR == 0) {
                             pol_V_A.update();
-                            console.log("Vertical");
+                            //console.log("Vertical");
                             Alice.push(v);
-                            console.log("Alice: ", Alice)
+                            console.log("Alice Vertical: ", Alice)
                         } else {
                             pol_H_A.update();
-                            console.log("Horizontal");
+                            //console.log("Horizontal");
                             Alice.push(h);
-                            console.log("Alice: ", Alice)
+                            console.log("Alice Horizontal: ", Alice)
                         }
 
-                        yR = Math.floor(Math.random()*2);
+                        yR = Math.floor(Math.random() * 2);
                         if (yR == 0) {
                             pol_V_B.update();
-                            console.log("Vertical");
+                            //console.log("Vertical");
                             Bob.push(v);
-                            console.log("Bob: ", Bob);
+                            console.log("Bob Vertical: ", Bob);
                         } else {
                             pol_H_B.update();
-                            console.log("Horizontal");
+                            //console.log("Horizontal");
                             Bob.push(h);
-                            console.log("Bob: ", Bob);
+                            console.log("Bob Horizontal: ", Bob);
                         }
                         //Assign corresponding bit value to both arrays
                         //Display the bit sequence to the tables                        
@@ -231,42 +233,106 @@
                         //Radnomly switch between P45 and N45 basis
                         //Assign corresponding bit value to both arrays
                         //Display the bit sequence to the tables
-
-                        xD = Math.floor(Math.random()*2);
+                        xD = Math.floor(Math.random() * 2);
                         //0 is P45, 1 is N45 
                         if (xD == 0) {
                             pol_P45_A.update();
-                            console.log("P45");
+                            //console.log("P45");
                             Alice.push(p45);
-                            console.log("Alice: ", Alice)
+                            console.log("Alice P45: ", Alice)
                         } else {
                             pol_N45_A.update();
-                            console.log("N45");
+                            //console.log("N45");
                             Alice.push(n45);
-                            console.log("Alice: ", Alice)
+                            console.log("Alice N45: ", Alice)
                         }
-                        
-                        yD = Math.floor(Math.random()*2);
+
+                        yD = Math.floor(Math.random() * 2);
                         if (yD == 0) {
                             pol_P45_B.update();
-                            console.log("P45");
+                            //console.log("P45");
                             Bob.push(p45);
-                            console.log("Bob: ", Bob);
+                            console.log("Bob P45: ", Bob);
                         } else {
                             pol_H_B.update();
-                            console.log("N45");
+                            //console.log("N45");
                             Bob.push(n45);
-                            console.log("Bob: ", Bob);
+                            console.log("Bob N45: ", Bob);
                         }
 
                     }
                     //If the two bases are not equal
                     else {
+
+                        //Alice: H/V, Bob: P45/N45
+                        if (alice_45 === false && bob_45 === true) {
+                            //alice swicth between xR
+                            xR = Math.floor(Math.random() * 2);
+                            //0 is V, 1 is A 
+                            if (xR == 0) {
+                                pol_V_A.update();
+                                //console.log("Vertical");
+                                Alice.push(v);
+                                console.log("Alice Vertical: ", Alice)
+                            } else {
+                                pol_H_A.update();
+                                //console.log("Horizontal");
+                                Alice.push(h);
+                                console.log("Alice Horizontal: ", Alice)
+                            }
+
+                            //bob switch between yD
+                            yD = Math.floor(Math.random() * 2);
+                            if (yD == 0) {
+                                pol_P45_B.update();
+                                //console.log("P45");
+                                Bob.push(p45);
+                                console.log("Bob P45: ", Bob);
+                            } else {
+                                pol_H_B.update();
+                                //console.log("N45");
+                                Bob.push(n45);
+                                console.log("Bob N45: ", Bob);
+                            }
+                        }
+
+                        //alice_45 = true, bob_45 = false 
+                        else {
+
+                            //alice switch between xD
+                            xD = Math.floor(Math.random() * 2);
+                            //0 is P45, 1 is N45 
+                            if (xD == 0) {
+                                pol_P45_A.update();
+                                //console.log("P45");
+                                Alice.push(p45);
+                                console.log("Alice P45: ", Alice)
+                            } else {
+                                pol_N45_A.update();
+                                //console.log("N45");
+                                Alice.push(n45);
+                                console.log("Alice N45: ", Alice)
+                            }
+
+                            //bob switch between yR
+                            yR = Math.floor(Math.random() * 2);
+                            if (yR == 0) {
+                                pol_V_B.update();
+                                //console.log("Vertical");
+                                Bob.push(v);
+                                console.log("Bob Vertical: ", Bob);
+                            } else {
+                                pol_H_B.update();
+                                //console.log("Horizontal");
+                                Bob.push(h);
+                                console.log("Bob Horizontal: ", Bob);
+                            }
+                        }
                         //Radnomly switch between their own basis
                         //A switch statement to obtain their corresponding basis
                         //Maybe two random methods here
                         //Assign corresponding bit value to both arrays
-                        //Display the bit sequence to the tables          
+                        //Display the bit sequence to the tables      
                     }
                 }
 
@@ -276,6 +342,75 @@
                     //Maybe two random methods here
                     //Assign corresponding bit value to both arrays
                     //Display the bit sequence to the tables 
+
+                    //Radnom Alice Basis
+                    aB = Math.floor(Math.random() * 2);
+                    //0 is H/V, 1 is P45/N45
+                    if (aB == 0) {
+                        //Radnomly switch between horizontal and vertical basis
+                        xR = Math.floor(Math.random() * 2);
+                        //0 is V, 1 is A 
+                        if (xR == 0) {
+                            pol_V_A.update();
+                            //console.log("Vertical");
+                            Alice.push(v);
+                            console.log("Alice Vertical: ", Alice)
+                        } else {
+                            pol_H_A.update();
+                            //console.log("Horizontal");
+                            Alice.push(h);
+                            console.log("Alice Horizontal: ", Alice)
+                        }                        
+                    } 
+                    //Alice: P45/N45
+                    else {
+                        xD = Math.floor(Math.random() * 2);
+                        //0 is P45, 1 is N45 
+                        if (xD == 0) {
+                            pol_P45_A.update();
+                            //console.log("P45");
+                            Alice.push(p45);
+                            console.log("Alice P45: ", Alice)
+                        } else {
+                            pol_N45_A.update();
+                            //console.log("N45");
+                            Alice.push(n45);
+                            console.log("Alice N45: ", Alice)
+                        }                        
+                    }
+
+                    //Random Bob Basis
+                    bB = Math.floor(Math.random() * 2);
+                    //0 is H/V, 1 is P45/N45
+                    if (bB == 0) {
+                        yR = Math.floor(Math.random() * 2);
+                        if (yR == 0) {
+                            pol_V_B.update();
+                            //console.log("Vertical");
+                            Bob.push(v);
+                            console.log("Bob Vertical: ", Bob);
+                        } else {
+                            pol_H_B.update();
+                            //console.log("Horizontal");
+                            Bob.push(h);
+                            console.log("Bob Horizontal: ", Bob);
+                        }                        
+                    }
+                    //Bob: P45/N45 
+                    else {
+                        yD = Math.floor(Math.random() * 2);
+                            if (yD == 0) {
+                                pol_P45_B.update();
+                                //console.log("P45");
+                                Bob.push(p45);
+                                console.log("Bob P45: ", Bob);
+                            } else {
+                                pol_H_B.update();
+                                //console.log("N45");
+                                Bob.push(n45);
+                                console.log("Bob N45: ", Bob);
+                            }                        
+                    }
                 }
             }
 
