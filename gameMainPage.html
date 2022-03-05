@@ -37,7 +37,7 @@
         var h = 0, v = 0, p45 = 0, n45 = 0; //Bit orientation
         var xR = 0, yR = 0, xD = 0, yD = 0, eR = 0, eD = 0, d = 0; //Random parameters for basis
         var aB = 0, bB = 0, eB = 0; //Randoms for Alice's and Bob's and Eve's in random basis
-        var bitsToPush = false, bit_value = 0;
+        var bitsToPush = false, bits_value = 0;
 
         function startGame() {
             //Draw the required elements into the canvas
@@ -223,12 +223,12 @@
                                 if (d == 0) {
                                     //P45
                                     bitsToPush = true;
-                                    b_value = p45;
+                                    bits_value = p45;
                                     console.log("Eve's here: ", p45);
                                 } else {
                                     //N45
                                     bitsToPush = true;
-                                    b_value = n45;
+                                    bits_value = n45;
                                     console.log("Eve's here: ", n45);
                                 }
                             }
@@ -240,7 +240,7 @@
                         if (yR == 0) {
                             pol_V_B.update();
                             if (bitsToPush === true) {
-                                Bob.push(b_value);
+                                Bob.push(bits_value);
                             } else {
                                 Bob.push(v);
                             }
@@ -248,7 +248,7 @@
                         } else {
                             pol_H_B.update();
                             if (bitsToPush === true) {
-                                Bob.push(b_value);
+                                Bob.push(bits_value);
                             } else {
                                 Bob.push(h);
                             }
@@ -292,12 +292,12 @@
                                 if (d == 0) {
                                     //H
                                     bitsToPush = true;
-                                    b_value = h;
+                                    bits_value = h;
                                     console.log("Eve's here: ", h);
                                 } else {
                                     //V
                                     bitsToPush = true;
-                                    b_value = v;
+                                    bits_value = v;
                                     console.log("Eve's here: ", v);
                                 }
                             }
@@ -308,7 +308,7 @@
                         if (yD == 0) {
                             pol_P45_B.update();
                             if (bitsToPush === true) {
-                                Bob.push(b_value);
+                                Bob.push(bits_value);
                             } else {
                                 Bob.push(p45);
                             }
@@ -316,7 +316,7 @@
                         } else {
                             pol_H_B.update();
                             if (bitsToPush === true) {
-                                Bob.push(b_value);
+                                Bob.push(bits_value);
                             } else {
                                 Bob.push(n45);
                             }
@@ -358,15 +358,15 @@
                                     //d: it will be randomly deflected in one of the two directions in another polarization state
                                     d = Math.floor(Math.random() * 2);
                                     if (d == 0) {
-                                        //H
+                                        //P45
                                         bitsToPush = true;
-                                        b_value = h;
-                                        console.log("Eve's here: ", h);
+                                        bits_value = p45;
+                                        console.log("Eve's here: ", p45);
                                     } else {
-                                        //V
+                                        //N45
                                         bitsToPush = true;
-                                        b_value = v;
-                                        console.log("Eve's here: ", v);
+                                        bits_value = n45;
+                                        console.log("Eve's here: ", n45);
                                     }
                                 }
                             }
@@ -375,13 +375,23 @@
                             yD = Math.floor(Math.random() * 2);
                             if (yD == 0) {
                                 pol_P45_B.update();
-                                Bob.push(p45);
+                                if (bitsToPush === true) {
+                                    Bob.push(bits_value);
+                                } else {
+                                    Bob.push(p45);
+                                }
                                 console.log("Bob P45: ", Bob);
                             } else {
                                 pol_H_B.update();
-                                Bob.push(n45);
+                                if (bitsToPush === true) {
+                                    Bob.push(bits_value);
+                                } else {
+                                    Bob.push(n45);
+                                }
                                 console.log("Bob N45: ", Bob);
                             }
+
+                            bitsToPush = false;
                         }
 
                         //Alice: P45/N45, Bob: H/V
@@ -402,19 +412,52 @@
                                 console.log("Alice N45: ", Alice)
                             }
 
+                            //Eve
+                            if (eve_state === true) {
+                                //Radnomly switch between Rectilinear and Diagonal Basis
+                                eB = Math.floor(Math.random() * 2);
+                                //If Eve has different basis with Alice, the photon will be converted, i.e., a wrong photon has born                            
+
+                                //0 is H/V, 1 is P45/N45
+                                //Eve chooses Diagonal basis the wrong basis, result in a wrong photon to Bob
+                                if (eB == 0) {
+                                    //d: it will be randomly deflected in one of the two directions in another polarization state
+                                    d = Math.floor(Math.random() * 2);
+                                    if (d == 0) {
+                                        //H
+                                        bitsToPush = true;
+                                        bits_value = h;
+                                        console.log("Eve's here: ", h);
+                                    } else {
+                                        //V
+                                        bitsToPush = true;
+                                        bits_value = v;
+                                        console.log("Eve's here: ", v);
+                                    }
+                                }
+                            }
+
                             //bob switch between yR
                             yR = Math.floor(Math.random() * 2);
                             if (yR == 0) {
                                 pol_V_B.update();
-                                //console.log("Vertical");
-                                Bob.push(v);
+                                if (bitsToPush === true) {
+                                    Bob.push(bits_value);
+                                } else {
+                                    Bob.push(v);
+                                }
                                 console.log("Bob Vertical: ", Bob);
                             } else {
                                 pol_H_B.update();
-                                //console.log("Horizontal");
-                                Bob.push(h);
+                                if (bitsToPush === true) {
+                                    Bob.push(bits_value);
+                                } else {
+                                    Bob.push(h);
+                                }
                                 console.log("Bob Horizontal: ", Bob);
                             }
+
+                            bitsToPush = false;
                         }
                         //Radnomly switch between their own basis
                         //Assign corresponding bit value to both arrays
@@ -430,6 +473,7 @@
                     //Radnom Alice Basis
                     aB = Math.floor(Math.random() * 2);
                     //0 is H/V, 1 is P45/N45
+                    //Alice: H/V
                     if (aB == 0) {
                         //Radnomly switch between horizontal and vertical basis
                         xR = Math.floor(Math.random() * 2);
@@ -445,6 +489,31 @@
                             Alice.push(h);
                             console.log("Alice Horizontal: ", Alice)
                         }
+
+                        //Eve
+                        if (eve_state === true) {
+                            //Radnomly switch between Rectilinear and Diagonal Basis
+                            eB = Math.floor(Math.random() * 2);
+                            //If Eve has different basis with Alice, the photon will be converted, i.e., a wrong photon has born                            
+
+                            //0 is H/V, 1 is P45/N45
+                            //Eve chooses Diagonal basis the wrong basis, result in a wrong photon to Bob
+                            if (eB == 1) {
+                                //d: it will be randomly deflected in one of the two directions in another polarization state
+                                d = Math.floor(Math.random() * 2);
+                                if (d == 0) {
+                                    //P45
+                                    bitsToPush = true;
+                                    bits_value = p45;
+                                    console.log("Eve's here: ", h);
+                                } else {
+                                    //N45
+                                    bitsToPush = true;
+                                    bits_value = n45;
+                                    console.log("Eve's here: ", v);
+                                }
+                            }
+                        }
                     }
                     //Alice: P45/N45
                     else {
@@ -452,14 +521,37 @@
                         //0 is P45, 1 is N45 
                         if (xD == 0) {
                             pol_P45_A.update();
-                            //console.log("P45");
                             Alice.push(p45);
                             console.log("Alice P45: ", Alice)
                         } else {
                             pol_N45_A.update();
-                            //console.log("N45");
                             Alice.push(n45);
                             console.log("Alice N45: ", Alice)
+                        }
+
+                        //Eve
+                        if (eve_state === true) {
+                            //Radnomly switch between Rectilinear and Diagonal Basis
+                            eB = Math.floor(Math.random() * 2);
+                            //If Eve has different basis with Alice, the photon will be converted, i.e., a wrong photon has born                            
+
+                            //0 is H/V, 1 is P45/N45
+                            //Eve chooses Diagonal basis the wrong basis, result in a wrong photon to Bob
+                            if (eB == 0) {
+                                //d: it will be randomly deflected in one of the two directions in another polarization state
+                                d = Math.floor(Math.random() * 2);
+                                if (d == 0) {
+                                    //H
+                                    bitsToPush = true;
+                                    bits_value = h;
+                                    console.log("Eve's here: ", h);
+                                } else {
+                                    //V
+                                    bitsToPush = true;
+                                    bits_value = v;
+                                    console.log("Eve's here: ", v);
+                                }
+                            }
                         }
                     }
 
@@ -467,33 +559,43 @@
                     bB = Math.floor(Math.random() * 2);
                     //0 is H/V, 1 is P45/N45
                     if (bB == 0) {
+                        //bob switch between yR
                         yR = Math.floor(Math.random() * 2);
                         if (yR == 0) {
                             pol_V_B.update();
-                            //console.log("Vertical");
-                            Bob.push(v);
+                            if (bitsToPush === true) {
+                                Bob.push(bits_value);
+                            } else {Bob.push(v);}
                             console.log("Bob Vertical: ", Bob);
                         } else {
                             pol_H_B.update();
-                            //console.log("Horizontal");
-                            Bob.push(h);
+                            if (bitsToPush === true) {
+                                Bob.push(bits_value);
+                            } else {Bob.push(h);}
                             console.log("Bob Horizontal: ", Bob);
                         }
+
+                        bitsToPush = false;
                     }
                     //Bob: P45/N45 
                     else {
+                        //bob switch between yD
                         yD = Math.floor(Math.random() * 2);
                         if (yD == 0) {
                             pol_P45_B.update();
-                            //console.log("P45");
-                            Bob.push(p45);
+                            if (bitsToPush === true) {
+                                Bob.push(bits_value);
+                            } else {Bob.push(p45);}
                             console.log("Bob P45: ", Bob);
                         } else {
                             pol_H_B.update();
-                            //console.log("N45");
-                            Bob.push(n45);
+                            if (bitsToPush === true) {
+                                Bob.push(bits_value);
+                            } else {Bob.push(n45);}
                             console.log("Bob N45: ", Bob);
                         }
+
+                        bitsToPush = false;
                     }
                 }
             }
