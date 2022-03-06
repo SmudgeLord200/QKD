@@ -33,7 +33,7 @@
         var eve_display = false; //whether to summon Eve or not
         var eve_state = false; //false: no eavesdrop, true: has eavesdrop
         var alice_45 = false, bob_45 = false; //false: Rectilinear, true: Diagonal
-        var Alice = [], Bob = []; //Initialize two arrays for storing bit sequences
+        var Alice = [], Bob = [], Eve = []; //Initialize three arrays for storing bit sequences
         var h = 0, v = 0, p45 = 0, n45 = 0; //Bit orientation
         var xR = 0, yR = 0, xD = 0, yD = 0, eR = 0, eD = 0, d = 0; //Random parameters for basis
         var aB = 0, bB = 0, eB = 0; //Randoms for Alice's and Bob's and Eve's in random basis
@@ -225,11 +225,25 @@
                                     bitsToPush = true;
                                     bits_value = p45;
                                     console.log("Eve's here: ", p45);
+                                    Eve.push(bits_value);
                                 } else {
                                     //N45
                                     bitsToPush = true;
                                     bits_value = n45;
                                     console.log("Eve's here: ", n45);
+                                    Eve.push(bits_value);
+                                }
+                            } else {
+                                eR = Math.floor(Math.random() * 2);
+                                //0 is H, 1 is V
+                                if (eR == 0) {
+                                    pol_H_E1.update();
+                                    pol_H_E2.update();
+                                    Eve.push(h);
+                                } else {
+                                    pol_V_E1.update();
+                                    pol_V_E2.update();
+                                    Eve.push(v);
                                 }
                             }
                         }
@@ -300,6 +314,18 @@
                                     bits_value = v;
                                     console.log("Eve's here: ", v);
                                 }
+                            } else {
+                                eD =  Math.floor(Math.random() * 2);
+                                //0 is p45, 1 is n45
+                                if (eD == 0) {
+                                    pol_P45_E1.update();
+                                    pol_P45_E2.update();
+                                    Eve.push(p45);
+                                } else {
+                                    pol_N45_E1.update();
+                                    pol_N45_E2.update();
+                                    Eve.push(n45);
+                                }                                
                             }
                         }
 
@@ -512,6 +538,18 @@
                                     bits_value = n45;
                                     console.log("Eve's here: ", v);
                                 }
+                            } else {
+                                eR =  Math.floor(Math.random() * 2);
+                                //0 is h, 1 is v
+                                if (eR == 0) {
+                                    pol_H_E1.update();
+                                    pol_H_E2.update();
+                                    Eve.push(h);
+                                } else {
+                                    pol_V_E1.update();
+                                    pol_V_E2.update();
+                                    Eve.push(v);
+                                }                                
                             }
                         }
                     }
@@ -551,6 +589,18 @@
                                     bits_value = v;
                                     console.log("Eve's here: ", v);
                                 }
+                            } else {
+                                eD =  Math.floor(Math.random() * 2);
+                                //0 is p45, 1 is n45
+                                if (eD == 0) {
+                                    pol_P45_E1.update();
+                                    pol_P45_E2.update();
+                                    Eve.push(p45);
+                                } else {
+                                    pol_N45_E1.update();
+                                    pol_N45_E2.update();
+                                    Eve.push(n45);
+                                }
                             }
                         }
                     }
@@ -588,7 +638,7 @@
                             } else {Bob.push(p45);}
                             console.log("Bob P45: ", Bob);
                         } else {
-                            pol_H_B.update();
+                            pol_N45_B.update();
                             if (bitsToPush === true) {
                                 Bob.push(bits_value);
                             } else {Bob.push(n45);}
