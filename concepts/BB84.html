@@ -36,7 +36,7 @@
       bottom: -120px;
       right: -5px;
       font-size: 18px;
-      padding-bottom: 10px;      
+      padding-bottom: 10px;
     }
 
     .e-text {
@@ -47,6 +47,50 @@
 </head>
 
 <body>
+
+  <script>
+    var photon_detector = new Image();
+    var polaroid_filter = new Image();
+
+    function initialize() {
+      photon_detector.src = "/concepts/photon_detector.jpg";
+      polaroid_filter.src = "/concepts/p_filter_02.jpg";
+
+      window.requestAnimationFrame(draw);
+    }
+
+    function draw() {
+      var ctx = document.getElementById("anim").getContext("2d");
+      ctx.globalCompositeOperation = "source-over";
+      ctx.clearRect(0, 0, 1000, 300);
+      ctx.fillStyle = "rgba(0, 0, 0, 0.4)";
+      ctx.strokeStyle = "rgba(0, 153, 255, 0.4)";
+      ctx.save();
+      ctx.translate(150, 150);
+
+      var time = new Date();
+      ctx.rotate(((2 * Math.PI) / 60) * time.getSeconds() + ((2 * Math.PI) / 60000) * time.getMilliseconds());
+      ctx.translate(105, 0);
+      ctx.fillRect(0, -12, 50, 24); // Shadow
+      ctx.drawImage(photon_detector, -12, -12);
+
+      ctx.save();
+      ctx.rotate(((2 * Math.PI) / 6) * time.getSeconds() + ((2 * Math.PI) / 6000) * time.getMilliseconds());
+      ctx.translate(0, 28.5);
+      ctx.drawImage(polaroid_filter, -3.5, -3.5);
+      ctx.restore();
+
+      ctx.restore();
+
+      ctx.beginPath();
+      ctx.arc(150, 150, 105, 0, Math.PI * 2, false); // Earth orbit
+      ctx.stroke();
+      
+      //window.requestAnimationFrame(draw);
+    }
+
+    initialize();
+  </script>
   <div class="container-fluid">
     <div class="row">
       <h4 class=" pt-3 pb-3 bg-primary text-white text-center"><u>The BB84 Protocol</u></h4>
@@ -68,7 +112,9 @@
           <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
             aria-labelledby="panelsStayOpen-headingOne">
             <div class="accordion-body clearfix">
-              <p><strong>During Key Exchange,</strong> the two parties transmit photons using <span class="fw-bold">photon detectors</span> equipped
+              <canvas id="anim" width="1000" height="300"></canvas>
+              <p><strong>During Key Exchange,</strong> the two parties transmit photons using <span
+                  class="fw-bold">photon detectors</span> equipped
                 with polaroid filters.</p>
               <div id="img_container">
                 <img src="/concepts/p_filter_02.jpg" alt="Polaroid Filter" class="img-fluid float-end" id="filter">
@@ -77,10 +123,13 @@
                   id="detector" style="width: 180px; height: 100%;">
                 <div class="right-t2"><u>Polaroid Filter</u></div>
               </div>
-              <p>They <span class="fst-italic">randomly switch between the two polarization bases</span>, i.e., <span class="fw-bold">Rectilinear</span> (horizontal and vertical) basis,
-                and <span class="fw-bold">Diagonal</span> (+45 º/-45º) basis, to transmit the photons. The correct photons will be filtered out <span class="text-danger fw-bold">if
-                and only if</span> the polarization base chosen by both parties is the same. Otherwise, there is a 50%
-                probability that a wrong photon will be filtered out <span class="fst-italic">(Heisenberg's Uncertainty Principle)</span>.</p>
+              <p>They <span class="fst-italic">randomly switch between the two polarization bases</span>, i.e., <span
+                  class="fw-bold">Rectilinear</span> (horizontal and vertical) basis,
+                and <span class="fw-bold">Diagonal</span> (+45 º/-45º) basis, to transmit the photons. The correct
+                photons will be filtered out <span class="text-danger fw-bold">if
+                  and only if</span> the polarization base chosen by both parties is the same. Otherwise, there is a 50%
+                probability that a wrong photon will be filtered out <span class="fst-italic">(Heisenberg's Uncertainty
+                  Principle)</span>.</p>
             </div>
           </div>
         </div>
@@ -95,13 +144,19 @@
           <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
             aria-labelledby="panelsStayOpen-headingTwo">
             <div class="accordion-body clearfix">
-              <p class="mb-0"><strong>During Error Correction,</strong> the two parties compare their chosen polarization bases during
-              key exchange via a public channel. They keep the correct photons and discard the incorrect ones. According
-              to the nature of quantum physics, <q class="fst-italic">a slight observation of the photon disturbs it in an irreversible way.</q>
-              In brief, if an eavesdropper intercepts the transmission, the photon will be disturbed, and all of its
-              previous state information is lost. The two parties can sure detect this irregular photon pattern in the
-              error correction phase, thus knowing the presence of an eavesdropper.</p>
-              <div class="text-center"><img src="/concepts/error_correction.png" alt="Error Correction" class="img-fluid"><p class="mb-0 e-text">Error Correction Process</p></div>
+              <p class="mb-0"><strong>During Error Correction,</strong> the two parties compare their chosen
+                polarization bases during
+                key exchange via a public channel. They keep the correct photons and discard the incorrect ones.
+                According
+                to the nature of quantum physics, <q class="fst-italic">a slight observation of the photon disturbs it
+                  in an irreversible way.</q>
+                In brief, if an eavesdropper intercepts the transmission, the photon will be disturbed, and all of its
+                previous state information is lost. The two parties can sure detect this irregular photon pattern in the
+                error correction phase, thus knowing the presence of an eavesdropper.</p>
+              <div class="text-center"><img src="/concepts/error_correction.png" alt="Error Correction"
+                  class="img-fluid">
+                <p class="mb-0 e-text">Error Correction Process</p>
+              </div>
             </div>
           </div>
         </div>
@@ -118,8 +173,9 @@
             <div class="accordion-body">
               <strong>During Privacy Amplification,</strong> if the two parties confirm no presence of an eavesdropper,
               they can use the key directly. If the two parties confirm the presence of an eavesdropper, they can take
-              countermeasures, such as compressing the key length. After that, the key is safe to go. <span class="fw-bold">It is noted that
-              this step will not be demonstrated in the game.</span>
+              countermeasures, such as compressing the key length. After that, the key is safe to go. <span
+                class="fw-bold">It is noted that
+                this step will not be demonstrated in the game.</span>
             </div>
           </div>
         </div>
