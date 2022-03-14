@@ -16,8 +16,6 @@
         Canvas {
             background-color: #f1f1f1;
             display: block;
-            padding-left: 0;
-            padding-right: 0;
             margin-left: auto;
             margin-right: auto;
             margin-top: 5px;
@@ -26,10 +24,10 @@
     </style>
 </head>
 
-<body onload="startGame()">
+<body onload="animate()">
 
-    <script>
-        var alice, bob, eve, line, photon, pol_H_A, pol_H_B, pol_V_A, pol_V_B, pol_P45_A, pol_P45_B, pol_N45_A, pol_N45_B, pol_H_E1, pol_H_E2, pol_V_E1, pol_V_E2, pol_P45_E1, pol_P45_E2, pol_N45_E1, pol_45_E2;
+<!--     <script>
+        var alice, bob, eve, line, photon, pol_H_A, pol_H_B, pol_V_A, pol_V_B, pol_P45_A, pol_P45_B, pol_N45_A, pol_N45_B, pol_H_E1, pol_H_E2, pol_V_E1, pol_V_E2, pol_P45_E1, pol_P45_E2, pol_N45_E1, pol_N45_E2;
         var eve_display = false; //whether to summon Eve or not
         var eve_state = false; //false: no eavesdrop, true: has eavesdrop
         var alice_45 = false, bob_45 = false; //false: Rectilinear, true: Diagonal
@@ -654,10 +652,11 @@
             photon.update();
             //photon.x += 1;
         }
-    </script>
+    </script> -->
 
     <div class="container-fluid">
-
+        <canvas id="gameCanvas"></canvas>   
+        <script src="/game.js"></script>     
         <!--Polarization Base Settings-->
         <div class="row border g-0">
             <p class="text-center mb-0"><u>Polarization Base</u></p>
