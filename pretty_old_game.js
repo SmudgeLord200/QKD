@@ -8,8 +8,10 @@ var xR = 0, yR = 0, xD = 0, yD = 0, eR = 0, eD = 0, d = 0; //Random parameters f
 var aB = 0, bB = 0, eB = 0; //Randoms for Alice's and Bob's and Eve's in random basis
 var bitsToPush = false, bits_value = 0;
 
-function startGame() {
-    //Draw the required elements into the canvas
+var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+
+function draw() {
     alice = new component(80, 100, "Alice.jpg", 10, 20, "image");
     bob = new component(80, 100, "Bob.jpg", 1140, 20, "image");
     eve = new component(80, 100, "Eve.jpg", 550, 20, "image");
@@ -30,30 +32,11 @@ function startGame() {
     pol_H_E1 = new component(90, 100, "Pol-H.png", 450, 10, "image");
     pol_H_E2 = new component(90, 100, "Pol-H.png", 650, 10, "image");
     pol_V_E1 = new component(90, 100, "Pol-V.png", 450, 10, "image");
-    pol_V_E2 = new component(90, 100, "Pol-V.png", 650, 10, "image");
+    pol_V_E2 = new component(90, 100, "Pol-V.png", 640, 10, "image");
     pol_P45_E1 = new component(90, 100, "Pol-P45.png", 150, 10, "image");
     pol_P45_E2 = new component(90, 100, "Pol-P45.png", 150, 10, "image");
     pol_N45_E1 = new component(90, 100, "Pol-N45.png", 150, 10, "image");
     pol_N45_E2 = new component(90, 100, "Pol-N45.png", 150, 10, "image");
-
-    //Start the game
-    myGameArea.start();
-}
-
-//This is where the game starts, we draw the canvas into the page
-var myGameArea = {
-    canvas: document.createElement("canvas"),
-    start: function () {
-        this.canvas.width = 1235;
-        this.canvas.height = 110;
-        this.context = this.canvas.getContext("2d");
-        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-        this.interval = setInterval(updateGameArea, 1);
-    },
-    //this function is to clear the images that we draw on the canvas
-    clear: function () {
-        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    }
 }
 
 //This is the method of how the images are drawn
@@ -68,7 +51,6 @@ function component(width, height, color, x, y, type) {
     this.x = x;
     this.y = y;
     this.update = function () {
-        ctx = myGameArea.context;
         if (type == "image") {
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
         } else {
@@ -80,10 +62,7 @@ function component(width, height, color, x, y, type) {
 
 
 //This is the control for animation in the canvas and the related functions
-function updateGameArea() {
-
-    //first clear the canvas
-    myGameArea.clear();
+function update() {
 
     //then draw the image into it
     alice.update();
@@ -129,7 +108,7 @@ function updateGameArea() {
         document.getElementById("bobOpt45").disabled = false;
     }
 
-    //Show the corresponding image according to the selected radio button
+    //Show the corresponding image according to the selected radio buttons
     if (document.getElementById("aliceOptHV").checked) {
         pol_V_A.update();
     } else {
@@ -284,7 +263,7 @@ function updateGameArea() {
                             console.log("Eve's here: ", v);
                         }
                     } else {
-                        eD = Math.floor(Math.random() * 2);
+                        eD =  Math.floor(Math.random() * 2);
                         //0 is p45, 1 is n45
                         if (eD == 0) {
                             pol_P45_E1.update();
@@ -294,7 +273,7 @@ function updateGameArea() {
                             pol_N45_E1.update();
                             pol_N45_E2.update();
                             Eve.push(n45);
-                        }
+                        }                                
                     }
                 }
 
@@ -508,7 +487,7 @@ function updateGameArea() {
                             console.log("Eve's here: ", v);
                         }
                     } else {
-                        eR = Math.floor(Math.random() * 2);
+                        eR =  Math.floor(Math.random() * 2);
                         //0 is h, 1 is v
                         if (eR == 0) {
                             pol_H_E1.update();
@@ -518,7 +497,7 @@ function updateGameArea() {
                             pol_V_E1.update();
                             pol_V_E2.update();
                             Eve.push(v);
-                        }
+                        }                                
                     }
                 }
             }
@@ -559,7 +538,7 @@ function updateGameArea() {
                             console.log("Eve's here: ", v);
                         }
                     } else {
-                        eD = Math.floor(Math.random() * 2);
+                        eD =  Math.floor(Math.random() * 2);
                         //0 is p45, 1 is n45
                         if (eD == 0) {
                             pol_P45_E1.update();
@@ -584,13 +563,13 @@ function updateGameArea() {
                     pol_V_B.update();
                     if (bitsToPush === true) {
                         Bob.push(bits_value);
-                    } else { Bob.push(v); }
+                    } else {Bob.push(v);}
                     console.log("Bob Vertical: ", Bob);
                 } else {
                     pol_H_B.update();
                     if (bitsToPush === true) {
                         Bob.push(bits_value);
-                    } else { Bob.push(h); }
+                    } else {Bob.push(h);}
                     console.log("Bob Horizontal: ", Bob);
                 }
 
@@ -604,13 +583,13 @@ function updateGameArea() {
                     pol_P45_B.update();
                     if (bitsToPush === true) {
                         Bob.push(bits_value);
-                    } else { Bob.push(p45); }
+                    } else {Bob.push(p45);}
                     console.log("Bob P45: ", Bob);
                 } else {
                     pol_N45_B.update();
                     if (bitsToPush === true) {
                         Bob.push(bits_value);
-                    } else { Bob.push(n45); }
+                    } else {Bob.push(n45);}
                     console.log("Bob N45: ", Bob);
                 }
 
@@ -623,3 +602,13 @@ function updateGameArea() {
     photon.update();
     //photon.x += 1;
 }
+
+function animate() {
+    window.requestAnimationFrame(animate);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    draw();
+    update();
+}
+
+animate();
