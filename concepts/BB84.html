@@ -23,25 +23,11 @@
       height: 100%;
     }
 
-    .right-t {
-      position: absolute;
-      bottom: -184px;
-      right: 105px;
-      font-size: 18px;
-      padding-bottom: 10px;
-    }
-
-    .right-t2 {
-      position: absolute;
-      bottom: -120px;
-      right: -5px;
-      font-size: 18px;
-      padding-bottom: 10px;
-    }
-
-    .e-text {
-      font-size: 16px;
-      text-decoration: underline;
+    #canvas_bb84_1 {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
     }
   </style>
 </head>
@@ -67,19 +53,13 @@
           </h2>
           <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
             aria-labelledby="panelsStayOpen-headingOne">
-            <div class="accordion-body clearfix">
+            <div class="accordion-body">
               <!-- Canvas Animation -->
-              <canvas id="anim"></canvas>
+              <canvas id="canvas_bb84_1"></canvas>
+              <script src="js/canvas_bb84.js"></script>
               <p><strong>During Key Exchange,</strong> the two parties transmit photons using <span
                   class="fw-bold">photon detectors</span> equipped
                 with polaroid filters.</p>
-              <div id="img_container">
-                <img src="/concepts/p_filter_02.jpg" alt="Polaroid Filter" class="img-fluid float-end" id="filter">
-                <div class="right-t"><u>Photon Detector</u></div>
-                <img src="/concepts/photon_detector.jpg" alt="Polaroid Detector" class="img-fluid float-end"
-                  id="detector" style="width: 180px; height: 100%;">
-                <div class="right-t2"><u>Polaroid Filter</u></div>
-              </div>
               <p>They <span class="fst-italic">randomly switch between the two polarization bases</span>, i.e., <span
                   class="fw-bold">Rectilinear</span> (horizontal and vertical) basis,
                 and <span class="fw-bold">Diagonal</span> (+45 º/-45º) basis, to transmit the photons. The correct

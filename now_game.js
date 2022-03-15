@@ -1,6 +1,7 @@
 var alice, bob, eve, line, photon, pol_H_A, pol_H_B, pol_V_A, pol_V_B, pol_P45_A, pol_P45_B, pol_N45_A, pol_N45_B, pol_H_E1, pol_H_E2, pol_V_E1, pol_V_E2, pol_P45_E1, pol_P45_E2, pol_N45_E1, pol_N45_E2;
 var eve_display = false; //whether to summon Eve or not
 var eve_state = false; //false: no eavesdrop, true: has eavesdrop
+var alice_display = false, bob_display = false;
 var alice_45 = false, bob_45 = false; //false: Rectilinear, true: Diagonal
 var Alice = [], Bob = [], Eve = []; //Initialize three arrays for storing bit sequences
 var h = 0, v = 0, p45 = 0, n45 = 0; //Bit orientation
@@ -30,7 +31,7 @@ function startGame() {
     pol_H_E1 = new component(90, 100, "Pol-H.png", 450, 10, "image");
     pol_H_E2 = new component(90, 100, "Pol-H.png", 650, 10, "image");
     pol_V_E1 = new component(90, 100, "Pol-V.png", 450, 10, "image");
-    pol_V_E2 = new component(90, 100, "Pol-V.png", 650, 10, "image");
+    pol_V_E2 = new component(90, 100, "Pol-V.png", 640, 10, "image");
     pol_P45_E1 = new component(90, 100, "Pol-P45.png", 150, 10, "image");
     pol_P45_E2 = new component(90, 100, "Pol-P45.png", 150, 10, "image");
     pol_N45_E1 = new component(90, 100, "Pol-N45.png", 150, 10, "image");
@@ -177,6 +178,8 @@ function updateGameArea() {
                     Alice.push(h);
                     console.log("Alice Horizontal: ", Alice);
                 }
+
+                alice_display = false;
 
                 //Eve
                 if (eve_state === true) {
@@ -621,5 +624,5 @@ function updateGameArea() {
 
     //Draw the photon to the canvas
     photon.update();
-    //photon.x += 1;
+    /* photon.x += 3; */
 }

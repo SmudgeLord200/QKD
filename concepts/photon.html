@@ -14,13 +14,145 @@
     <title>Photon</title>
 
     <style>
-        #photon {
-            width: 350px;
-            height: 250px;
+        .react {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: anim_rotate 8.2s linear infinite;
         }
 
-        #photon:hover {
-            box-shadow: 0px 0px 80px rgb(233, 250, 2);
+        .react_spoke {
+            position: absolute;
+            border: 0.2rem #55DBF8 solid;
+            height: 4rem;
+            width: 11rem;
+            border-radius: 250%;
+            animation: change_color_1 8.2s linear infinite;
+        }
+
+        .react_spoke--1 {
+            transform: rotate(60deg);
+            animation: change_color_2 8.2s linear infinite;
+        }
+
+        .react_spoke--2 {
+            transform: rotate(-60deg);
+            animation: change_color_3 8.2s linear infinite;
+        }
+
+        .react_spoke--3 {
+            position: absolute;
+            height: 2.2rem;
+            width: 2.2rem;
+            background-color: #55DBF8;
+            border-radius: 50%;
+            animation: change_color_4 8.2s linear infinite;
+        }
+
+        .container {
+            height: 12rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* background-color: #282C33; */
+        }
+
+        @keyframes anim_rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(180deg);
+            }
+        }
+
+        @keyframes change_color_1 {
+            0% {
+                border-color: #55DBF8;
+            }
+
+            30% {
+                border-color: #E7ED9B;
+            }
+
+            66% {
+                border-color: #8BDB81;
+            }
+
+            /*             75% {
+                border-color: #8BDB81;
+            } */
+
+            100% {
+                border-color: #6A5495;
+            }
+        }
+
+        @keyframes change_color_2 {
+            0% {
+                border-color: #55DBF8;
+            }
+
+            30% {
+                border-color: #F9D371;
+            }
+
+            66% {
+                border-color: #F47340;
+            }
+
+            /*            75% {
+                border-color: #EF2F88;
+            } */
+
+            100% {
+                border-color: #8843F2;
+            }
+        }
+
+        @keyframes change_color_3 {
+            0% {
+                border-color: #55DBF8;
+            }
+
+            30% {
+                border-color: #FFAA4C;
+            }
+
+            66% {
+                border-color: #5089C6;
+            }
+
+            /*             75% {
+                border-color: #035397;
+            } */
+
+            100% {
+                border-color: #0032b1;
+            }
+        }
+
+        @keyframes change_color_4 {
+            0% {
+                background-color: #55DBF8;
+            }
+
+            25% {
+                background-color: #69DADB;
+            }
+
+            50% {
+                background-color: #1597E5;
+            }
+
+            75% {
+                background-color: #113CFC;
+            }
+
+            100% {
+                background-color: #193498;
+            }
         }
 
         #calcite,
@@ -33,7 +165,7 @@
 
         #calcite:hover {
             width: 300px;
-            height: 300px;           
+            height: 300px;
         }
 
         #p:hover {
@@ -56,21 +188,33 @@
             <h4 class=" pt-3 pb-3 bg-danger text-white text-center"><u>Phonton</u></h4>
         </div>
 
-        <div class="row">
-            <div class="row text-center mt-2">
-                <p>Photons are the smallest particles of light. <img id="photon" src="/concepts/photon.jpg" alt="Photon"
-                        class="img-fluid rounded-circle mx-5"></p>
-
+        <div class="row mx-auto">
+            <div class="row mt-2">
+                <p class="col-7 align-self-center text-center">Photons are the smallest particles of light.</p>
+                <div class="container col-4">
+                    <div class="react">
+                        <div class="react_spoke react_spoke--0"></div>
+                        <div class="react_spoke react_spoke--1"></div>
+                        <div class="react_spoke react_spoke--2"></div>
+                        <div class="react_spoke--3"></div>
+                    </div>
+                </div>
             </div>
 
             <div class="row text-center mt-4">
                 <p>They can be sent via an ordinary light beam passing
-                    through polarizing equipment, <br> such as <span class="big">Polaroid filter</span>, <span class="big">calcite
+                    through polarizing equipment, <br> such as <span class="big">Polaroid filter</span>, <span
+                        class="big">calcite
                         crystal</span>, etc. equipped in the <span class="fw-bold">photon detectors</span>. </p>
 
                 <div class="row">
-                    <div class="col-6"><img id="p" src="/concepts/p_filter_01.jpg" alt="Light Bulb" class="img-fluid"><div><u>Polaroid Filter</u></div></div>    
-                    <div class="col-6"><img id="calcite" src="/concepts/calcite_crystal_crop.jpg" alt="Calcite Crystal" class="img-fluid"><div><u>Calcite Crystal</u></div></div>
+                    <div class="col-6"><img id="p" src="/concepts/p_filter_01.jpg" alt="Light Bulb" class="img-fluid">
+                        <div><u>Polaroid Filter</u></div>
+                    </div>
+                    <div class="col-6"><img id="calcite" src="/concepts/calcite_crystal_crop.jpg" alt="Calcite Crystal"
+                            class="img-fluid">
+                        <div><u>Calcite Crystal</u></div>
+                    </div>
                 </div>
             </div>
         </div>

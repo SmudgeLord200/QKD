@@ -32,7 +32,7 @@ function draw() {
     pol_H_E1 = new component(90, 100, "Pol-H.png", 450, 10, "image");
     pol_H_E2 = new component(90, 100, "Pol-H.png", 650, 10, "image");
     pol_V_E1 = new component(90, 100, "Pol-V.png", 450, 10, "image");
-    pol_V_E2 = new component(90, 100, "Pol-V.png", 650, 10, "image");
+    pol_V_E2 = new component(90, 100, "Pol-V.png", 640, 10, "image");
     pol_P45_E1 = new component(90, 100, "Pol-P45.png", 150, 10, "image");
     pol_P45_E2 = new component(90, 100, "Pol-P45.png", 150, 10, "image");
     pol_N45_E1 = new component(90, 100, "Pol-N45.png", 150, 10, "image");
