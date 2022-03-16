@@ -158,6 +158,13 @@ document.getElementById("2").onclick = function () {
     n45 = 1;
 }
 
+function css_ani() {
+    document.getElementById("circle").classList.add("circle-active");
+}
+
+/* function remove_css() {
+    document.getElementById("circle").classList.remove("circle-active");
+} */
 
 //Fire photon
 function fire() {
@@ -178,6 +185,8 @@ function fire() {
                 pol_P45_A.style.visibility = "hidden";
                 pol_N45_A.style.visibility = "hidden";
 
+                css_ani();
+                //remove_css();
                 Alice.push(v);
                 console.log("Alice Vertical: ", Alice);
             } else {
@@ -187,6 +196,8 @@ function fire() {
                 pol_P45_A.style.visibility = "hidden";
                 pol_N45_A.style.visibility = "hidden";
 
+                css_ani();
+                //remove_css();
                 Alice.push(h);
                 console.log("Alice Horizontal: ", Alice);
             }
