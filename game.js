@@ -172,17 +172,21 @@ function fire() {
             xR = Math.floor(Math.random() * 2);
             //0 is V, 1 is H 
             if (xR == 0) {
+                //V
                 pol_V_A.style.visibility = "visible";
                 pol_H_A.style.visibility = "hidden";
                 pol_P45_A.style.visibility = "hidden";
                 pol_N45_A.style.visibility = "hidden";
+
                 Alice.push(v);
                 console.log("Alice Vertical: ", Alice);
             } else {
+                //H
                 pol_V_A.style.visibility = "hidden";
                 pol_H_A.style.visibility = "visible";
                 pol_P45_A.style.visibility = "hidden";
                 pol_N45_A.style.visibility = "hidden";
+
                 Alice.push(h);
                 console.log("Alice Horizontal: ", Alice);
             }
@@ -213,6 +217,7 @@ function fire() {
                         bits_value = p45;
                         console.log("Eve's here: ", p45);
                         Eve.push(bits_value);
+
                     } else {
                         //N45
                         pol_H_E1.style.visibility = "hidden";
@@ -245,6 +250,7 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(h);
+
                     } else {
                         //V
                         pol_H_E1.style.visibility = "hidden";
@@ -264,8 +270,9 @@ function fire() {
 
             //bob switch between yR
             yR = Math.floor(Math.random() * 2);
-            //0 is V, 1 is A
+            //0 is V, 1 is H
             if (yR == 0) {
+                //V
                 pol_V_B.style.visibility = "visible";
                 pol_H_B.style.visibility = "hidden";
                 pol_P45_B.style.visibility = "hidden";
@@ -277,7 +284,9 @@ function fire() {
                     Bob.push(v);
                 }
                 console.log("Bob Vertical: ", Bob);
+
             } else {
+                //H
                 pol_V_B.style.visibility = "hidden";
                 pol_H_B.style.visibility = "visible";
                 pol_P45_B.style.visibility = "hidden";
@@ -312,7 +321,8 @@ function fire() {
                 pol_N45_A.style.visibility = "hidden";
 
                 Alice.push(p45);
-                console.log("Alice P45: ", Alice)
+                console.log("Alice P45: ", Alice);
+
             } else {
                 //N45
                 pol_V_A.style.visibility = "hidden";
@@ -321,7 +331,7 @@ function fire() {
                 pol_N45_A.style.visibility = "visible";
 
                 Alice.push(n45);
-                console.log("Alice N45: ", Alice)
+                console.log("Alice N45: ", Alice);
             }
 
             //Eve
@@ -349,6 +359,7 @@ function fire() {
                         bitsToPush = true;
                         bits_value = h;
                         console.log("Eve's here: ", h);
+
                     } else {
                         //V
                         pol_H_E1.style.visibility = "hidden";
@@ -413,6 +424,7 @@ function fire() {
                     Bob.push(p45);
                 }
                 console.log("Bob P45: ", Bob);
+
             } else {
                 //N45
                 pol_V_B.style.visibility = "hidden";
@@ -448,7 +460,8 @@ function fire() {
                     pol_N45_A.style.visibility = "hidden";
 
                     Alice.push(v);
-                    console.log("Alice Vertical: ", Alice)
+                    console.log("Alice Vertical: ", Alice);
+
                 } else {
                     //H
                     pol_V_A.style.visibility = "hidden";
@@ -457,7 +470,7 @@ function fire() {
                     pol_N45_A.style.visibility = "hidden";
 
                     Alice.push(h);
-                    console.log("Alice Horizontal: ", Alice)
+                    console.log("Alice Horizontal: ", Alice);
                 }
 
 
@@ -653,6 +666,7 @@ function fire() {
 
                             console.log("Eve's here and guess correctly");
                             Eve.push(p45);
+                            
                         } else {
                             //N45
                             pol_H_E1.style.visibility = "hidden";
