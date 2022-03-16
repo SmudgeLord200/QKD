@@ -61,6 +61,8 @@ document.getElementById("fixedP").onclick = function () {
 
 //Show the corresponding image according to the selected radio buttons
 document.getElementById("aliceOptHV").onclick = function () {
+    alice_45 = false;
+
     //Show Vertical by default
     pol_V_A.style.visibility = "visible";
     pol_H_A.style.visibility = "hidden";
@@ -82,6 +84,8 @@ document.getElementById("aliceOpt45").onclick = function () {
 
 //Show the corresponding image according to the selected radio buttons
 document.getElementById("bobOptHV").onclick = function () {
+    bob_45 = false;
+
     //Show Vertical by default
     pol_V_B.style.visibility = "visible";
     pol_H_B.style.visibility = "hidden";
@@ -92,7 +96,7 @@ document.getElementById("bobOptHV").onclick = function () {
 //Show the corresponding image according to the selected radio buttons
 document.getElementById("bobOpt45").onclick = function () {
     bob_45 = true;
-    
+
     //Show P45 by default
     pol_V_B.style.visibility = "hidden";
     pol_H_B.style.visibility = "hidden";
@@ -166,7 +170,7 @@ function fire() {
             //Radnomly switch between horizontal and vertical basis
             //alice switch between xR
             xR = Math.floor(Math.random() * 2);
-            //0 is V, 1 is A 
+            //0 is V, 1 is H 
             if (xR == 0) {
                 pol_V_A.style.visibility = "visible";
                 pol_H_A.style.visibility = "hidden";
@@ -355,7 +359,7 @@ function fire() {
                         pol_P45_E2.style.visibility = "hidden";
                         pol_N45_E1.style.visibility = "hidden";
                         pol_N45_E2.style.visibility = "hidden";
-                        
+
                         bitsToPush = true;
                         bits_value = v;
                         console.log("Eve's here: ", v);
@@ -374,6 +378,7 @@ function fire() {
                         pol_N45_E1.style.visibility = "hidden";
                         pol_N45_E2.style.visibility = "hidden";
 
+                        console.log("Eve's here and guess correctly");
                         Eve.push(p45);
                     } else {
                         //N45
@@ -385,7 +390,8 @@ function fire() {
                         pol_P45_E2.style.visibility = "hidden";
                         pol_N45_E1.style.visibility = "visible";
                         pol_N45_E2.style.visibility = "visible";
-                        
+
+                        console.log("Eve's here and guess correctly");
                         Eve.push(n45);
                     }
                 }
@@ -424,6 +430,556 @@ function fire() {
 
             bitsToPush = false;
 
+        }
+
+        //If the two bases are not equal
+        else {
+
+            //Alice: H/V, Bob: P45/N45
+            if (alice_45 === false && bob_45 === true) {
+                //alice swicth between xR
+                xR = Math.floor(Math.random() * 2);
+                //0 is V, 1 is H 
+                if (xR == 0) {
+                    //V
+                    pol_V_A.style.visibility = "visible";
+                    pol_H_A.style.visibility = "hidden";
+                    pol_P45_A.style.visibility = "hidden";
+                    pol_N45_A.style.visibility = "hidden";
+
+                    Alice.push(v);
+                    console.log("Alice Vertical: ", Alice)
+                } else {
+                    //H
+                    pol_V_A.style.visibility = "hidden";
+                    pol_H_A.style.visibility = "visible";
+                    pol_P45_A.style.visibility = "hidden";
+                    pol_N45_A.style.visibility = "hidden";
+
+                    Alice.push(h);
+                    console.log("Alice Horizontal: ", Alice)
+                }
+
+
+                //Eve
+                if (eve_state === true) {
+                    //Radnomly switch between Rectilinear and Diagonal Basis
+                    eB = Math.floor(Math.random() * 2);
+                    //If Eve has different basis with Alice, the photon will be converted, i.e., a wrong photon has born                            
+
+                    //0 is H/V, 1 is P45/N45
+                    //Eve chooses Diagonal basis the wrong basis, result in a wrong photon to Bob
+                    if (eB == 1) {
+                        //d: it will be randomly deflected in one of the two directions in another polarization state
+                        d = Math.floor(Math.random() * 2);
+                        if (d == 0) {
+                            //P45
+                            pol_H_E1.style.visibility = "hidden";
+                            pol_H_E2.style.visibility = "hidden";
+                            pol_V_E1.style.visibility = "hidden";
+                            pol_V_E2.style.visibility = "hidden";
+                            pol_P45_E1.style.visibility = "visible";
+                            pol_P45_E2.style.visibility = "visible";
+                            pol_N45_E1.style.visibility = "hidden";
+                            pol_N45_E2.style.visibility = "hidden";
+
+                            bitsToPush = true;
+                            bits_value = p45;
+                            console.log("Eve's here: ", p45);
+
+                        } else {
+                            //N45
+                            pol_H_E1.style.visibility = "hidden";
+                            pol_H_E2.style.visibility = "hidden";
+                            pol_V_E1.style.visibility = "hidden";
+                            pol_V_E2.style.visibility = "hidden";
+                            pol_P45_E1.style.visibility = "hidden";
+                            pol_P45_E2.style.visibility = "hidden";
+                            pol_N45_E1.style.visibility = "visible";
+                            pol_N45_E2.style.visibility = "visible";
+
+                            bitsToPush = true;
+                            bits_value = n45;
+                            console.log("Eve's here: ", n45);
+                        }
+                    } else {
+                        eR = Math.floor(Math.random() * 2);
+                        //0 is H, 1 is V
+                        if (eR == 0) {
+                            //H
+                            pol_H_E1.style.visibility = "visible";
+                            pol_H_E2.style.visibility = "visible";
+                            pol_V_E1.style.visibility = "hidden";
+                            pol_V_E2.style.visibility = "hidden";
+                            pol_P45_E1.style.visibility = "hidden";
+                            pol_P45_E2.style.visibility = "hidden";
+                            pol_N45_E1.style.visibility = "hidden";
+                            pol_N45_E2.style.visibility = "hidden";
+
+                            console.log("Eve's here and guess correctly");
+                            Eve.push(h);
+                        } else {
+                            //V
+                            pol_H_E1.style.visibility = "hidden";
+                            pol_H_E2.style.visibility = "hidden";
+                            pol_V_E1.style.visibility = "visible";
+                            pol_V_E2.style.visibility = "visible";
+                            pol_P45_E1.style.visibility = "hidden";
+                            pol_P45_E2.style.visibility = "hidden";
+                            pol_N45_E1.style.visibility = "hidden";
+                            pol_N45_E2.style.visibility = "hidden";
+
+                            console.log("Eve's here and guess correctly");
+                            Eve.push(v);
+                        }
+                    }
+                }
+
+                //bob switch between yD
+                yD = Math.floor(Math.random() * 2);
+                if (yD == 0) {
+                    //P45
+                    pol_V_B.style.visibility = "hidden";
+                    pol_H_B.style.visibility = "hidden";
+                    pol_P45_B.style.visibility = "visible";
+                    pol_N45_B.style.visibility = "hidden";
+
+                    if (bitsToPush === true) {
+                        Bob.push(bits_value);
+                    } else {
+                        Bob.push(p45);
+                    }
+                    console.log("Bob P45: ", Bob);
+
+                } else {
+                    //N45
+                    pol_V_B.style.visibility = "hidden";
+                    pol_H_B.style.visibility = "hidden";
+                    pol_P45_B.style.visibility = "hidden";
+                    pol_N45_B.style.visibility = "visible";
+
+                    if (bitsToPush === true) {
+                        Bob.push(bits_value);
+                    } else {
+                        Bob.push(n45);
+                    }
+                    console.log("Bob N45: ", Bob);
+                }
+
+                bitsToPush = false;
+            }
+
+            //Alice: P45/N45, Bob: H/V
+            else {
+
+                //alice switch between xD
+                xD = Math.floor(Math.random() * 2);
+                //0 is P45, 1 is N45 
+                if (xD == 0) {
+                    //P45
+                    pol_V_A.style.visibility = "hidden";
+                    pol_H_A.style.visibility = "hidden";
+                    pol_P45_A.style.visibility = "visible";
+                    pol_N45_A.style.visibility = "hidden";
+
+                    Alice.push(p45);
+                    console.log("Alice P45: ", Alice);
+
+                } else {
+                    //N45
+                    pol_V_A.style.visibility = "hidden";
+                    pol_H_A.style.visibility = "hidden";
+                    pol_P45_A.style.visibility = "hidden";
+                    pol_N45_A.style.visibility = "visible";
+
+                    Alice.push(n45);
+                    console.log("Alice N45: ", Alice);
+                }
+
+                //Eve
+                if (eve_state === true) {
+                    //Radnomly switch between Rectilinear and Diagonal Basis
+                    eB = Math.floor(Math.random() * 2);
+                    //If Eve has different basis with Alice, the photon will be converted, i.e., a wrong photon has born                            
+
+                    //0 is H/V, 1 is P45/N45
+                    //Eve chooses Diagonal basis the wrong basis, result in a wrong photon to Bob
+                    if (eB == 0) {
+                        //d: it will be randomly deflected in one of the two directions in another polarization state
+                        d = Math.floor(Math.random() * 2);
+                        if (d == 0) {
+                            //H
+                            pol_H_E1.style.visibility = "visible";
+                            pol_H_E2.style.visibility = "visible";
+                            pol_V_E1.style.visibility = "hidden";
+                            pol_V_E2.style.visibility = "hidden";
+                            pol_P45_E1.style.visibility = "hidden";
+                            pol_P45_E2.style.visibility = "hidden";
+                            pol_N45_E1.style.visibility = "hidden";
+                            pol_N45_E2.style.visibility = "hidden";
+
+                            bitsToPush = true;
+                            bits_value = h;
+                            console.log("Eve's here: ", h);
+
+                        } else {
+                            //V
+                            pol_H_E1.style.visibility = "hidden";
+                            pol_H_E2.style.visibility = "hidden";
+                            pol_V_E1.style.visibility = "visible";
+                            pol_V_E2.style.visibility = "visible";
+                            pol_P45_E1.style.visibility = "hidden";
+                            pol_P45_E2.style.visibility = "hidden";
+                            pol_N45_E1.style.visibility = "hidden";
+                            pol_N45_E2.style.visibility = "hidden";
+
+                            bitsToPush = true;
+                            bits_value = v;
+                            console.log("Eve's here: ", v);
+                        }
+                    } else {
+                        eD = Math.floor(Math.random() * 2);
+                        //0 is p45, 1 is n45
+                        if (eD == 0) {
+                            //P45
+                            pol_H_E1.style.visibility = "hidden";
+                            pol_H_E2.style.visibility = "hidden";
+                            pol_V_E1.style.visibility = "hidden";
+                            pol_V_E2.style.visibility = "hidden";
+                            pol_P45_E1.style.visibility = "visible";
+                            pol_P45_E2.style.visibility = "visible";
+                            pol_N45_E1.style.visibility = "hidden";
+                            pol_N45_E2.style.visibility = "hidden";
+
+                            console.log("Eve's here and guess correctly");
+                            Eve.push(p45);
+                        } else {
+                            //N45
+                            pol_H_E1.style.visibility = "hidden";
+                            pol_H_E2.style.visibility = "hidden";
+                            pol_V_E1.style.visibility = "hidden";
+                            pol_V_E2.style.visibility = "hidden";
+                            pol_P45_E1.style.visibility = "hidden";
+                            pol_P45_E2.style.visibility = "hidden";
+                            pol_N45_E1.style.visibility = "visible";
+                            pol_N45_E2.style.visibility = "visible";
+
+                            console.log("Eve's here and guess correctly");
+                            Eve.push(n45);
+                        }
+                    }
+                }
+
+                //bob switch between yR
+                yR = Math.floor(Math.random() * 2);
+                if (yR == 0) {
+                    //V
+                    pol_V_B.style.visibility = "visible";
+                    pol_H_B.style.visibility = "hidden";
+                    pol_P45_B.style.visibility = "hidden";
+                    pol_N45_B.style.visibility = "hidden";
+
+                    if (bitsToPush === true) {
+                        Bob.push(bits_value);
+                    } else {
+                        Bob.push(v);
+                    }
+                    console.log("Bob Vertical: ", Bob);
+
+                } else {
+                    //H
+                    pol_V_B.style.visibility = "hidden";
+                    pol_H_B.style.visibility = "visible";
+                    pol_P45_B.style.visibility = "hidden";
+                    pol_N45_B.style.visibility = "hidden";
+
+                    if (bitsToPush === true) {
+                        Bob.push(bits_value);
+                    } else {
+                        Bob.push(h);
+                    }
+                    console.log("Bob Horizontal: ", Bob);
+                }
+
+                bitsToPush = false;
+            }
+            //Radnomly switch between their own basis
+            //Assign corresponding bit value to both arrays
+            //Display the bit sequence to the tables      
+        }
+    }
+    //Random Basis
+    else {
+        //Randomly switch between Rectilinear and Diagonal Basis
+        //Assign corresponding bit value to both arrays
+        //Display the bit sequence to the tables 
+
+        //Radnom Alice Basis
+        aB = Math.floor(Math.random() * 2);
+        //0 is H/V, 1 is P45/N45
+        //Alice: H/V
+        if (aB == 0) {
+            //Radnomly switch between horizontal and vertical basis
+            xR = Math.floor(Math.random() * 2);
+            //0 is V, 1 is H 
+            if (xR == 0) {
+                //V
+                pol_V_A.style.visibility = "visible";
+                pol_H_A.style.visibility = "hidden";
+                pol_P45_A.style.visibility = "hidden";
+                pol_N45_A.style.visibility = "hidden";
+
+                Alice.push(v);
+                console.log("Alice Vertical: ", Alice);
+
+            } else {
+                //H
+                pol_V_A.style.visibility = "hidden";
+                pol_H_A.style.visibility = "visible";
+                pol_P45_A.style.visibility = "hidden";
+                pol_N45_A.style.visibility = "hidden";
+
+                Alice.push(h);
+                console.log("Alice Horizontal: ", Alice);
+            }
+
+            //Eve
+            if (eve_state === true) {
+                //Radnomly switch between Rectilinear and Diagonal Basis
+                eB = Math.floor(Math.random() * 2);
+                //If Eve has different basis with Alice, the photon will be converted, i.e., a wrong photon has born                            
+
+                //0 is H/V, 1 is P45/N45
+                //Eve chooses Diagonal basis the wrong basis, result in a wrong photon to Bob
+                if (eB == 1) {
+                    //d: it will be randomly deflected in one of the two directions in another polarization state
+                    d = Math.floor(Math.random() * 2);
+                    if (d == 0) {
+                        //P45
+                        pol_H_E1.style.visibility = "hidden";
+                        pol_H_E2.style.visibility = "hidden";
+                        pol_V_E1.style.visibility = "hidden";
+                        pol_V_E2.style.visibility = "hidden";
+                        pol_P45_E1.style.visibility = "visible";
+                        pol_P45_E2.style.visibility = "visible";
+                        pol_N45_E1.style.visibility = "hidden";
+                        pol_N45_E2.style.visibility = "hidden";
+
+                        bitsToPush = true;
+                        bits_value = p45;
+                        console.log("Eve's here: ", h);
+
+                    } else {
+                        //N45
+                        pol_H_E1.style.visibility = "hidden";
+                        pol_H_E2.style.visibility = "hidden";
+                        pol_V_E1.style.visibility = "hidden";
+                        pol_V_E2.style.visibility = "hidden";
+                        pol_P45_E1.style.visibility = "hidden";
+                        pol_P45_E2.style.visibility = "hidden";
+                        pol_N45_E1.style.visibility = "visible";
+                        pol_N45_E2.style.visibility = "visible";
+
+                        bitsToPush = true;
+                        bits_value = n45;
+                        console.log("Eve's here: ", v);
+                    }
+                } else {
+                    eR = Math.floor(Math.random() * 2);
+                    //0 is H, 1 is V
+                    if (eR == 0) {
+                        //H
+                        pol_H_E1.style.visibility = "visible";
+                        pol_H_E2.style.visibility = "visible";
+                        pol_V_E1.style.visibility = "hidden";
+                        pol_V_E2.style.visibility = "hidden";
+                        pol_P45_E1.style.visibility = "hidden";
+                        pol_P45_E2.style.visibility = "hidden";
+                        pol_N45_E1.style.visibility = "hidden";
+                        pol_N45_E2.style.visibility = "hidden";
+
+                        console.log("Eve's here and guess correctly");
+                        Eve.push(h);
+
+                    } else {
+                        //V
+                        pol_H_E1.style.visibility = "hidden";
+                        pol_H_E2.style.visibility = "hidden";
+                        pol_V_E1.style.visibility = "visible";
+                        pol_V_E2.style.visibility = "visible";
+                        pol_P45_E1.style.visibility = "hidden";
+                        pol_P45_E2.style.visibility = "hidden";
+                        pol_N45_E1.style.visibility = "hidden";
+                        pol_N45_E2.style.visibility = "hidden";
+
+                        console.log("Eve's here and guess correctly");
+                        Eve.push(v);
+                    }
+                }
+            }
+        }
+        //Alice: P45/N45
+        else {
+            xD = Math.floor(Math.random() * 2);
+            //0 is P45, 1 is N45 
+            if (xD == 0) {
+                //P45'
+                pol_V_A.style.visibility = "hidden";
+                pol_H_A.style.visibility = "hidden";
+                pol_P45_A.style.visibility = "visible";
+                pol_N45_A.style.visibility = "hidden";
+
+                Alice.push(p45);
+                console.log("Alice P45: ", Alice);
+
+            } else {
+                //N45
+                pol_V_A.style.visibility = "hidden";
+                pol_H_A.style.visibility = "hidden";
+                pol_P45_A.style.visibility = "hidden";
+                pol_N45_A.style.visibility = "visible";
+
+                Alice.push(n45);
+                console.log("Alice N45: ", Alice);
+            }
+
+            //Eve
+            if (eve_state === true) {
+                //Radnomly switch between Rectilinear and Diagonal Basis
+                eB = Math.floor(Math.random() * 2);
+                //If Eve has different basis with Alice, the photon will be converted, i.e., a wrong photon has born                            
+
+                //0 is H/V, 1 is P45/N45
+                //Eve chooses Diagonal basis the wrong basis, result in a wrong photon to Bob
+                if (eB == 0) {
+                    //d: it will be randomly deflected in one of the two directions in another polarization state
+                    d = Math.floor(Math.random() * 2);
+                    if (d == 0) {
+                        //H
+                        pol_H_E1.style.visibility = "visible";
+                        pol_H_E2.style.visibility = "visible";
+                        pol_V_E1.style.visibility = "hidden";
+                        pol_V_E2.style.visibility = "hidden";
+                        pol_P45_E1.style.visibility = "hidden";
+                        pol_P45_E2.style.visibility = "hidden";
+                        pol_N45_E1.style.visibility = "hidden";
+                        pol_N45_E2.style.visibility = "hidden";
+
+                        bitsToPush = true;
+                        bits_value = h;
+                        console.log("Eve's here: ", h);
+                    } else {
+                        //V
+                        pol_H_E1.style.visibility = "hidden";
+                        pol_H_E2.style.visibility = "hidden";
+                        pol_V_E1.style.visibility = "visible";
+                        pol_V_E2.style.visibility = "visible";
+                        pol_P45_E1.style.visibility = "hidden";
+                        pol_P45_E2.style.visibility = "hidden";
+                        pol_N45_E1.style.visibility = "hidden";
+                        pol_N45_E2.style.visibility = "hidden";
+
+                        bitsToPush = true;
+                        bits_value = v;
+                        console.log("Eve's here: ", v);
+                    }
+                } else {
+                    eD = Math.floor(Math.random() * 2);
+                    //0 is p45, 1 is n45
+                    if (eD == 0) {
+                        //P45
+                        pol_H_E1.style.visibility = "hidden";
+                        pol_H_E2.style.visibility = "hidden";
+                        pol_V_E1.style.visibility = "hidden";
+                        pol_V_E2.style.visibility = "hidden";
+                        pol_P45_E1.style.visibility = "visible";
+                        pol_P45_E2.style.visibility = "visible";
+                        pol_N45_E1.style.visibility = "hidden";
+                        pol_N45_E2.style.visibility = "hidden";
+
+                        console.log("Eve's here and guess correctly");
+                        Eve.push(p45);
+                    } else {
+                        //N45
+                        pol_H_E1.style.visibility = "hidden";
+                        pol_H_E2.style.visibility = "hidden";
+                        pol_V_E1.style.visibility = "hidden";
+                        pol_V_E2.style.visibility = "hidden";
+                        pol_P45_E1.style.visibility = "hidden";
+                        pol_P45_E2.style.visibility = "hidden";
+                        pol_N45_E1.style.visibility = "visible";
+                        pol_N45_E2.style.visibility = "visible";
+
+                        console.log("Eve's here and guess correctly");
+                        Eve.push(n45);
+                    }
+                }
+            }
+        }
+
+        //Random Bob Basis
+        bB = Math.floor(Math.random() * 2);
+        //0 is H/V, 1 is P45/N45
+        if (bB == 0) {
+            //bob switch between yR
+            yR = Math.floor(Math.random() * 2);
+            if (yR == 0) {
+                //V
+                pol_V_B.style.visibility = "visible";
+                pol_H_B.style.visibility = "hidden";
+                pol_P45_B.style.visibility = "hidden";
+                pol_N45_B.style.visibility = "hidden";
+
+                if (bitsToPush === true) {
+                    Bob.push(bits_value);
+                } else { Bob.push(v); }
+                console.log("Bob Vertical: ", Bob);
+
+            } else {
+                //H
+                pol_V_B.style.visibility = "hidden";
+                pol_H_B.style.visibility = "visible";
+                pol_P45_B.style.visibility = "hidden";
+                pol_N45_B.style.visibility = "hidden";
+
+                if (bitsToPush === true) {
+                    Bob.push(bits_value);
+                } else { Bob.push(h); }
+                console.log("Bob Horizontal: ", Bob);
+            }
+
+            bitsToPush = false;
+        }
+        //Bob: P45/N45 
+        else {
+            //bob switch between yD
+            yD = Math.floor(Math.random() * 2);
+            if (yD == 0) {
+                //P45
+                pol_V_B.style.visibility = "hidden";
+                pol_H_B.style.visibility = "hidden";
+                pol_P45_B.style.visibility = "visible";
+                pol_N45_B.style.visibility = "hidden";
+
+                if (bitsToPush === true) {
+                    Bob.push(bits_value);
+                } else { Bob.push(p45); }
+                console.log("Bob P45: ", Bob);
+
+            } else {
+                //N45
+                pol_V_B.style.visibility = "hidden";
+                pol_H_B.style.visibility = "hidden";
+                pol_P45_B.style.visibility = "hidden";
+                pol_N45_B.style.visibility = "visible";
+
+                if (bitsToPush === true) {
+                    Bob.push(bits_value);
+                } else { Bob.push(n45); }
+                console.log("Bob N45: ", Bob);
+            }
+
+            bitsToPush = false;
         }
     }
 }
