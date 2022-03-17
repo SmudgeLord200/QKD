@@ -33,15 +33,6 @@ pol_P45_E2 = document.getElementById("eve_p45_2");
 pol_N45_E1 = document.getElementById("eve_n45_1");
 pol_N45_E2 = document.getElementById("eve_n45_2");
 
-/* document.getElementById("eve").style.visibility = "hidden";
-pol_H_E1.style.visibility = "hidden";
-pol_H_E2.style.visibility = "hidden";
-pol_V_E1.style.visibility = "hidden";
-pol_V_E2.style.visibility = "hidden";
-pol_P45_E1.style.visibility = "hidden";
-pol_P45_E2.style.visibility = "hidden";
-pol_N45_E1.style.visibility = "hidden";
-pol_N45_E2.style.visibility = "hidden"; */
 
 //Polarization Base Settings
 document.getElementById("randomP").onclick = function () {
@@ -1018,4 +1009,37 @@ function fire() {
     }
 }
 
+//Fast forward 15 Photons
+function fast15Photons() {
+    for (let i = 0; i < 15; i++) {
+        fire();
+    }
+}
 
+//Send Continuously
+var x = false;
+var interval; 
+document.getElementById("continuous").onclick = function() {
+
+    if (!x) {
+        document.getElementById("continuous").innerHTML = "Stop"; //change the button text
+        document.getElementById("single").disabled = true; //Disable the send single photons button
+
+        x = true; 
+
+        interval = setInterval(fire, 2000);
+
+    } else {
+        document.getElementById("continuous").innerHTML = "Sending Continuously"; //chnage the button text
+        document.getElementById("single").disabled = false; //Enable the send single photons button
+
+        x = false; 
+
+        clearInterval(interval);
+    }
+}
+
+//Clear everything
+function clear() {
+
+}
