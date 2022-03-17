@@ -26,6 +26,7 @@
             position: relative;
             border: 2px solid black;
             height: 120px;
+            width: 100%;
             margin: 5px 5px auto auto;
         }
 
@@ -83,10 +84,6 @@
             /* name duration timing-function delay iteration-count direction fill-mode */
         }
 
-        .circle-inactive {
-            animation: none;
-        }
-
         #circle {
             position: absolute;
             display: inline-block;
@@ -97,17 +94,17 @@
             background: yellow;
             border: 3px solid red;
             border-radius: 50%;
-            /* opacity: 0; */
+            opacity: 0;
         }
 
         @keyframes move {
             0% {
+                opacity: 1;
                 transform: translateX(0px);
-                /* opacity: 1; */
             }
 
             100% {
-                transform: translateX(1000px);
+                transform: translateX(1199px);
                 opacity: 0;
             }
         }
@@ -126,8 +123,6 @@
             <img src="/Pol-P45.png" alt="P45" class="img-fluid va" id="alice_p45">
             <img src="/Pol-N45.png" alt="N45" class="img-fluid va" id="alice_n45">
             <img src="/Pol-V.png" alt="Vertical" class="img-fluid va" id="alice_v">
-
-            <div id="circle"></div>
 
             <!-- Eve Polarization Pictures -->
             <!-- style="visibility: hidden;" -->
@@ -156,6 +151,9 @@
 
             <!-- Bob -->
             <img src="/Bob.jpg" alt="Alice" class="img-fluid bob">
+
+            <div id="circle"></div>
+
         </div>
         <!-- <canvas id="gameCanvas"></canvas>  -->
         <!-- <script src="/now_game.js"></script> -->

@@ -159,12 +159,11 @@ document.getElementById("2").onclick = function () {
 }
 
 function css_ani() {
-    document.getElementById("circle").classList.add("circle-active");
-}
-
-/* function remove_css() {
     document.getElementById("circle").classList.remove("circle-active");
-} */
+    setTimeout(() => {
+        document.getElementById("circle").classList.add("circle-active");
+    }, 1);
+}
 
 //Fire photon
 function fire() {
@@ -186,7 +185,7 @@ function fire() {
                 pol_N45_A.style.visibility = "hidden";
 
                 css_ani();
-                //remove_css();
+
                 Alice.push(v);
                 console.log("Alice Vertical: ", Alice);
             } else {
@@ -197,7 +196,7 @@ function fire() {
                 pol_N45_A.style.visibility = "hidden";
 
                 css_ani();
-                //remove_css();
+
                 Alice.push(h);
                 console.log("Alice Horizontal: ", Alice);
             }
@@ -331,6 +330,7 @@ function fire() {
                 pol_P45_A.style.visibility = "visible";
                 pol_N45_A.style.visibility = "hidden";
 
+                css_ani();
                 Alice.push(p45);
                 console.log("Alice P45: ", Alice);
 
@@ -341,6 +341,7 @@ function fire() {
                 pol_P45_A.style.visibility = "hidden";
                 pol_N45_A.style.visibility = "visible";
 
+                css_ani();
                 Alice.push(n45);
                 console.log("Alice N45: ", Alice);
             }
@@ -470,6 +471,7 @@ function fire() {
                     pol_P45_A.style.visibility = "hidden";
                     pol_N45_A.style.visibility = "hidden";
 
+                    css_ani();
                     Alice.push(v);
                     console.log("Alice Vertical: ", Alice);
 
@@ -480,6 +482,7 @@ function fire() {
                     pol_P45_A.style.visibility = "hidden";
                     pol_N45_A.style.visibility = "hidden";
 
+                    css_ani();
                     Alice.push(h);
                     console.log("Alice Horizontal: ", Alice);
                 }
@@ -606,6 +609,7 @@ function fire() {
                     pol_P45_A.style.visibility = "visible";
                     pol_N45_A.style.visibility = "hidden";
 
+                    css_ani();
                     Alice.push(p45);
                     console.log("Alice P45: ", Alice);
 
@@ -616,6 +620,7 @@ function fire() {
                     pol_P45_A.style.visibility = "hidden";
                     pol_N45_A.style.visibility = "visible";
 
+                    css_ani();
                     Alice.push(n45);
                     console.log("Alice N45: ", Alice);
                 }
@@ -754,6 +759,7 @@ function fire() {
                 pol_P45_A.style.visibility = "hidden";
                 pol_N45_A.style.visibility = "hidden";
 
+                css_ani();
                 Alice.push(v);
                 console.log("Alice Vertical: ", Alice);
 
@@ -764,6 +770,7 @@ function fire() {
                 pol_P45_A.style.visibility = "hidden";
                 pol_N45_A.style.visibility = "hidden";
 
+                css_ani();
                 Alice.push(h);
                 console.log("Alice Horizontal: ", Alice);
             }
@@ -854,6 +861,7 @@ function fire() {
                 pol_P45_A.style.visibility = "visible";
                 pol_N45_A.style.visibility = "hidden";
 
+                css_ani();
                 Alice.push(p45);
                 console.log("Alice P45: ", Alice);
 
@@ -864,6 +872,7 @@ function fire() {
                 pol_P45_A.style.visibility = "hidden";
                 pol_N45_A.style.visibility = "visible";
 
+                css_ani();
                 Alice.push(n45);
                 console.log("Alice N45: ", Alice);
             }
