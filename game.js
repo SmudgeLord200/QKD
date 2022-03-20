@@ -1193,7 +1193,7 @@ document.getElementById("continuous").onclick = function () {
         interval = setInterval(fire, 2000);
 
     } else {
-        document.getElementById("continuous").innerHTML = "Sending Continuously"; //chnage the button text
+        document.getElementById("continuous").innerHTML = "Send Continuously"; //change the button text
         document.getElementById("single").disabled = false; //Enable the send single photons button
 
         x = false;
@@ -1204,10 +1204,10 @@ document.getElementById("continuous").onclick = function () {
 
 //Display the bit details in the table
 var table, row, cell;
-var x = 1;
+var digit = 1;
 function displayTable() {
     table = document.getElementById("bitsDetailsTable");
-    row = table.rows[x];
-    cell = row.cells[x];
+    row = table.rows[digit];
+    cell = row.cells[digit];
 
 }
