@@ -6,8 +6,8 @@ var xR = 0, yR = 0, xD = 0, yD = 0, eR = 0, eD = 0, d = 0; //Random parameters f
 var aB = 0, bB = 0, eB = 0; //Randoms for Alice's and Bob's and Eve's in random basis
 var bitsToPush = false, bits_value = 0; //Bits to push to Bob's array after Eve is here
 
-var Rectilinear = {Horizontal: "Horizontal", Vertical: "Vertical"};
-var Diagonal = {P45: "P45", N45: "N45"};
+var Rectilinear = { Horizontal: "Horizontal", Vertical: "Vertical" };
+var Diagonal = { P45: "P45", N45: "N45" };
 
 var a_basis = Array(5).fill(''); //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
 var b_basis = Array(5).fill(''); //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
@@ -164,7 +164,7 @@ function css_ani() {
 }
 
 //Fire photon
-var i = 0;
+var i = 0, j = 0, k = 0; //Alice Eve Bob
 function fire() {
 
     //Fixed Basis
@@ -184,12 +184,12 @@ function fire() {
                 pol_N45_A.style.visibility = "hidden";
 
                 css_ani();
-
                 Alice.push(v);
                 a_basis[i] = Rectilinear.Vertical;
                 i++;
-                if (i > 4) {i = 0;}
+                if (i > 4) { i = 0; }
                 console.log("Alice Vertical: ", Alice);
+
             } else {
                 //H
                 pol_V_A.style.visibility = "hidden";
@@ -198,11 +198,10 @@ function fire() {
                 pol_N45_A.style.visibility = "hidden";
 
                 css_ani();
-
                 Alice.push(h);
                 a_basis[i] = Rectilinear.Horizontal;
                 i++;
-                if (i > 4) {i = 0;}
+                if (i > 4) { i = 0; }
                 console.log("Alice Horizontal: ", Alice);
             }
 
@@ -232,6 +231,9 @@ function fire() {
                         bits_value = p45;
                         console.log("Eve's here: ", p45);
                         Eve.push(bits_value);
+                        e_basis[j] = Diagonal.P45;
+                        j++;
+                        if (j > 4) { j = 0; }
 
                     } else {
                         //N45
@@ -248,6 +250,9 @@ function fire() {
                         bits_value = n45;
                         console.log("Eve's here: ", n45);
                         Eve.push(bits_value);
+                        e_basis[j] = Diagonal.N45;
+                        j++;
+                        if (j > 4) { j = 0; }
                     }
                 } else {
                     eR = Math.floor(Math.random() * 2);
@@ -265,6 +270,9 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(h);
+                        e_basis[j] = Rectilinear.Horizontal;
+                        j++;
+                        if (j > 4) { j = 0; }
 
                     } else {
                         //V
@@ -279,6 +287,9 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(v);
+                        e_basis[j] = Rectilinear.Vertical;
+                        j++;
+                        if (j > 4) { j = 0; }
                     }
                 }
             }
@@ -299,6 +310,9 @@ function fire() {
                     Bob.push(v);
                 }
                 console.log("Bob Vertical: ", Bob);
+                b_basis[k] = Rectilinear.Vertical;
+                k++;
+                if (k > 4) { k = 0; }
 
             } else {
                 //H
@@ -313,6 +327,9 @@ function fire() {
                     Bob.push(h);
                 }
                 console.log("Bob Horizontal: ", Bob);
+                b_basis[k] = Rectilinear.Horizontal;
+                k++;
+                if (k > 4) { k = 0; }
             }
 
             bitsToPush = false;
@@ -338,6 +355,9 @@ function fire() {
                 css_ani();
                 Alice.push(p45);
                 console.log("Alice P45: ", Alice);
+                a_basis[i] = Diagonal.P45;
+                i++;
+                if (i > 4) { i = 0; }
 
             } else {
                 //N45
@@ -349,6 +369,9 @@ function fire() {
                 css_ani();
                 Alice.push(n45);
                 console.log("Alice N45: ", Alice);
+                a_basis[i] = Diagonal.N45;
+                i++;
+                if (i > 4) { i = 0; }
             }
 
             //Eve
@@ -376,6 +399,10 @@ function fire() {
                         bitsToPush = true;
                         bits_value = h;
                         console.log("Eve's here: ", h);
+                        Eve.push(bits_value);
+                        e_basis[j] = Rectilinear.Horizontal;
+                        j++;
+                        if (j > 4) { j = 0; }
 
                     } else {
                         //V
@@ -391,6 +418,10 @@ function fire() {
                         bitsToPush = true;
                         bits_value = v;
                         console.log("Eve's here: ", v);
+                        Eve.push(bits_value);
+                        e_basis[j] = Rectilinear.Vertical;
+                        j++;
+                        if (j > 4) { j = 0; }
                     }
                 } else {
                     eD = Math.floor(Math.random() * 2);
@@ -408,6 +439,10 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(p45);
+                        e_basis[j] = Diagonal.P45;
+                        j++;
+                        if (j > 4) { j = 0; }
+
                     } else {
                         //N45
                         pol_H_E1.style.visibility = "hidden";
@@ -421,6 +456,9 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(n45);
+                        e_basis[j] = Diagonal.N45;
+                        j++;
+                        if (j > 4) { j = 0; }
                     }
                 }
             }
@@ -441,6 +479,9 @@ function fire() {
                     Bob.push(p45);
                 }
                 console.log("Bob P45: ", Bob);
+                b_basis[k] = Diagonal.P45;
+                k++;
+                if (k > 4) { k = 0; }
 
             } else {
                 //N45
@@ -455,6 +496,9 @@ function fire() {
                     Bob.push(n45);
                 }
                 console.log("Bob N45: ", Bob);
+                b_basis[k] = Diagonal.N45;
+                k++;
+                if (k > 4) { k = 0; }
             }
 
             bitsToPush = false;
@@ -479,6 +523,9 @@ function fire() {
                     css_ani();
                     Alice.push(v);
                     console.log("Alice Vertical: ", Alice);
+                    a_basis[i] = Rectilinear.Vertical;
+                    i++;
+                    if (i > 4) { i = 0; }
 
                 } else {
                     //H
@@ -490,6 +537,9 @@ function fire() {
                     css_ani();
                     Alice.push(h);
                     console.log("Alice Horizontal: ", Alice);
+                    a_basis[i] = Rectilinear.Horizontal;
+                    i++;
+                    if (i > 4) { i = 0; }
                 }
 
 
@@ -518,6 +568,10 @@ function fire() {
                             bitsToPush = true;
                             bits_value = p45;
                             console.log("Eve's here: ", p45);
+                            Eve.push(bits_value);
+                            e_basis[j] = Diagonal.P45;
+                            j++;
+                            if (j > 4) { j = 0; }
 
                         } else {
                             //N45
@@ -533,6 +587,10 @@ function fire() {
                             bitsToPush = true;
                             bits_value = n45;
                             console.log("Eve's here: ", n45);
+                            Eve.push(bits_value);
+                            e_basis[j] = Diagonal.N45;
+                            j++;
+                            if (j > 4) { j = 0; }
                         }
                     } else {
                         eR = Math.floor(Math.random() * 2);
@@ -550,6 +608,10 @@ function fire() {
 
                             console.log("Eve's here and guess correctly");
                             Eve.push(h);
+                            e_basis[j] = Rectilinear.Horizontal;
+                            j++;
+                            if (j > 4) { j = 0; }
+
                         } else {
                             //V
                             pol_H_E1.style.visibility = "hidden";
@@ -563,6 +625,9 @@ function fire() {
 
                             console.log("Eve's here and guess correctly");
                             Eve.push(v);
+                            e_basis[j] = Rectilinear.Vertical;
+                            j++;
+                            if (j > 4) { j = 0; }
                         }
                     }
                 }
@@ -582,6 +647,9 @@ function fire() {
                         Bob.push(p45);
                     }
                     console.log("Bob P45: ", Bob);
+                    b_basis[k] = Diagonal.P45;
+                    k++;
+                    if (k > 4) { k = 0; }
 
                 } else {
                     //N45
@@ -596,6 +664,9 @@ function fire() {
                         Bob.push(n45);
                     }
                     console.log("Bob N45: ", Bob);
+                    b_basis[k] = Diagonal.N45;
+                    k++;
+                    if (k > 4) { k = 0; }
                 }
 
                 bitsToPush = false;
@@ -617,6 +688,9 @@ function fire() {
                     css_ani();
                     Alice.push(p45);
                     console.log("Alice P45: ", Alice);
+                    a_basis[i] = Diagonal.P45;
+                    i++;
+                    if (i > 4) { i = 0; }
 
                 } else {
                     //N45
@@ -628,6 +702,9 @@ function fire() {
                     css_ani();
                     Alice.push(n45);
                     console.log("Alice N45: ", Alice);
+                    a_basis[i] = Diagonal.N45;
+                    i++;
+                    if (i > 4) { i = 0; }
                 }
 
                 //Eve
@@ -655,6 +732,9 @@ function fire() {
                             bitsToPush = true;
                             bits_value = h;
                             console.log("Eve's here: ", h);
+                            e_basis[j] = Rectilinear.Horizontal;
+                            j++;
+                            if (j > 4) { j = 0; }
 
                         } else {
                             //V
@@ -670,6 +750,9 @@ function fire() {
                             bitsToPush = true;
                             bits_value = v;
                             console.log("Eve's here: ", v);
+                            e_basis[j] = Rectilinear.Vertical;
+                            j++;
+                            if (j > 4) { j = 0; }
                         }
                     } else {
                         eD = Math.floor(Math.random() * 2);
@@ -687,7 +770,10 @@ function fire() {
 
                             console.log("Eve's here and guess correctly");
                             Eve.push(p45);
-                            
+                            e_basis[j] = Diagonal.P45;
+                            j++;
+                            if (j > 4) { j = 0; }
+
                         } else {
                             //N45
                             pol_H_E1.style.visibility = "hidden";
@@ -701,6 +787,9 @@ function fire() {
 
                             console.log("Eve's here and guess correctly");
                             Eve.push(n45);
+                            e_basis[j] = Diagonal.N45;
+                            j++;
+                            if (j > 4) { j = 0; }
                         }
                     }
                 }
@@ -720,6 +809,9 @@ function fire() {
                         Bob.push(v);
                     }
                     console.log("Bob Vertical: ", Bob);
+                    b_basis[k] = Rectilinear.Vertical;
+                    k++;
+                    if (k > 4) { k = 0; }
 
                 } else {
                     //H
@@ -734,6 +826,9 @@ function fire() {
                         Bob.push(h);
                     }
                     console.log("Bob Horizontal: ", Bob);
+                    b_basis[k] = Rectilinear.Horizontal;
+                    k++;
+                    if (k > 4) { k = 0; }
                 }
 
                 bitsToPush = false;
@@ -767,6 +862,9 @@ function fire() {
                 css_ani();
                 Alice.push(v);
                 console.log("Alice Vertical: ", Alice);
+                a_basis[i] = Rectilinear.Vertical;
+                i++;
+                if (i > 4) { i = 0; }
 
             } else {
                 //H
@@ -778,6 +876,9 @@ function fire() {
                 css_ani();
                 Alice.push(h);
                 console.log("Alice Horizontal: ", Alice);
+                a_basis[i] = Rectilinear.Horizontal;
+                i++;
+                if (i > 4) { i = 0; }
             }
 
             //Eve
@@ -804,7 +905,11 @@ function fire() {
 
                         bitsToPush = true;
                         bits_value = p45;
-                        console.log("Eve's here: ", h);
+                        console.log("Eve's here: ", p45);
+                        Eve.push(bits_value);
+                        e_basis[j] = Diagonal.P45;
+                        j++;
+                        if (j > 4) { j = 0; }
 
                     } else {
                         //N45
@@ -819,7 +924,11 @@ function fire() {
 
                         bitsToPush = true;
                         bits_value = n45;
-                        console.log("Eve's here: ", v);
+                        console.log("Eve's here: ", n45);
+                        Eve.push(bits_value);
+                        e_basis[j] = Diagonal.N45;
+                        j++;
+                        if (j > 4) { j = 0; }
                     }
                 } else {
                     eR = Math.floor(Math.random() * 2);
@@ -837,6 +946,9 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(h);
+                        e_basis[j] = Rectilinear.Horizontal;
+                        j++;
+                        if (j > 4) { j = 0; }
 
                     } else {
                         //V
@@ -851,6 +963,9 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(v);
+                        e_basis[j] = Rectilinear.Vertical;
+                        j++;
+                        if (j > 4) { j = 0; }
                     }
                 }
             }
@@ -869,6 +984,9 @@ function fire() {
                 css_ani();
                 Alice.push(p45);
                 console.log("Alice P45: ", Alice);
+                a_basis[i] = Diagonal.P45;
+                i++;
+                if (i > 4) { i = 0; }
 
             } else {
                 //N45
@@ -880,6 +998,9 @@ function fire() {
                 css_ani();
                 Alice.push(n45);
                 console.log("Alice N45: ", Alice);
+                a_basis[i] = Diagonal.N45;
+                i++;
+                if (i > 4) { i = 0; }
             }
 
             //Eve
@@ -907,6 +1028,11 @@ function fire() {
                         bitsToPush = true;
                         bits_value = h;
                         console.log("Eve's here: ", h);
+                        Eve.push(bits_value);
+                        e_basis[j] = Rectilinear.Horizontal;
+                        j++;
+                        if (j > 4) { j = 0; }
+
                     } else {
                         //V
                         pol_H_E1.style.visibility = "hidden";
@@ -921,6 +1047,10 @@ function fire() {
                         bitsToPush = true;
                         bits_value = v;
                         console.log("Eve's here: ", v);
+                        Eve.push(bits_value);
+                        e_basis[j] = Rectilinear.Vertical;
+                        j++;
+                        if (j > 4) { j = 0; }
                     }
                 } else {
                     eD = Math.floor(Math.random() * 2);
@@ -938,6 +1068,10 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(p45);
+                        e_basis[j] = Diagonal.P45;
+                        j++;
+                        if (j > 4) { j = 0; }
+
                     } else {
                         //N45
                         pol_H_E1.style.visibility = "hidden";
@@ -951,6 +1085,9 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(n45);
+                        e_basis[j] = Diagonal.N45;
+                        j++;
+                        if (j > 4) { j = 0; }
                     }
                 }
             }
@@ -973,6 +1110,9 @@ function fire() {
                     Bob.push(bits_value);
                 } else { Bob.push(v); }
                 console.log("Bob Vertical: ", Bob);
+                b_basis[k] = Rectilinear.Vertical;
+                k++;
+                if (k > 4) { k = 0; }
 
             } else {
                 //H
@@ -985,6 +1125,9 @@ function fire() {
                     Bob.push(bits_value);
                 } else { Bob.push(h); }
                 console.log("Bob Horizontal: ", Bob);
+                b_basis[k] = Rectilinear.Horizontal;
+                k++;
+                if (k > 4) { k = 0; }
             }
 
             bitsToPush = false;
@@ -1004,6 +1147,9 @@ function fire() {
                     Bob.push(bits_value);
                 } else { Bob.push(p45); }
                 console.log("Bob P45: ", Bob);
+                b_basis[k] = Diagonal.P45;
+                k++;
+                if (k > 4) { k = 0; }
 
             } else {
                 //N45
@@ -1016,6 +1162,9 @@ function fire() {
                     Bob.push(bits_value);
                 } else { Bob.push(n45); }
                 console.log("Bob N45: ", Bob);
+                b_basis[k] = Diagonal.N45;
+                k++;
+                if (k > 4) { k = 0; }
             }
 
             bitsToPush = false;
@@ -1032,14 +1181,14 @@ function fast15Photons() {
 
 //Send Continuously
 var x = false;
-var interval; 
-document.getElementById("continuous").onclick = function() {
+var interval;
+document.getElementById("continuous").onclick = function () {
 
     if (!x) {
         document.getElementById("continuous").innerHTML = "Stop"; //change the button text
         document.getElementById("single").disabled = true; //Disable the send single photons button
 
-        x = true; 
+        x = true;
 
         interval = setInterval(fire, 2000);
 
@@ -1047,7 +1196,7 @@ document.getElementById("continuous").onclick = function() {
         document.getElementById("continuous").innerHTML = "Sending Continuously"; //chnage the button text
         document.getElementById("single").disabled = false; //Enable the send single photons button
 
-        x = false; 
+        x = false;
 
         clearInterval(interval);
     }
@@ -1060,5 +1209,5 @@ function displayTable() {
     table = document.getElementById("bitsDetailsTable");
     row = table.rows[x];
     cell = row.cells[x];
-    
+
 }
