@@ -4,7 +4,14 @@ var Alice = [], Bob = [], Eve = []; //Initialize three arrays for storing bit se
 var h = 0, v = 0, p45 = 0, n45 = 0; //Bit orientation
 var xR = 0, yR = 0, xD = 0, yD = 0, eR = 0, eD = 0, d = 0; //Random parameters for basis
 var aB = 0, bB = 0, eB = 0; //Randoms for Alice's and Bob's and Eve's in random basis
-var bitsToPush = false, bits_value = 0;
+var bitsToPush = false, bits_value = 0; //Bits to push to Bob's array after Eve is here
+
+var Rectilinear = {Horizontal: "Horizontal", Vertical: "Vertical"};
+var Diagonal = {P45: "P45", N45: "N45"};
+
+var a_basis = Array(5).fill(''); //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
+var b_basis = Array(5).fill(''); //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
+var e_basis = Array(5).fill(''); //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
 
 var pol_H_A, pol_H_B, pol_V_A, pol_V_B, pol_P45_A, pol_P45_B, pol_N45_A, pol_N45_B, pol_H_E1, pol_H_E2, pol_V_E1, pol_V_E2, pol_P45_E1, pol_P45_E2, pol_N45_E1, pol_N45_E2;
 
@@ -157,6 +164,7 @@ function css_ani() {
 }
 
 //Fire photon
+var i = 0;
 function fire() {
 
     //Fixed Basis
@@ -178,6 +186,9 @@ function fire() {
                 css_ani();
 
                 Alice.push(v);
+                a_basis[i] = Rectilinear.Vertical;
+                i++;
+                if (i > 4) {i = 0;}
                 console.log("Alice Vertical: ", Alice);
             } else {
                 //H
@@ -189,6 +200,9 @@ function fire() {
                 css_ani();
 
                 Alice.push(h);
+                a_basis[i] = Rectilinear.Horizontal;
+                i++;
+                if (i > 4) {i = 0;}
                 console.log("Alice Horizontal: ", Alice);
             }
 
@@ -1039,7 +1053,12 @@ document.getElementById("continuous").onclick = function() {
     }
 }
 
-//Clear everything
-function clear() {
-
+//Display the bit details in the table
+var table, row, cell;
+var x = 1;
+function displayTable() {
+    table = document.getElementById("bitsDetailsTable");
+    row = table.rows[x];
+    cell = row.cells[x];
+    
 }
