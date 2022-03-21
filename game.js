@@ -6,8 +6,8 @@ var xR = 0, yR = 0, xD = 0, yD = 0, eR = 0, eD = 0, d = 0; //Random parameters f
 var aB = 0, bB = 0, eB = 0; //Randoms for Alice's and Bob's and Eve's in random basis
 var bitsToPush = false, bits_value = 0; //Bits to push to Bob's array after Eve is here
 
-var Rectilinear = { Horizontal: "Horizontal", Vertical: "Vertical" };
-var Diagonal = { P45: "P45", N45: "N45" };
+var Rectilinear = { Overall: "Rectilinear", Horizontal: "Horizontal", Vertical: "Vertical" }; //Basis comparison
+var Diagonal = { Overall: "Diagonal", P45: "P45", N45: "N45" }; //Basis comparison
 
 var a_basis = Array(5).fill(''); //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
 var b_basis = Array(5).fill(''); //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
@@ -164,7 +164,8 @@ function css_ani() {
 }
 
 //Fire photon
-var i = 0, j = 0, k = 0; //Alice Eve Bob
+var i = 0, j = 0, k = 0; //Alice Eve Bob basis array counter
+var overallA;
 function fire() {
 
     //Fixed Basis
@@ -185,10 +186,12 @@ function fire() {
 
                 css_ani();
                 Alice.push(v);
+                overallA = Rectilinear.Overall;
                 a_basis[i] = Rectilinear.Vertical;
                 i++;
                 if (i > 4) { i = 0; }
                 console.log("Alice Vertical: ", Alice);
+                displayTable();
 
             } else {
                 //H
@@ -199,10 +202,12 @@ function fire() {
 
                 css_ani();
                 Alice.push(h);
+                overallA = Rectilinear.Overall;
                 a_basis[i] = Rectilinear.Horizontal;
                 i++;
                 if (i > 4) { i = 0; }
                 console.log("Alice Horizontal: ", Alice);
+                displayTable();
             }
 
             //Eve
@@ -1188,26 +1193,49 @@ document.getElementById("continuous").onclick = function () {
         document.getElementById("continuous").innerHTML = "Stop"; //change the button text
         document.getElementById("single").disabled = true; //Disable the send single photons button
 
-        x = true;
-
         interval = setInterval(fire, 2000);
+        x = true;
 
     } else {
         document.getElementById("continuous").innerHTML = "Send Continuously"; //change the button text
         document.getElementById("single").disabled = false; //Enable the send single photons button
 
-        x = false;
-
         clearInterval(interval);
+        x = false;
     }
 }
 
 //Display the bit details in the table
-var table, row, cell;
-var digit = 1;
+var table = document.getElementById("bitsDetailsTable");
+var row, rowCount = 1;
+var cellA, cellB, cellE, cellCountA = 1, cellCountB = 1, cellCountE = 1;
+var sameBase = false;
+var resultBit = 1;
+var a = 0, b = 0, e = 0; //counter for ABE bit array
 function displayTable() {
-    table = document.getElementById("bitsDetailsTable");
-    row = table.rows[digit];
-    cell = row.cells[digit];
+
+    //Display Alice Bob Eve bits details
+    //Rectilinear [bit value] Yes/No [bit value]
+    row = table.rows[rowCount];
+    cellA = row.cells[cellCountA];
+    cellB = row.cells[cellCountB];
+    cellE = row.cells[cellCountE];
+
+    cellA.innerHTML = overallA + ": " + Alice[a];
+    a++;
+    /* if (a > 4) { a = 0; } */
+
+/*     cellB.innerHTML = b_basis[b];
+    b++;
+    if (b > 4) { b = 0; }
+
+    if (eve_state == true) {
+        cellE.innerHTML = e_basis[e];
+        e++;
+        if (e > 4) { e = 0; }
+    } */
+
+    rowCount++;
+    if (rowCount > 5) { rowCount = 1; }
 
 }
