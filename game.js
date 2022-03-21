@@ -165,7 +165,11 @@ function css_ani() {
 
 //Fire photon
 var i = 0, j = 0, k = 0; //Alice Eve Bob basis array counter
-var overallA, overallB, overallE;
+var aCount = 0, bCount = 0, eCount = 0;
+var overallA = Array(5).fill('');
+var overallB = Array(5).fill('');
+var overallE = Array(5).fill('');
+//var overallA, overallB, overallE;
 function fire() {
 
     //Fixed Basis
@@ -187,7 +191,9 @@ function fire() {
                 css_ani();
                 Alice.push(v);
                 console.log("Alice Vertical: ", Alice);
-                overallA = Rectilinear.Overall;
+                //overallA[aCount] = Rectilinear.Overall;
+                //aCount++;
+                //if (aCount > 4) { aCount = 0; }
                 a_basis[i] = Rectilinear.Vertical;
                 i++;
                 if (i > 4) { i = 0; }
@@ -203,7 +209,9 @@ function fire() {
                 css_ani();
                 Alice.push(h);
                 console.log("Alice Horizontal: ", Alice);
-                overallA = Rectilinear.Overall;
+                //overallA[aCount] = Rectilinear.Overall;
+                //aCount++;
+                //if (aCount > 4) { aCount = 0; }
                 a_basis[i] = Rectilinear.Horizontal;
                 i++;
                 if (i > 4) { i = 0; }
@@ -372,11 +380,11 @@ function fire() {
                 css_ani();
                 Alice.push(p45);
                 console.log("Alice P45: ", Alice);
-                overallA = Diagonal.Overall;
+                //overallA = Diagonal.Overall;
                 a_basis[i] = Diagonal.P45;
                 i++;
                 if (i > 4) { i = 0; }
-                displayTable();
+                //displayTable();
 
             } else {
                 //N45
@@ -388,11 +396,11 @@ function fire() {
                 css_ani();
                 Alice.push(n45);
                 console.log("Alice N45: ", Alice);
-                overallA = Diagonal.Overall;
+                //overallA = Diagonal.Overall;
                 a_basis[i] = Diagonal.N45;
                 i++;
                 if (i > 4) { i = 0; }
-                displayTable();
+                //displayTable();
             }
 
             //Eve
@@ -425,7 +433,7 @@ function fire() {
                         e_basis[j] = Rectilinear.Horizontal;
                         j++;
                         if (j > 4) { j = 0; }
-                        displayTable();
+                        //displayTable();
 
                     } else {
                         //V
@@ -446,7 +454,7 @@ function fire() {
                         e_basis[j] = Rectilinear.Vertical;
                         j++;
                         if (j > 4) { j = 0; }
-                        displayTable();
+                        //displayTable();
                     }
                 } else {
                     eD = Math.floor(Math.random() * 2);
@@ -468,7 +476,7 @@ function fire() {
                         e_basis[j] = Diagonal.P45;
                         j++;
                         if (j > 4) { j = 0; }
-                        displayTable();
+                        //displayTable();
 
                     } else {
                         //N45
@@ -487,7 +495,7 @@ function fire() {
                         e_basis[j] = Diagonal.N45;
                         j++;
                         if (j > 4) { j = 0; }
-                        displayTable();
+                        //displayTable();
                     }
                 }
             }
@@ -512,7 +520,7 @@ function fire() {
                 b_basis[k] = Diagonal.P45;
                 k++;
                 if (k > 4) { k = 0; }
-                displayTable();
+                //displayTable();
 
             } else {
                 //N45
@@ -531,7 +539,7 @@ function fire() {
                 b_basis[k] = Diagonal.N45;
                 k++;
                 if (k > 4) { k = 0; }
-                displayTable();
+                //displayTable();
             }
 
             bitsToPush = false;
@@ -560,7 +568,7 @@ function fire() {
                     a_basis[i] = Rectilinear.Vertical;
                     i++;
                     if (i > 4) { i = 0; }
-                    displayTable();
+                    //displayTable();
 
                 } else {
                     //H
@@ -576,7 +584,7 @@ function fire() {
                     a_basis[i] = Rectilinear.Horizontal;
                     i++;
                     if (i > 4) { i = 0; }
-                    displayTable();
+                    //displayTable();
                 }
 
 
@@ -610,7 +618,7 @@ function fire() {
                             e_basis[j] = Diagonal.P45;
                             j++;
                             if (j > 4) { j = 0; }
-                            displayTable();
+                            //displayTable();
 
                         } else {
                             //N45
@@ -631,7 +639,7 @@ function fire() {
                             e_basis[j] = Diagonal.N45;
                             j++;
                             if (j > 4) { j = 0; }
-                            displayTable();
+                            //displayTable();
                         }
                     } else {
                         eR = Math.floor(Math.random() * 2);
@@ -653,6 +661,7 @@ function fire() {
                             e_basis[j] = Rectilinear.Horizontal;
                             j++;
                             if (j > 4) { j = 0; }
+                            //displayTable();
 
                         } else {
                             //V
@@ -671,6 +680,7 @@ function fire() {
                             e_basis[j] = Rectilinear.Vertical;
                             j++;
                             if (j > 4) { j = 0; }
+                            //displayTable();
                         }
                     }
                 }
@@ -694,7 +704,7 @@ function fire() {
                     b_basis[k] = Diagonal.P45;
                     k++;
                     if (k > 4) { k = 0; }
-                    displayTable();
+                    //displayTable();
 
                 } else {
                     //N45
@@ -713,7 +723,7 @@ function fire() {
                     b_basis[k] = Diagonal.N45;
                     k++;
                     if (k > 4) { k = 0; }
-                    displayTable();
+                    //displayTable();
                 }
 
                 bitsToPush = false;
@@ -739,7 +749,7 @@ function fire() {
                     a_basis[i] = Diagonal.P45;
                     i++;
                     if (i > 4) { i = 0; }
-                    displayTable();
+                    //displayTable();
 
                 } else {
                     //N45
@@ -755,7 +765,7 @@ function fire() {
                     a_basis[i] = Diagonal.N45;
                     i++;
                     if (i > 4) { i = 0; }
-                    displayTable();
+                    //displayTable();
                 }
 
                 //Eve
@@ -787,7 +797,7 @@ function fire() {
                             e_basis[j] = Rectilinear.Horizontal;
                             j++;
                             if (j > 4) { j = 0; }
-                            displayTable();
+                            //displayTable();
 
                         } else {
                             //V
@@ -807,7 +817,7 @@ function fire() {
                             e_basis[j] = Rectilinear.Vertical;
                             j++;
                             if (j > 4) { j = 0; }
-                            displayTable();
+                            //displayTable();
                         }
                     } else {
                         eD = Math.floor(Math.random() * 2);
@@ -829,7 +839,7 @@ function fire() {
                             e_basis[j] = Diagonal.P45;
                             j++;
                             if (j > 4) { j = 0; }
-                            displayTable();
+                            //displayTable();
 
                         } else {
                             //N45
@@ -848,7 +858,7 @@ function fire() {
                             e_basis[j] = Diagonal.N45;
                             j++;
                             if (j > 4) { j = 0; }
-                            displayTable();
+                            //displayTable();
                         }
                     }
                 }
@@ -872,7 +882,7 @@ function fire() {
                     b_basis[k] = Rectilinear.Vertical;
                     k++;
                     if (k > 4) { k = 0; }
-                    displayTable();
+                    //displayTable();
 
                 } else {
                     //H
@@ -891,7 +901,7 @@ function fire() {
                     b_basis[k] = Rectilinear.Horizontal;
                     k++;
                     if (k > 4) { k = 0; }
-                    displayTable();
+                    //displayTable();
                 }
 
                 bitsToPush = false;
@@ -929,7 +939,7 @@ function fire() {
                 a_basis[i] = Rectilinear.Vertical;
                 i++;
                 if (i > 4) { i = 0; }
-                displayTable();
+                //displayTable();
 
             } else {
                 //H
@@ -945,7 +955,7 @@ function fire() {
                 a_basis[i] = Rectilinear.Horizontal;
                 i++;
                 if (i > 4) { i = 0; }
-                displayTable();
+                //displayTable();
             }
 
             //Eve
@@ -978,7 +988,7 @@ function fire() {
                         e_basis[j] = Diagonal.P45;
                         j++;
                         if (j > 4) { j = 0; }
-                        displayTable();
+                        //displayTable();
 
                     } else {
                         //N45
@@ -999,7 +1009,7 @@ function fire() {
                         e_basis[j] = Diagonal.N45;
                         j++;
                         if (j > 4) { j = 0; }
-                        displayTable();
+                        //displayTable();
                     }
                 } else {
                     eR = Math.floor(Math.random() * 2);
@@ -1021,7 +1031,7 @@ function fire() {
                         e_basis[j] = Rectilinear.Horizontal;
                         j++;
                         if (j > 4) { j = 0; }
-                        displayTable();
+                        //displayTable();
 
                     } else {
                         //V
@@ -1040,7 +1050,7 @@ function fire() {
                         e_basis[j] = Rectilinear.Vertical;
                         j++;
                         if (j > 4) { j = 0; }
-                        displayTable();
+                        //displayTable();
                     }
                 }
             }
@@ -1063,7 +1073,7 @@ function fire() {
                 a_basis[i] = Diagonal.P45;
                 i++;
                 if (i > 4) { i = 0; }
-                displayTable();
+                //displayTable();
 
             } else {
                 //N45
@@ -1079,7 +1089,7 @@ function fire() {
                 a_basis[i] = Diagonal.N45;
                 i++;
                 if (i > 4) { i = 0; }
-                displayTable();
+                //displayTable();
             }
 
             //Eve
@@ -1112,7 +1122,7 @@ function fire() {
                         e_basis[j] = Rectilinear.Horizontal;
                         j++;
                         if (j > 4) { j = 0; }
-                        displayTable();
+                        //displayTable();
 
                     } else {
                         //V
@@ -1133,7 +1143,7 @@ function fire() {
                         e_basis[j] = Rectilinear.Vertical;
                         j++;
                         if (j > 4) { j = 0; }
-                        displayTable();
+                        //displayTable();
                     }
                 } else {
                     eD = Math.floor(Math.random() * 2);
@@ -1155,7 +1165,7 @@ function fire() {
                         e_basis[j] = Diagonal.P45;
                         j++;
                         if (j > 4) { j = 0; }
-                        displayTable();
+                        //displayTable();
 
                     } else {
                         //N45
@@ -1174,7 +1184,7 @@ function fire() {
                         e_basis[j] = Diagonal.N45;
                         j++;
                         if (j > 4) { j = 0; }
-                        displayTable();
+                        //displayTable();
                     }
                 }
             }
@@ -1201,7 +1211,7 @@ function fire() {
                 b_basis[k] = Rectilinear.Vertical;
                 k++;
                 if (k > 4) { k = 0; }
-                displayTable();
+                //displayTable();
 
             } else {
                 //H
@@ -1218,7 +1228,7 @@ function fire() {
                 b_basis[k] = Rectilinear.Horizontal;
                 k++;
                 if (k > 4) { k = 0; }
-                displayTable();
+                //displayTable();
             }
 
             bitsToPush = false;
@@ -1242,7 +1252,7 @@ function fire() {
                 b_basis[k] = Diagonal.P45;
                 k++;
                 if (k > 4) { k = 0; }
-                displayTable();
+                //displayTable();
 
             } else {
                 //N45
@@ -1259,7 +1269,7 @@ function fire() {
                 b_basis[k] = Diagonal.N45;
                 k++;
                 if (k > 4) { k = 0; }
-                displayTable();
+                //displayTable();
             }
 
             bitsToPush = false;
@@ -1295,13 +1305,15 @@ document.getElementById("continuous").onclick = function () {
     }
 }
 
-//Display the bit details in the table
+
 var table = document.getElementById("bitsDetailsTable");
 var row, rowCount = 1;
 var cellA, cellB, cellE, cellCountA = 1, cellCountB = 2, cellCountE = 3;
 var sameBase = false;
 var resultBit = 1;
 var a = 0, b = 0, e = 0; //counter for ABE bit array
+var overallCountA = 0, overallCountB = 0, overallCountE = 0;
+//Display the bit details in the table
 function displayTable() {
 
     //Display Alice Bob Eve bits details
@@ -1311,18 +1323,19 @@ function displayTable() {
     cellE = row.cells[cellCountE];
 
     //Alice
-/*     cellA.innerHTML = overallA + ": " + a;
-    a++; */
+    cellA.innerHTML = a_basis[overallCountA] + ": " + Alice[a];
+    overallCountA++;
+    a++;
 
     //Eve
-    if (eve_state == true) {
-        cellE.innerHTML = overallE + ": " + Eve[e];
-        e++;
-    }
+    /*     if (eve_state == true) {
+            cellE.innerHTML = overallE + ": " + Eve[e];
+            e++;
+        } */
 
     //Bob
-/*     cellB.innerHTML = overallB + ": " + b;
-    b++; */
+/*         cellB.innerHTML = overallB + ": " + b;
+        b++; */
 
     rowCount++;
     if (rowCount > 5) { rowCount = 1; }
