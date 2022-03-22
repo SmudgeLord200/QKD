@@ -9,9 +9,9 @@ var bitsToPush = false, bits_value = 0; //Bits to push to Bob's array after Eve 
 var Rectilinear = { Overall: "H/V", Horizontal: "Horizontal", Vertical: "Vertical" }; //Basis comparison
 var Diagonal = { Overall: "P45/N45", P45: "P45", N45: "N45" }; //Basis comparison
 
-var a_basis = Array(5).fill(''); //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
-var b_basis = Array(5).fill(''); //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
-var e_basis = Array(5).fill(''); //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
+var a_basis = []; //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
+var b_basis = []; //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
+var e_basis = []; //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
 
 var pol_H_A, pol_H_B, pol_V_A, pol_V_B, pol_P45_A, pol_P45_B, pol_N45_A, pol_N45_B, pol_H_E1, pol_H_E2, pol_V_E1, pol_V_E2, pol_P45_E1, pol_P45_E2, pol_N45_E1, pol_N45_E2;
 
@@ -166,10 +166,9 @@ function css_ani() {
 //Fire photon
 var i = 0, j = 0, k = 0; //Alice Eve Bob basis array counter
 var aCount = 0, bCount = 0, eCount = 0;
-var overallA = Array(5).fill('');
-var overallB = Array(5).fill('');
-var overallE = Array(5).fill('');
-//var overallA, overallB, overallE;
+var overallA = [];
+var overallB = [];
+var overallE = [];
 function fire() {
 
     //Fixed Basis
@@ -191,13 +190,10 @@ function fire() {
                 css_ani();
                 Alice.push(v);
                 console.log("Alice Vertical: ", Alice);
-                //overallA[aCount] = Rectilinear.Overall;
-                //aCount++;
-                //if (aCount > 4) { aCount = 0; }
+                overallA[aCount] = Rectilinear.Overall;
+                aCount++;
                 a_basis[i] = Rectilinear.Vertical;
                 i++;
-                if (i > 4) { i = 0; }
-                displayTable();
 
             } else {
                 //H
@@ -209,13 +205,10 @@ function fire() {
                 css_ani();
                 Alice.push(h);
                 console.log("Alice Horizontal: ", Alice);
-                //overallA[aCount] = Rectilinear.Overall;
-                //aCount++;
-                //if (aCount > 4) { aCount = 0; }
+                overallA[aCount] = Rectilinear.Overall;
+                aCount++;
                 a_basis[i] = Rectilinear.Horizontal;
                 i++;
-                if (i > 4) { i = 0; }
-                displayTable();
             }
 
             //Eve
@@ -244,11 +237,10 @@ function fire() {
                         bits_value = p45;
                         console.log("Eve's here: ", p45);
                         Eve.push(bits_value);
-                        overallE = Diagonal.Overall;
+                        overallE[eCount] = Diagonal.Overall;
+                        eCount++;
                         e_basis[j] = Diagonal.P45;
                         j++;
-                        if (j > 4) { j = 0; }
-                        displayTable();
 
                     } else {
                         //N45
@@ -265,11 +257,10 @@ function fire() {
                         bits_value = n45;
                         console.log("Eve's here: ", n45);
                         Eve.push(bits_value);
-                        overallE = Diagonal.Overall;
+                        overallE[eCount] = Diagonal.Overall;
+                        eCount++;
                         e_basis[j] = Diagonal.N45;
                         j++;
-                        if (j > 4) { j = 0; }
-                        displayTable();
                     }
                 } else {
                     eR = Math.floor(Math.random() * 2);
@@ -287,11 +278,10 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(h);
-                        overallE = Rectilinear.Overall;
+                        overallE[eCount] = Rectilinear.Overall;
+                        eCount++;
                         e_basis[j] = Rectilinear.Horizontal;
                         j++;
-                        if (j > 4) { j = 0; }
-                        displayTable();
 
                     } else {
                         //V
@@ -306,11 +296,10 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(v);
-                        overallE = Rectilinear.Overall;
+                        overallE[eCount] = Rectilinear.Overall;
+                        eCount++;
                         e_basis[j] = Rectilinear.Vertical;
                         j++;
-                        if (j > 4) { j = 0; }
-                        displayTable();
                     }
                 }
             }
@@ -331,11 +320,10 @@ function fire() {
                     Bob.push(v);
                 }
                 console.log("Bob Vertical: ", Bob);
-                overallB = Rectilinear.Overall;
+                overallB[bCount] = Rectilinear.Overall;
+                bCount++;
                 b_basis[k] = Rectilinear.Vertical;
                 k++;
-                if (k > 4) { k = 0; }
-                displayTable();
 
             } else {
                 //H
@@ -350,11 +338,10 @@ function fire() {
                     Bob.push(h);
                 }
                 console.log("Bob Horizontal: ", Bob);
-                overallB = Rectilinear.Overall;
+                overallB[bCount] = Rectilinear.Overall;
+                bCount++;
                 b_basis[k] = Rectilinear.Horizontal;
                 k++;
-                if (k > 4) { k = 0; }
-                displayTable();
             }
 
             bitsToPush = false;
@@ -380,11 +367,10 @@ function fire() {
                 css_ani();
                 Alice.push(p45);
                 console.log("Alice P45: ", Alice);
-                //overallA = Diagonal.Overall;
+                overallA[aCount] = Diagonal.Overall;
+                aCount++;
                 a_basis[i] = Diagonal.P45;
                 i++;
-                if (i > 4) { i = 0; }
-                //displayTable();
 
             } else {
                 //N45
@@ -396,11 +382,10 @@ function fire() {
                 css_ani();
                 Alice.push(n45);
                 console.log("Alice N45: ", Alice);
-                //overallA = Diagonal.Overall;
+                overallA[aCount] = Diagonal.Overall;
+                aCount++;
                 a_basis[i] = Diagonal.N45;
                 i++;
-                if (i > 4) { i = 0; }
-                //displayTable();
             }
 
             //Eve
@@ -429,11 +414,10 @@ function fire() {
                         bits_value = h;
                         console.log("Eve's here: ", h);
                         Eve.push(bits_value);
-                        overallE = Rectilinear.Overall;
+                        overallE[eCount] = Rectilinear.Overall;
+                        eCount++;
                         e_basis[j] = Rectilinear.Horizontal;
                         j++;
-                        if (j > 4) { j = 0; }
-                        //displayTable();
 
                     } else {
                         //V
@@ -450,11 +434,10 @@ function fire() {
                         bits_value = v;
                         console.log("Eve's here: ", v);
                         Eve.push(bits_value);
-                        overallE = Rectilinear.Overall;
+                        overallE[eCount] = Rectilinear.Overall;
+                        eCount++;
                         e_basis[j] = Rectilinear.Vertical;
                         j++;
-                        if (j > 4) { j = 0; }
-                        //displayTable();
                     }
                 } else {
                     eD = Math.floor(Math.random() * 2);
@@ -472,11 +455,10 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(p45);
-                        overallE = Diagonal.Overall;
+                        overallE[eCount] = Diagonal.Overall;
+                        eCount++;
                         e_basis[j] = Diagonal.P45;
                         j++;
-                        if (j > 4) { j = 0; }
-                        //displayTable();
 
                     } else {
                         //N45
@@ -491,11 +473,10 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(n45);
-                        overallE = Diagonal.Overall;
+                        overallE[eCount] = Diagonal.Overall;
+                        eCount++;
                         e_basis[j] = Diagonal.N45;
                         j++;
-                        if (j > 4) { j = 0; }
-                        //displayTable();
                     }
                 }
             }
@@ -516,11 +497,10 @@ function fire() {
                     Bob.push(p45);
                 }
                 console.log("Bob P45: ", Bob);
-                overallB = Diagonal.Overall;
+                overallB[bCount] = Diagonal.Overall;
+                bCount++;
                 b_basis[k] = Diagonal.P45;
                 k++;
-                if (k > 4) { k = 0; }
-                //displayTable();
 
             } else {
                 //N45
@@ -535,11 +515,10 @@ function fire() {
                     Bob.push(n45);
                 }
                 console.log("Bob N45: ", Bob);
-                overallB = Diagonal.Overall;
+                overallB[bCount] = Diagonal.Overall;
+                bCount++;
                 b_basis[k] = Diagonal.N45;
                 k++;
-                if (k > 4) { k = 0; }
-                //displayTable();
             }
 
             bitsToPush = false;
@@ -564,11 +543,10 @@ function fire() {
                     css_ani();
                     Alice.push(v);
                     console.log("Alice Vertical: ", Alice);
-                    overallA = Rectilinear.Overall;
+                    overallA[aCount] = Rectilinear.Overall;
+                    aCount++;
                     a_basis[i] = Rectilinear.Vertical;
                     i++;
-                    if (i > 4) { i = 0; }
-                    //displayTable();
 
                 } else {
                     //H
@@ -580,11 +558,10 @@ function fire() {
                     css_ani();
                     Alice.push(h);
                     console.log("Alice Horizontal: ", Alice);
-                    overallA = Rectilinear.Overall;
+                    overallA[aCount] = Rectilinear.Overall;
+                    aCount++;
                     a_basis[i] = Rectilinear.Horizontal;
                     i++;
-                    if (i > 4) { i = 0; }
-                    //displayTable();
                 }
 
 
@@ -614,11 +591,10 @@ function fire() {
                             bits_value = p45;
                             console.log("Eve's here: ", p45);
                             Eve.push(bits_value);
-                            overallE = Diagonal.Overall;
+                            overallE[eCount] = Diagonal.Overall;
+                            eCount++;
                             e_basis[j] = Diagonal.P45;
                             j++;
-                            if (j > 4) { j = 0; }
-                            //displayTable();
 
                         } else {
                             //N45
@@ -635,11 +611,10 @@ function fire() {
                             bits_value = n45;
                             console.log("Eve's here: ", n45);
                             Eve.push(bits_value);
-                            overallE = Diagonal.Overall;
+                            overallE[eCount] = Diagonal.Overall;
+                            eCount++;
                             e_basis[j] = Diagonal.N45;
                             j++;
-                            if (j > 4) { j = 0; }
-                            //displayTable();
                         }
                     } else {
                         eR = Math.floor(Math.random() * 2);
@@ -657,11 +632,10 @@ function fire() {
 
                             console.log("Eve's here and guess correctly");
                             Eve.push(h);
-                            overallE = Rectilinear.Overall;
+                            overallE[eCount] = Rectilinear.Overall;
+                            eCount++;
                             e_basis[j] = Rectilinear.Horizontal;
                             j++;
-                            if (j > 4) { j = 0; }
-                            //displayTable();
 
                         } else {
                             //V
@@ -676,11 +650,10 @@ function fire() {
 
                             console.log("Eve's here and guess correctly");
                             Eve.push(v);
-                            overallE = Rectilinear.Overall;
+                            overallE[eCount] = Rectilinear.Overall;
+                            eCount++;
                             e_basis[j] = Rectilinear.Vertical;
                             j++;
-                            if (j > 4) { j = 0; }
-                            //displayTable();
                         }
                     }
                 }
@@ -700,11 +673,10 @@ function fire() {
                         Bob.push(p45);
                     }
                     console.log("Bob P45: ", Bob);
-                    overallB = Diagonal.Overall;
+                    overallB[bCount] = Diagonal.Overall;
+                    bCount++;
                     b_basis[k] = Diagonal.P45;
                     k++;
-                    if (k > 4) { k = 0; }
-                    //displayTable();
 
                 } else {
                     //N45
@@ -719,11 +691,10 @@ function fire() {
                         Bob.push(n45);
                     }
                     console.log("Bob N45: ", Bob);
-                    overallB = Diagonal.Overall;
+                    overallB[bCount] = Diagonal.Overall;
+                    bCount++;
                     b_basis[k] = Diagonal.N45;
                     k++;
-                    if (k > 4) { k = 0; }
-                    //displayTable();
                 }
 
                 bitsToPush = false;
@@ -745,11 +716,10 @@ function fire() {
                     css_ani();
                     Alice.push(p45);
                     console.log("Alice P45: ", Alice);
-                    overallA = Diagonal.Overall;
+                    overallA[aCount] = Diagonal.Overall;
+                    aCount++;
                     a_basis[i] = Diagonal.P45;
                     i++;
-                    if (i > 4) { i = 0; }
-                    //displayTable();
 
                 } else {
                     //N45
@@ -761,11 +731,10 @@ function fire() {
                     css_ani();
                     Alice.push(n45);
                     console.log("Alice N45: ", Alice);
-                    overallA = Diagonal.Overall;
+                    overallA[aCount] = Diagonal.Overall;
+                    aCount++;
                     a_basis[i] = Diagonal.N45;
                     i++;
-                    if (i > 4) { i = 0; }
-                    //displayTable();
                 }
 
                 //Eve
@@ -793,11 +762,10 @@ function fire() {
                             bitsToPush = true;
                             bits_value = h;
                             console.log("Eve's here: ", h);
-                            overallE = Rectilinear.Overall;
+                            overallE[eCount] = Rectilinear.Overall;
+                            eCount++;
                             e_basis[j] = Rectilinear.Horizontal;
                             j++;
-                            if (j > 4) { j = 0; }
-                            //displayTable();
 
                         } else {
                             //V
@@ -813,11 +781,10 @@ function fire() {
                             bitsToPush = true;
                             bits_value = v;
                             console.log("Eve's here: ", v);
-                            overallE = Rectilinear.Overall;
+                            overallE[eCount] = Rectilinear.Overall;
+                            eCount++;
                             e_basis[j] = Rectilinear.Vertical;
                             j++;
-                            if (j > 4) { j = 0; }
-                            //displayTable();
                         }
                     } else {
                         eD = Math.floor(Math.random() * 2);
@@ -835,11 +802,10 @@ function fire() {
 
                             console.log("Eve's here and guess correctly");
                             Eve.push(p45);
-                            overallE = Diagonal.Overall;
+                            overallE[eCount] = Diagonal.Overall;
+                            eCount++;
                             e_basis[j] = Diagonal.P45;
                             j++;
-                            if (j > 4) { j = 0; }
-                            //displayTable();
 
                         } else {
                             //N45
@@ -854,11 +820,10 @@ function fire() {
 
                             console.log("Eve's here and guess correctly");
                             Eve.push(n45);
-                            overallE = Diagonal.Overall;
+                            overallE[eCount] = Diagonal.Overall;
+                            eCount++;
                             e_basis[j] = Diagonal.N45;
                             j++;
-                            if (j > 4) { j = 0; }
-                            //displayTable();
                         }
                     }
                 }
@@ -878,11 +843,10 @@ function fire() {
                         Bob.push(v);
                     }
                     console.log("Bob Vertical: ", Bob);
-                    overallB = Rectilinear.Overall;
+                    overallB[bCount] = Rectilinear.Overall;
+                    bCount++;
                     b_basis[k] = Rectilinear.Vertical;
                     k++;
-                    if (k > 4) { k = 0; }
-                    //displayTable();
 
                 } else {
                     //H
@@ -897,11 +861,10 @@ function fire() {
                         Bob.push(h);
                     }
                     console.log("Bob Horizontal: ", Bob);
-                    overallB = Rectilinear.Overall;
+                    overallB[bCount] = Rectilinear.Overall;
+                    bCount++;
                     b_basis[k] = Rectilinear.Horizontal;
                     k++;
-                    if (k > 4) { k = 0; }
-                    //displayTable();
                 }
 
                 bitsToPush = false;
@@ -935,11 +898,10 @@ function fire() {
                 css_ani();
                 Alice.push(v);
                 console.log("Alice Vertical: ", Alice);
-                overallA = Rectilinear.Overall;
+                overallA[aCount] = Rectilinear.Overall;
+                aCount++;
                 a_basis[i] = Rectilinear.Vertical;
                 i++;
-                if (i > 4) { i = 0; }
-                //displayTable();
 
             } else {
                 //H
@@ -951,11 +913,10 @@ function fire() {
                 css_ani();
                 Alice.push(h);
                 console.log("Alice Horizontal: ", Alice);
-                overallA = Rectilinear.Overall;
+                overallA[aCount] = Rectilinear.Overall;
+                aCount++;
                 a_basis[i] = Rectilinear.Horizontal;
                 i++;
-                if (i > 4) { i = 0; }
-                //displayTable();
             }
 
             //Eve
@@ -984,11 +945,10 @@ function fire() {
                         bits_value = p45;
                         console.log("Eve's here: ", p45);
                         Eve.push(bits_value);
-                        overallE = Diagonal.Overall;
+                        overallE[eCount] = Diagonal.Overall;
+                        eCount++;
                         e_basis[j] = Diagonal.P45;
                         j++;
-                        if (j > 4) { j = 0; }
-                        //displayTable();
 
                     } else {
                         //N45
@@ -1005,11 +965,10 @@ function fire() {
                         bits_value = n45;
                         console.log("Eve's here: ", n45);
                         Eve.push(bits_value);
-                        overallE = Diagonal.Overall;
+                        overallE[eCount] = Diagonal.Overall;
+                        eCount++;
                         e_basis[j] = Diagonal.N45;
                         j++;
-                        if (j > 4) { j = 0; }
-                        //displayTable();
                     }
                 } else {
                     eR = Math.floor(Math.random() * 2);
@@ -1027,11 +986,10 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(h);
-                        overallE = Rectilinear.Overall;
+                        overallE[eCount] = Rectilinear.Overall;
+                        eCount++;
                         e_basis[j] = Rectilinear.Horizontal;
                         j++;
-                        if (j > 4) { j = 0; }
-                        //displayTable();
 
                     } else {
                         //V
@@ -1046,11 +1004,10 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(v);
-                        overallE = Rectilinear.Overall;
+                        overallE[eCount] = Rectilinear.Overall;
+                        eCount++;
                         e_basis[j] = Rectilinear.Vertical;
                         j++;
-                        if (j > 4) { j = 0; }
-                        //displayTable();
                     }
                 }
             }
@@ -1069,11 +1026,10 @@ function fire() {
                 css_ani();
                 Alice.push(p45);
                 console.log("Alice P45: ", Alice);
-                overallA = Diagonal.Overall;
+                overallA[aCount] = Diagonal.Overall;
+                aCount++;
                 a_basis[i] = Diagonal.P45;
                 i++;
-                if (i > 4) { i = 0; }
-                //displayTable();
 
             } else {
                 //N45
@@ -1085,11 +1041,10 @@ function fire() {
                 css_ani();
                 Alice.push(n45);
                 console.log("Alice N45: ", Alice);
-                overallA = Diagonal.Overall;
+                overallA[aCount] = Diagonal.Overall;
+                aCount++;
                 a_basis[i] = Diagonal.N45;
                 i++;
-                if (i > 4) { i = 0; }
-                //displayTable();
             }
 
             //Eve
@@ -1118,11 +1073,10 @@ function fire() {
                         bits_value = h;
                         console.log("Eve's here: ", h);
                         Eve.push(bits_value);
-                        overallE = Rectilinear.Overall;
+                        overallE[eCount] = Rectilinear.Overall;
+                        eCount++;
                         e_basis[j] = Rectilinear.Horizontal;
                         j++;
-                        if (j > 4) { j = 0; }
-                        //displayTable();
 
                     } else {
                         //V
@@ -1139,11 +1093,10 @@ function fire() {
                         bits_value = v;
                         console.log("Eve's here: ", v);
                         Eve.push(bits_value);
-                        overallE = Rectilinear.Overall;
+                        overallE[eCount] = Rectilinear.Overall;
+                        eCount++;
                         e_basis[j] = Rectilinear.Vertical;
                         j++;
-                        if (j > 4) { j = 0; }
-                        //displayTable();
                     }
                 } else {
                     eD = Math.floor(Math.random() * 2);
@@ -1161,11 +1114,10 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(p45);
-                        overallE = Diagonal.Overall;
+                        overallE[eCount] = Diagonal.Overall;
+                        eCount++;
                         e_basis[j] = Diagonal.P45;
                         j++;
-                        if (j > 4) { j = 0; }
-                        //displayTable();
 
                     } else {
                         //N45
@@ -1180,11 +1132,10 @@ function fire() {
 
                         console.log("Eve's here and guess correctly");
                         Eve.push(n45);
-                        overallE = Diagonal.Overall;
+                        overallE[eCount] = Diagonal.Overall;
+                        eCount++;
                         e_basis[j] = Diagonal.N45;
                         j++;
-                        if (j > 4) { j = 0; }
-                        //displayTable();
                     }
                 }
             }
@@ -1207,11 +1158,10 @@ function fire() {
                     Bob.push(bits_value);
                 } else { Bob.push(v); }
                 console.log("Bob Vertical: ", Bob);
-                overallB = Rectilinear.Overall;
+                overallB[bCount] = Rectilinear.Overall;
+                bCount++;
                 b_basis[k] = Rectilinear.Vertical;
                 k++;
-                if (k > 4) { k = 0; }
-                //displayTable();
 
             } else {
                 //H
@@ -1224,11 +1174,10 @@ function fire() {
                     Bob.push(bits_value);
                 } else { Bob.push(h); }
                 console.log("Bob Horizontal: ", Bob);
-                overallB = Rectilinear.Overall;
+                overallB[bCount] = Rectilinear.Overall;
+                bCount++;
                 b_basis[k] = Rectilinear.Horizontal;
                 k++;
-                if (k > 4) { k = 0; }
-                //displayTable();
             }
 
             bitsToPush = false;
@@ -1248,11 +1197,10 @@ function fire() {
                     Bob.push(bits_value);
                 } else { Bob.push(p45); }
                 console.log("Bob P45: ", Bob);
-                overallB = Diagonal.Overall;
+                overallB[bCount] = Diagonal.Overall;
+                bCount++;
                 b_basis[k] = Diagonal.P45;
                 k++;
-                if (k > 4) { k = 0; }
-                //displayTable();
 
             } else {
                 //N45
@@ -1265,16 +1213,19 @@ function fire() {
                     Bob.push(bits_value);
                 } else { Bob.push(n45); }
                 console.log("Bob N45: ", Bob);
-                overallB = Diagonal.Overall;
+                overallB[bCount] = Diagonal.Overall;
+                bCount++;
                 b_basis[k] = Diagonal.N45;
                 k++;
-                if (k > 4) { k = 0; }
-                //displayTable();
             }
 
             bitsToPush = false;
         }
     }
+
+    //Display the results to corresponding tables
+    displayTable();
+    displaySameBaseTable();
 }
 
 //Fast forward 15 Photons
@@ -1305,38 +1256,73 @@ document.getElementById("continuous").onclick = function () {
     }
 }
 
-
-var table = document.getElementById("bitsDetailsTable");
-var row, rowCount = 1;
-var cellA, cellB, cellE, cellCountA = 1, cellCountB = 2, cellCountE = 3;
-var sameBase = false;
-var resultBit = 1;
-var a = 0, b = 0, e = 0; //counter for ABE bit array
-var overallCountA = 0, overallCountB = 0, overallCountE = 0;
 //Display the bit details in the table
+var table1 = document.getElementById("bitsDetailsTable"); //get the table
+var row1, rowCount1 = 1; //var and counter for rows
+var cellA, cellB, cellE, cellCountA = 1, cellCountE = 2, cellCountB = 3, sameBaseCount = 4, resultBitCount = 5; //var and counter for ABE cells
+var sameBase, resultBit;
+var a = 0, b = 0, e = 0; //counter for ABE bit array
+var overallCountA = 0, overallCountB = 0, overallCountE = 0; //counter for ABE Overall Basis
 function displayTable() {
 
     //Display Alice Bob Eve bits details
-    row = table.rows[rowCount];
-    cellA = row.cells[cellCountA];
-    cellB = row.cells[cellCountB];
-    cellE = row.cells[cellCountE];
+    row1 = table1.rows[rowCount1];
+    cellA = row1.cells[cellCountA];
+    cellE = row1.cells[cellCountE];
+    cellB = row1.cells[cellCountB];
+    sameBase = row1.cells[sameBaseCount];
+    resultBit = row1.cells[resultBitCount];
 
     //Alice
-    cellA.innerHTML = a_basis[overallCountA] + ": " + Alice[a];
-    overallCountA++;
-    a++;
+    cellA.innerHTML = overallA[overallCountA] + ": " + Alice[a];
 
     //Eve
-    /*     if (eve_state == true) {
-            cellE.innerHTML = overallE + ": " + Eve[e];
-            e++;
-        } */
+    if (eve_state == true) {
+        cellE.innerHTML = overallE[overallCountE] + ": " + Eve[e];
+        overallCountE++;
+        e++;
+    }
 
     //Bob
-/*         cellB.innerHTML = overallB + ": " + b;
-        b++; */
+    cellB.innerHTML = overallB[overallCountB] + ": " + Bob[b];
 
-    rowCount++;
-    if (rowCount > 5) { rowCount = 1; }
+    //Same base?
+    if (overallA[overallCountA] == overallB[overallCountB]) {
+        sameBase.innerHTML = "Yes";
+    } else { sameBase.innerHTML = "No"; }
+
+    //Result Bit
+    resultBit.innerHTML = Bob[b];
+
+    //Increase and reset the counters
+    overallCountA++;
+    a++;
+    overallCountB++;
+    b++;
+    rowCount1++;
+    if (rowCount1 > 5) { rowCount1 = 1; }
+}
+
+//Display the bits of same base of AB
+var table2 = document.getElementById("bitsSameBaseTable");
+var row2, rowCount2 = 1;
+var cell1, cell2, cell1Count = 0, cell2Count = 1;
+var c = 0, d = 0, x = 0, y = 0, e = 0, f = 0;
+var newAlice = [], newBob = [];
+function displaySameBaseTable() {
+    
+    row2 = table2.rows[rowCount2];
+    cell1 = row2.cells[cell1Count];
+    cell2 = row2.cells[cell2Count];
+
+    
+    if (overallA[c] == overallB[d]) {
+        cell1.innerHTML = Alice[x];
+        cell2.innerHTML = Bob[y];
+
+        newAlice[e] = Alice[x];
+        newBob[f] = Bob[y];
+        e++; f++;
+    }
+    c++; d++; x++; y++; 
 }
