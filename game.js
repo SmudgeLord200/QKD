@@ -1263,6 +1263,7 @@ var cellA, cellB, cellE, cellCountA = 1, cellCountE = 2, cellCountB = 3, sameBas
 var sameBase, resultBit;
 var a = 0, b = 0, e = 0; //counter for ABE bit array
 var overallCountA = 0, overallCountB = 0, overallCountE = 0; //counter for ABE Overall Basis
+var arb = false;
 function displayTable() {
 
     //Display Alice Bob Eve bits details
@@ -1299,6 +1300,11 @@ function displayTable() {
     a++;
     overallCountB++;
     b++;
+
+    if (!arb) {row1.classList.toggle("tr"); arb = true;}
+    else {row1.classList.toggle("tr"); arb = false;}
+    
+
     rowCount1++;
     if (rowCount1 > 5) { rowCount1 = 1; }
 }
@@ -1307,22 +1313,22 @@ function displayTable() {
 var table2 = document.getElementById("bitsSameBaseTable");
 var row2, rowCount2 = 1;
 var cell1, cell2, cell1Count = 0, cell2Count = 1;
-var c = 0, d = 0, x = 0, y = 0, e = 0, f = 0;
+var c = 0, d = 0, z = 0, y = 0, e = 0, f = 0;
 var newAlice = [], newBob = [];
 function displaySameBaseTable() {
-    
+
     row2 = table2.rows[rowCount2];
     cell1 = row2.cells[cell1Count];
     cell2 = row2.cells[cell2Count];
 
-    
+
     if (overallA[c] == overallB[d]) {
-        cell1.innerHTML = Alice[x];
+        cell1.innerHTML = Alice[z];
         cell2.innerHTML = Bob[y];
 
-        newAlice[e] = Alice[x];
+        newAlice[e] = Alice[z];
         newBob[f] = Bob[y];
         e++; f++;
     }
-    c++; d++; x++; y++; 
+    c++; d++; z++; y++;
 }
