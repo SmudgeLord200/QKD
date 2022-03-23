@@ -235,8 +235,8 @@ function fire() {
 
                         bitsToPush = true;
                         bits_value = p45;
-                        console.log("Eve's here: ", p45);
                         Eve.push(bits_value);
+                        console.log("Eve's here: ", p45);
                         overallE[eCount] = Diagonal.Overall;
                         eCount++;
                         e_basis[j] = Diagonal.P45;
@@ -255,8 +255,8 @@ function fire() {
 
                         bitsToPush = true;
                         bits_value = n45;
-                        console.log("Eve's here: ", n45);
                         Eve.push(bits_value);
+                        console.log("Eve's here: ", n45);
                         overallE[eCount] = Diagonal.Overall;
                         eCount++;
                         e_basis[j] = Diagonal.N45;
@@ -275,9 +275,9 @@ function fire() {
                         pol_P45_E2.style.visibility = "hidden";
                         pol_N45_E1.style.visibility = "hidden";
                         pol_N45_E2.style.visibility = "hidden";
-
-                        console.log("Eve's here and guess correctly");
+                        
                         Eve.push(h);
+                        console.log("Eve's here and guess correctly: ", h);
                         overallE[eCount] = Rectilinear.Overall;
                         eCount++;
                         e_basis[j] = Rectilinear.Horizontal;
@@ -294,8 +294,8 @@ function fire() {
                         pol_N45_E1.style.visibility = "hidden";
                         pol_N45_E2.style.visibility = "hidden";
 
-                        console.log("Eve's here and guess correctly");
                         Eve.push(v);
+                        console.log("Eve's here and guess correctly: ", v);
                         overallE[eCount] = Rectilinear.Overall;
                         eCount++;
                         e_basis[j] = Rectilinear.Vertical;
@@ -412,8 +412,8 @@ function fire() {
 
                         bitsToPush = true;
                         bits_value = h;
-                        console.log("Eve's here: ", h);
                         Eve.push(bits_value);
+                        console.log("Eve's here: ", h);
                         overallE[eCount] = Rectilinear.Overall;
                         eCount++;
                         e_basis[j] = Rectilinear.Horizontal;
@@ -432,8 +432,8 @@ function fire() {
 
                         bitsToPush = true;
                         bits_value = v;
-                        console.log("Eve's here: ", v);
                         Eve.push(bits_value);
+                        console.log("Eve's here: ", v);
                         overallE[eCount] = Rectilinear.Overall;
                         eCount++;
                         e_basis[j] = Rectilinear.Vertical;
@@ -453,8 +453,8 @@ function fire() {
                         pol_N45_E1.style.visibility = "hidden";
                         pol_N45_E2.style.visibility = "hidden";
 
-                        console.log("Eve's here and guess correctly");
                         Eve.push(p45);
+                        console.log("Eve's here and guess correctly: ", p45);
                         overallE[eCount] = Diagonal.Overall;
                         eCount++;
                         e_basis[j] = Diagonal.P45;
@@ -471,8 +471,8 @@ function fire() {
                         pol_N45_E1.style.visibility = "visible";
                         pol_N45_E2.style.visibility = "visible";
 
-                        console.log("Eve's here and guess correctly");
                         Eve.push(n45);
+                        console.log("Eve's here and guess correctly: ", n45);
                         overallE[eCount] = Diagonal.Overall;
                         eCount++;
                         e_basis[j] = Diagonal.N45;
@@ -589,8 +589,8 @@ function fire() {
 
                             bitsToPush = true;
                             bits_value = p45;
-                            console.log("Eve's here: ", p45);
                             Eve.push(bits_value);
+                            console.log("Eve's here: ", p45);
                             overallE[eCount] = Diagonal.Overall;
                             eCount++;
                             e_basis[j] = Diagonal.P45;
@@ -609,8 +609,8 @@ function fire() {
 
                             bitsToPush = true;
                             bits_value = n45;
-                            console.log("Eve's here: ", n45);
                             Eve.push(bits_value);
+                            console.log("Eve's here: ", n45);
                             overallE[eCount] = Diagonal.Overall;
                             eCount++;
                             e_basis[j] = Diagonal.N45;
@@ -630,8 +630,8 @@ function fire() {
                             pol_N45_E1.style.visibility = "hidden";
                             pol_N45_E2.style.visibility = "hidden";
 
-                            console.log("Eve's here and guess correctly");
                             Eve.push(h);
+                            console.log("Eve's here and guess correctly: ", h);
                             overallE[eCount] = Rectilinear.Overall;
                             eCount++;
                             e_basis[j] = Rectilinear.Horizontal;
@@ -647,9 +647,9 @@ function fire() {
                             pol_P45_E2.style.visibility = "hidden";
                             pol_N45_E1.style.visibility = "hidden";
                             pol_N45_E2.style.visibility = "hidden";
-
-                            console.log("Eve's here and guess correctly");
+                            
                             Eve.push(v);
+                            console.log("Eve's here and guess correctly: ", v);
                             overallE[eCount] = Rectilinear.Overall;
                             eCount++;
                             e_basis[j] = Rectilinear.Vertical;
@@ -761,6 +761,7 @@ function fire() {
 
                             bitsToPush = true;
                             bits_value = h;
+                            Eve.push(bits_value);
                             console.log("Eve's here: ", h);
                             overallE[eCount] = Rectilinear.Overall;
                             eCount++;
@@ -780,6 +781,7 @@ function fire() {
 
                             bitsToPush = true;
                             bits_value = v;
+                            Eve.push(bits_value);
                             console.log("Eve's here: ", v);
                             overallE[eCount] = Rectilinear.Overall;
                             eCount++;
@@ -799,9 +801,9 @@ function fire() {
                             pol_P45_E2.style.visibility = "visible";
                             pol_N45_E1.style.visibility = "hidden";
                             pol_N45_E2.style.visibility = "hidden";
-
-                            console.log("Eve's here and guess correctly");
+                            
                             Eve.push(p45);
+                            console.log("Eve's here and guess correctly: ", p45);
                             overallE[eCount] = Diagonal.Overall;
                             eCount++;
                             e_basis[j] = Diagonal.P45;
@@ -817,9 +819,9 @@ function fire() {
                             pol_P45_E2.style.visibility = "hidden";
                             pol_N45_E1.style.visibility = "visible";
                             pol_N45_E2.style.visibility = "visible";
-
-                            console.log("Eve's here and guess correctly");
+                           
                             Eve.push(n45);
+                            console.log("Eve's here and guess correctly: ", n45);
                             overallE[eCount] = Diagonal.Overall;
                             eCount++;
                             e_basis[j] = Diagonal.N45;
@@ -943,8 +945,8 @@ function fire() {
 
                         bitsToPush = true;
                         bits_value = p45;
-                        console.log("Eve's here: ", p45);
                         Eve.push(bits_value);
+                        console.log("Eve's here: ", p45);
                         overallE[eCount] = Diagonal.Overall;
                         eCount++;
                         e_basis[j] = Diagonal.P45;
@@ -963,8 +965,8 @@ function fire() {
 
                         bitsToPush = true;
                         bits_value = n45;
-                        console.log("Eve's here: ", n45);
                         Eve.push(bits_value);
+                        console.log("Eve's here: ", n45);
                         overallE[eCount] = Diagonal.Overall;
                         eCount++;
                         e_basis[j] = Diagonal.N45;
@@ -984,8 +986,8 @@ function fire() {
                         pol_N45_E1.style.visibility = "hidden";
                         pol_N45_E2.style.visibility = "hidden";
 
-                        console.log("Eve's here and guess correctly");
                         Eve.push(h);
+                        console.log("Eve's here and guess correctly: ", h);
                         overallE[eCount] = Rectilinear.Overall;
                         eCount++;
                         e_basis[j] = Rectilinear.Horizontal;
@@ -1001,9 +1003,9 @@ function fire() {
                         pol_P45_E2.style.visibility = "hidden";
                         pol_N45_E1.style.visibility = "hidden";
                         pol_N45_E2.style.visibility = "hidden";
-
-                        console.log("Eve's here and guess correctly");
+                       
                         Eve.push(v);
+                        console.log("Eve's here and guess correctly: ", v);
                         overallE[eCount] = Rectilinear.Overall;
                         eCount++;
                         e_basis[j] = Rectilinear.Vertical;
@@ -1070,9 +1072,9 @@ function fire() {
                         pol_N45_E2.style.visibility = "hidden";
 
                         bitsToPush = true;
-                        bits_value = h;
-                        console.log("Eve's here: ", h);
+                        bits_value = h;                       
                         Eve.push(bits_value);
+                        console.log("Eve's here: ", h);
                         overallE[eCount] = Rectilinear.Overall;
                         eCount++;
                         e_basis[j] = Rectilinear.Horizontal;
@@ -1090,9 +1092,9 @@ function fire() {
                         pol_N45_E2.style.visibility = "hidden";
 
                         bitsToPush = true;
-                        bits_value = v;
-                        console.log("Eve's here: ", v);
+                        bits_value = v;                       
                         Eve.push(bits_value);
+                        console.log("Eve's here: ", v);
                         overallE[eCount] = Rectilinear.Overall;
                         eCount++;
                         e_basis[j] = Rectilinear.Vertical;
@@ -1111,9 +1113,9 @@ function fire() {
                         pol_P45_E2.style.visibility = "visible";
                         pol_N45_E1.style.visibility = "hidden";
                         pol_N45_E2.style.visibility = "hidden";
-
-                        console.log("Eve's here and guess correctly");
+                        
                         Eve.push(p45);
+                        console.log("Eve's here and guess correctly: ", p45);
                         overallE[eCount] = Diagonal.Overall;
                         eCount++;
                         e_basis[j] = Diagonal.P45;
@@ -1129,9 +1131,9 @@ function fire() {
                         pol_P45_E2.style.visibility = "hidden";
                         pol_N45_E1.style.visibility = "visible";
                         pol_N45_E2.style.visibility = "visible";
-
-                        console.log("Eve's here and guess correctly");
+                       
                         Eve.push(n45);
+                        console.log("Eve's here and guess correctly: ", n45);
                         overallE[eCount] = Diagonal.Overall;
                         eCount++;
                         e_basis[j] = Diagonal.N45;
@@ -1263,7 +1265,7 @@ var cellA, cellB, cellE, cellCountA = 1, cellCountE = 2, cellCountB = 3, sameBas
 var sameBase, resultBit;
 var a = 0, b = 0, e = 0; //counter for ABE bit array
 var overallCountA = 0, overallCountB = 0, overallCountE = 0; //counter for ABE Overall Basis
-var test = true;
+var m = 0;
 function displayTable() {
 
     //Display Alice Bob Eve bits details
@@ -1299,6 +1301,12 @@ function displayTable() {
     } else { sameBase.innerHTML = "No"; }
 
     //Result Bit
+    switch (b_basis[m]) {
+        case Rectilinear.Horizontal: if (Bob[b] !== h) { resultBit.style.color = "red"; } break;
+        case Rectilinear.Vertical: if (Bob[b] !== v) {resultBit.style.color = "red"; } break;
+        case Diagonal.P45: if (Bob[b] !== p45) {resultBit.style.color = "red"; } break;
+        case Diagonal.N45: if (Bob[b] !== n45) {resultBit.style.color = "red"; } break;
+    }
     resultBit.innerHTML = Bob[b];
 
     //Increase and reset the counters
@@ -1306,6 +1314,7 @@ function displayTable() {
     a++;
     overallCountB++;
     b++;
+    m++;
 
     rowCount1++;
     if (rowCount1 > 5) { rowCount1 = 1; }
@@ -1315,7 +1324,7 @@ function displayTable() {
 var table2 = document.getElementById("bitsSameBaseTable");
 var row2, rowCount2 = 1;
 var cell1, cell2, cell1Count = 0, cell2Count = 1;
-var c = 0, d = 0, z = 0, y = 0, e = 0, f = 0;
+var c = 0, d = 0, z = 0, y = 0, g = 0, f = 0;
 var newAlice = [], newBob = [];
 function displaySameBaseTable() {
 
@@ -1328,9 +1337,9 @@ function displaySameBaseTable() {
         cell1.innerHTML = Alice[z];
         cell2.innerHTML = Bob[y];
 
-        newAlice[e] = Alice[z];
+        newAlice[g] = Alice[z];
         newBob[f] = Bob[y];
-        e++; f++;
+        g++; f++;
     }
     c++; d++; z++; y++;
 }
