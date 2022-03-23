@@ -1263,7 +1263,7 @@ var cellA, cellB, cellE, cellCountA = 1, cellCountE = 2, cellCountB = 3, sameBas
 var sameBase, resultBit;
 var a = 0, b = 0, e = 0; //counter for ABE bit array
 var overallCountA = 0, overallCountB = 0, overallCountE = 0; //counter for ABE Overall Basis
-var arb = false;
+var test = true;
 function displayTable() {
 
     //Display Alice Bob Eve bits details
@@ -1273,6 +1273,12 @@ function displayTable() {
     cellB = row1.cells[cellCountB];
     sameBase = row1.cells[sameBaseCount];
     resultBit = row1.cells[resultBitCount];
+
+    //Toggle between the background color animation class
+    row1.classList.remove("tr");
+    setTimeout(() => {
+        row1.classList.add("tr");
+    }, 1);
 
     //Alice
     cellA.innerHTML = overallA[overallCountA] + ": " + Alice[a];
@@ -1300,10 +1306,6 @@ function displayTable() {
     a++;
     overallCountB++;
     b++;
-
-    if (!arb) {row1.classList.toggle("tr"); arb = true;}
-    else {row1.classList.toggle("tr"); arb = false;}
-    
 
     rowCount1++;
     if (rowCount1 > 5) { rowCount1 = 1; }

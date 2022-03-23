@@ -110,7 +110,22 @@
         }
 
         .tr {
-            background-color: coral;
+            animation: addBgClr 2s linear 1 normal;
+        }
+
+        @keyframes addBgClr {
+            0% {
+                background-color: #f1f1f1;
+            }
+            25% {
+                background-color: aquamarine;
+            }
+            50% {
+                background-color: aquamarine;
+            }
+            100% {
+                background-color: #f1f1f1;
+            }
         }
     </style>
 </head>
