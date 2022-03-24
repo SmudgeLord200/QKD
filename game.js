@@ -275,7 +275,7 @@ function fire() {
                         pol_P45_E2.style.visibility = "hidden";
                         pol_N45_E1.style.visibility = "hidden";
                         pol_N45_E2.style.visibility = "hidden";
-                        
+
                         Eve.push(h);
                         console.log("Eve's here and guess correctly: ", h);
                         overallE[eCount] = Rectilinear.Overall;
@@ -647,7 +647,7 @@ function fire() {
                             pol_P45_E2.style.visibility = "hidden";
                             pol_N45_E1.style.visibility = "hidden";
                             pol_N45_E2.style.visibility = "hidden";
-                            
+
                             Eve.push(v);
                             console.log("Eve's here and guess correctly: ", v);
                             overallE[eCount] = Rectilinear.Overall;
@@ -801,7 +801,7 @@ function fire() {
                             pol_P45_E2.style.visibility = "visible";
                             pol_N45_E1.style.visibility = "hidden";
                             pol_N45_E2.style.visibility = "hidden";
-                            
+
                             Eve.push(p45);
                             console.log("Eve's here and guess correctly: ", p45);
                             overallE[eCount] = Diagonal.Overall;
@@ -819,7 +819,7 @@ function fire() {
                             pol_P45_E2.style.visibility = "hidden";
                             pol_N45_E1.style.visibility = "visible";
                             pol_N45_E2.style.visibility = "visible";
-                           
+
                             Eve.push(n45);
                             console.log("Eve's here and guess correctly: ", n45);
                             overallE[eCount] = Diagonal.Overall;
@@ -1003,7 +1003,7 @@ function fire() {
                         pol_P45_E2.style.visibility = "hidden";
                         pol_N45_E1.style.visibility = "hidden";
                         pol_N45_E2.style.visibility = "hidden";
-                       
+
                         Eve.push(v);
                         console.log("Eve's here and guess correctly: ", v);
                         overallE[eCount] = Rectilinear.Overall;
@@ -1072,7 +1072,7 @@ function fire() {
                         pol_N45_E2.style.visibility = "hidden";
 
                         bitsToPush = true;
-                        bits_value = h;                       
+                        bits_value = h;
                         Eve.push(bits_value);
                         console.log("Eve's here: ", h);
                         overallE[eCount] = Rectilinear.Overall;
@@ -1092,7 +1092,7 @@ function fire() {
                         pol_N45_E2.style.visibility = "hidden";
 
                         bitsToPush = true;
-                        bits_value = v;                       
+                        bits_value = v;
                         Eve.push(bits_value);
                         console.log("Eve's here: ", v);
                         overallE[eCount] = Rectilinear.Overall;
@@ -1113,7 +1113,7 @@ function fire() {
                         pol_P45_E2.style.visibility = "visible";
                         pol_N45_E1.style.visibility = "hidden";
                         pol_N45_E2.style.visibility = "hidden";
-                        
+
                         Eve.push(p45);
                         console.log("Eve's here and guess correctly: ", p45);
                         overallE[eCount] = Diagonal.Overall;
@@ -1131,7 +1131,7 @@ function fire() {
                         pol_P45_E2.style.visibility = "hidden";
                         pol_N45_E1.style.visibility = "visible";
                         pol_N45_E2.style.visibility = "visible";
-                       
+
                         Eve.push(n45);
                         console.log("Eve's here and guess correctly: ", n45);
                         overallE[eCount] = Diagonal.Overall;
@@ -1265,7 +1265,7 @@ var cellA, cellB, cellE, cellCountA = 1, cellCountE = 2, cellCountB = 3, sameBas
 var sameBase, resultBit;
 var a = 0, b = 0, e = 0; //counter for ABE bit array
 var overallCountA = 0, overallCountB = 0, overallCountE = 0; //counter for ABE Overall Basis
-var m = 0;
+var m = 0, n = 0;
 function displayTable() {
 
     //Display Alice Bob Eve bits details
@@ -1302,10 +1302,30 @@ function displayTable() {
 
     //Result Bit
     switch (b_basis[m]) {
-        case Rectilinear.Horizontal: if (Bob[b] !== h) { resultBit.style.color = "red"; } break;
-        case Rectilinear.Vertical: if (Bob[b] !== v) {resultBit.style.color = "red"; } break;
-        case Diagonal.P45: if (Bob[b] !== p45) {resultBit.style.color = "red"; } break;
-        case Diagonal.N45: if (Bob[b] !== n45) {resultBit.style.color = "red"; } break;
+        case Rectilinear.Horizontal: if (a_basis[n] == b_basis[m] && Bob[b] !== h) {
+            resultBit.classList.remove("resultBit");
+            setTimeout(() => {
+                resultBit.classList.add("resultBit");
+            }, 1);
+        } break;
+        case Rectilinear.Vertical: if (a_basis[n] == b_basis[m] && Bob[b] !== v) {
+            resultBit.classList.remove("resultBit");
+            setTimeout(() => {
+                resultBit.classList.add("resultBit");
+            }, 1);
+        } break;
+        case Diagonal.P45: if (a_basis[n] == b_basis[m] && Bob[b] !== p45) {
+            resultBit.classList.remove("resultBit");
+            setTimeout(() => {
+                resultBit.classList.add("resultBit");
+            }, 1);
+        } break;
+        case Diagonal.N45: if (a_basis[n] == b_basis[m] && Bob[b] !== n45) {
+            resultBit.classList.remove("resultBit");
+            setTimeout(() => {
+                resultBit.classList.add("resultBit");
+            }, 1);
+        } break;
     }
     resultBit.innerHTML = Bob[b];
 
@@ -1314,7 +1334,7 @@ function displayTable() {
     a++;
     overallCountB++;
     b++;
-    m++;
+    m++; n++;
 
     rowCount1++;
     if (rowCount1 > 5) { rowCount1 = 1; }
@@ -1334,8 +1354,8 @@ function displaySameBaseTable() {
 
 
     if (overallA[c] == overallB[d]) {
-        cell1.innerHTML = Alice[z];
-        cell2.innerHTML = Bob[y];
+        cell1.innerHTML += Alice[z] + "\n";
+        cell2.innerHTML += Bob[y] + "\n";
 
         newAlice[g] = Alice[z];
         newBob[f] = Bob[y];
