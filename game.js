@@ -1344,8 +1344,10 @@ function displayTable() {
 var table2 = document.getElementById("bitsSameBaseTable");
 var row2, rowCount2 = 1;
 var cell1, cell2, cell1Count = 0, cell2Count = 1;
-var c = 0, d = 0, z = 0, y = 0, g = 0, f = 0;
+var c = 0, d = 0, z = 0, y = 0, g = 0, f = 0, o = 0, p = 0, q = 0, r = 0, s = 0, t = 0, u = 0, w = 0, aa = 0, bb = 0, p_count = 0;
 var newAlice = [], newBob = [];
+var newOverallA = [], newOverallB = [], new_a_basis = [], new_b_basis = [];
+document.getElementById("compare").disabled = true;
 function displaySameBaseTable() {
 
     row2 = table2.rows[rowCount2];
@@ -1359,7 +1361,101 @@ function displaySameBaseTable() {
 
         newAlice[g] = Alice[z];
         newBob[f] = Bob[y];
-        g++; f++;
+
+        newOverallA[o] = overallA[u];
+        newOverallB[p] = overallB[w];
+
+        new_a_basis[s] = a_basis[aa];
+        new_b_basis[t] = b_basis[bb];
+
+        g++; f++; o++; p++; s++; t++;
+
+        p_count++;
     }
-    c++; d++; z++; y++;
+    c++; d++; z++; y++; u++; w++; aa++; bb++;
+
+    if (p_count >= 30) {
+        document.getElementById("compare").disabled = false;
+        document.getElementById("compare").onclick = function () { document.location = '/compareBits.html'; }
+
+    }
+}
+
+//Clear everything
+function clearEverything() {
+    //Restore and Clear everything to default settings
+    if (document.getElementById("1").checked) { document.getElementById("1").checked = false; } //Uncheck the pol state
+    if (document.getElementById("2").checked) { document.getElementById("2").checked = false; } //Uncheck the pol state
+
+    //Restore back to default fixed pol base settings
+    if (document.getElementById("randomP").checked) {
+        document.getElementById("randomP").checked = false;
+        document.getElementById("fixedP").checked = true;
+        document.getElementById("aliceOptHV").disabled = false;
+        document.getElementById("aliceOpt45").disabled = false;
+        document.getElementById("bobOptHV").disabled = false;
+        document.getElementById("bobOpt45").disabled = false;
+    }
+
+    //Clear Eve
+    if (document.getElementById("eavesdrop").innerHTML = "Stop Eavesdropping") {
+        eve_state = false;
+        eve_display = false;
+
+        document.getElementById("eve").style.visibility = "hidden";
+        pol_H_E1.style.visibility = "hidden";
+        pol_H_E2.style.visibility = "hidden";
+        pol_V_E1.style.visibility = "hidden";
+        pol_V_E2.style.visibility = "hidden";
+        pol_P45_E1.style.visibility = "hidden";
+        pol_P45_E2.style.visibility = "hidden";
+        pol_N45_E1.style.visibility = "hidden";
+        pol_N45_E2.style.visibility = "hidden";
+
+        document.getElementById("eavesdrop").innerHTML = "Eavesdrop";
+    }
+
+    //Clear all the arrays
+    Alice = []; Bob = []; overallA = []; overallB = []; overallE = []; a_basis = []; b_basis = []; e_basis = [];
+    newAlice = []; newBob = []; newOverallA = []; newOverallB = []; new_a_basis = []; new_b_basis = [];
+
+    //Clear arrays counters
+    i = 0; j = 0; k = 0;
+    aCount = 0; bCount = 0; eCount = 0;
+
+    //Clear fire() parameters
+    h = 0; v = 0; p45 = 0; n45 = 0;
+    xR = 0; yR = 0; xD = 0; yD = 0; eR = 0; eD = 0; d = 0;
+    aB = 0; bB = 0; eB = 0; 
+    bitsToPush = false; bits_value = 0;
+    alice_45 = false; bob_45 = false; 
+
+    //Alice Bob default display
+    pol_V_A.style.visibility = "visible";
+    pol_H_A.style.visibility = "hidden";
+    pol_P45_A.style.visibility = "hidden";
+    pol_N45_A.style.visibility = "hidden";
+
+    pol_V_B.style.visibility = "visible";
+    pol_H_B.style.visibility = "hidden";
+    pol_P45_B.style.visibility = "hidden";
+    pol_N45_B.style.visibility = "hidden";
+
+    //Clear the bit details table display
+/*     cellA.innerHTML = "";
+    cellB.innerHTML = "";
+    cellE.innerHTML = "";
+    sameBase.innerHTML = "";
+    resultBit.innerHTML = ""; */
+    rowCount1 = 1;
+    cellCountA = 1; cellCountE = 2; cellCountB = 3; sameBaseCount = 4; resultBitCount = 5;
+    a = 0; b = 0; e = 0; m = 0; n = 0;
+    overallCountA = 0; overallCountB = 0; overallCountE = 0;
+
+    //Clear same base table display
+    cell1.innerHTML = "";
+    cell2.innerHTML = "";
+    cell1Count = 0; cell2Count = 1;
+    rowCount2 = 1;
+    c = 0; d = 0; z = 0; y = 0; g = 0; f = 0; o = 0; p = 0; q = 0; r = 0; s = 0; t = 0; u = 0; w = 0; aa = 0; bb = 0; p_count = 0;
 }
