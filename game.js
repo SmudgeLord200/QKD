@@ -1442,13 +1442,12 @@ function clearEverything() {
     pol_N45_B.style.visibility = "hidden";
 
     //Clear the bit details table display
-/*     for (var ii = 1; ii < table1.rows.length; ii++) {
-        cellA.innerHTML = "";
-        cellB.innerHTML = "";
-        cellE.innerHTML = "";
-        sameBase.innerHTML = "";
-        resultBit.innerHTML = "";
-    } */
+    for (var ii = 1; ii < table1.rows.length; ii++) {
+
+        for (var hh = 1; hh < 6; hh++) { 
+            table1.rows[ii].cells[hh].innerHTML = ""; 
+        }
+    }
 
     rowCount1 = 1;
     cellCountA = 1; cellCountE = 2; cellCountB = 3; sameBaseCount = 4; resultBitCount = 5;
