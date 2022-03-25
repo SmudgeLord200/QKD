@@ -46,8 +46,10 @@
     </div>
 
     <script>
-        document.getElementById("test").innerHTML = localStorage.getItem("NewAliceArray");
-        document.getElementById("test2").innerHTML = localStorage.getItem("NewBobArray");
+        var newAliceArray = JSON.parse(localStorage.getItem("NewAliceArray"));
+        var newBobArray = JSON.parse(localStorage.getItem("NewBobArray"));
+        document.getElementById("test").innerHTML = newAliceArray;
+        document.getElementById("test2").innerHTML = newBobArray;
     </script>
 </body>
 

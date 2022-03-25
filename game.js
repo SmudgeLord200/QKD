@@ -141,7 +141,11 @@ document.getElementById("eavesdrop").onclick = function () {
 }
 
 //Polarization State Assignment
+var p_state_array = []; //Save the p state of every bit in the transmission
+var p_state = 0;
 document.getElementById("1").onclick = function () {
+    p_state = 1;
+
     h = 1;
     v = 0;
     p45 = 1;
@@ -150,6 +154,8 @@ document.getElementById("1").onclick = function () {
 
 //Polarization State Assignment
 document.getElementById("2").onclick = function () {
+    p_state = 2;
+
     h = 0;
     v = 1;
     p45 = 0;
@@ -165,7 +171,7 @@ function css_ani() {
 
 //Fire photon
 var i = 0, j = 0, k = 0; //Alice Eve Bob basis array counter
-var aCount = 0, bCount = 0, eCount = 0;
+var aCount = 0, bCount = 0, eCount = 0, p_state_count = 0;
 var overallA = [];
 var overallB = [];
 var overallE = [];
@@ -345,8 +351,7 @@ function fire() {
             }
 
             bitsToPush = false;
-            //Assign corresponding bit value to both arrays
-            //Display the bit sequence to the tables                        
+                     
         }
 
         //Diagonal Basis
@@ -1225,6 +1230,8 @@ function fire() {
         }
     }
 
+    p_state_array[p_state_count] = p_state;
+    p_state_count++;  
     //Display the results to corresponding tables
     displayTable();
     displaySameBaseTable();
@@ -1378,8 +1385,8 @@ function displaySameBaseTable() {
         document.getElementById("compare").disabled = false;
         document.getElementById("compare").onclick = function () { 
             document.location = '/compareBits.html'; 
-            localStorage.setItem("NewAliceArray", newAlice);
-            localStorage.setItem("NewBobArray", newBob);
+            localStorage.setItem("NewAliceArray", JSON.stringify(newAlice));
+            localStorage.setItem("NewBobArray", JSON.stringify(newBob));
         }
 
     }
