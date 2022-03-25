@@ -1376,7 +1376,11 @@ function displaySameBaseTable() {
 
     if (p_count >= 30) {
         document.getElementById("compare").disabled = false;
-        document.getElementById("compare").onclick = function () { document.location = '/compareBits.html'; }
+        document.getElementById("compare").onclick = function () { 
+            document.location = '/compareBits.html'; 
+            localStorage.setItem("NewAliceArray", newAlice);
+            localStorage.setItem("NewBobArray", newBob);
+        }
 
     }
 }
@@ -1460,4 +1464,6 @@ function clearEverything() {
     cell1Count = 0; cell2Count = 1;
     rowCount2 = 1;
     c = 0; d = 0; z = 0; y = 0; g = 0; f = 0; o = 0; p = 0; q = 0; r = 0; s = 0; t = 0; u = 0; w = 0; aa = 0; bb = 0; p_count = 0;
+
+    document.getElementById("compare").disabled = true;
 }

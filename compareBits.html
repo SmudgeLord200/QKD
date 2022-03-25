@@ -19,21 +19,21 @@
         <div class="row border">
             <div class="col-12 border text-center">
                 <p><u>Alice's Bits</u></p>
-                <div>Bits Animation</div>
+                <div id="test">Bits Animation</div>
             </div>
 
             <div class="col-12 border text-center mt-5">
                 <p><u>Bob's Bits</u></p>
-                <div>Bits Animation</div>
+                <div id="test2">Bits Animation</div>
             </div>
         </div>
 
         <div class="row p-1 border text-center">
-            <!--<div class="col-6">
+            <div class="col-6">
                 <button type="button" class="btn btn-warning btn-md"
                     onclick="document.location='/gameMainPage.html'">Back</button>
-            </div>-->
-            <div class="">
+            </div>
+            <div class="col-6">
                 <button type="button" class="btn btn-success btn-md"
                     onclick="document.location='/gameSuccessPage.html'">Next</button>
             </div>
@@ -44,6 +44,11 @@
                 onclick="document.location='/mainPage.html'">Exit</button>
         </div>
     </div>
+
+    <script>
+        document.getElementById("test").innerHTML = localStorage.getItem("NewAliceArray");
+        document.getElementById("test2").innerHTML = localStorage.getItem("NewBobArray");
+    </script>
 </body>
 
 </html>
