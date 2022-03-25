@@ -1426,9 +1426,9 @@ function clearEverything() {
     //Clear fire() parameters
     h = 0; v = 0; p45 = 0; n45 = 0;
     xR = 0; yR = 0; xD = 0; yD = 0; eR = 0; eD = 0; d = 0;
-    aB = 0; bB = 0; eB = 0; 
+    aB = 0; bB = 0; eB = 0;
     bitsToPush = false; bits_value = 0;
-    alice_45 = false; bob_45 = false; 
+    alice_45 = false; bob_45 = false;
 
     //Alice Bob default display
     pol_V_A.style.visibility = "visible";
@@ -1442,11 +1442,14 @@ function clearEverything() {
     pol_N45_B.style.visibility = "hidden";
 
     //Clear the bit details table display
-/*     cellA.innerHTML = "";
-    cellB.innerHTML = "";
-    cellE.innerHTML = "";
-    sameBase.innerHTML = "";
-    resultBit.innerHTML = ""; */
+/*     for (var ii = 1; ii < table1.rows.length; ii++) {
+        cellA.innerHTML = "";
+        cellB.innerHTML = "";
+        cellE.innerHTML = "";
+        sameBase.innerHTML = "";
+        resultBit.innerHTML = "";
+    } */
+
     rowCount1 = 1;
     cellCountA = 1; cellCountE = 2; cellCountB = 3; sameBaseCount = 4; resultBitCount = 5;
     a = 0; b = 0; e = 0; m = 0; n = 0;
