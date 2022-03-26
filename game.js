@@ -171,7 +171,7 @@ function css_ani() {
 
 //Fire photon
 var i = 0, j = 0, k = 0; //Alice Eve Bob basis array counter
-var aCount = 0, bCount = 0, eCount = 0, p_state_count = 0;
+var aCount = 0, bCount = 0, eCount = 0;
 var overallA = [];
 var overallB = [];
 var overallE = [];
@@ -1229,9 +1229,7 @@ function fire() {
             bitsToPush = false;
         }
     }
-
-    p_state_array[p_state_count] = p_state;
-    p_state_count++;  
+ 
     //Display the results to corresponding tables
     displayTable();
     displaySameBaseTable();
@@ -1351,7 +1349,7 @@ function displayTable() {
 var table2 = document.getElementById("bitsSameBaseTable");
 var row2, rowCount2 = 1;
 var cell1, cell2, cell1Count = 0, cell2Count = 1;
-var c = 0, d = 0, z = 0, y = 0, g = 0, f = 0, o = 0, p = 0, q = 0, r = 0, s = 0, t = 0, u = 0, w = 0, aa = 0, bb = 0, p_count = 0;
+var c = 0, d = 0, z = 0, y = 0, g = 0, f = 0, o = 0, p = 0, q = 0, r = 0, s = 0, t = 0, u = 0, w = 0, aa = 0, bb = 0, p_count = 0, p_state_count = 0;
 var newAlice = [], newBob = [];
 var newOverallA = [], newOverallB = [], new_a_basis = [], new_b_basis = [];
 document.getElementById("compare").disabled = true;
@@ -1375,18 +1373,28 @@ function displaySameBaseTable() {
         new_a_basis[s] = a_basis[aa];
         new_b_basis[t] = b_basis[bb];
 
+        p_state_array[p_state_count] = p_state;
+        p_state_count++; 
+
         g++; f++; o++; p++; s++; t++;
 
         p_count++;
     }
     c++; d++; z++; y++; u++; w++; aa++; bb++;
 
+    //Enable the compare buttons when the number of same base bits reach 30
     if (p_count >= 30) {
         document.getElementById("compare").disabled = false;
+        //Store and send the corresponding variables to the next page
         document.getElementById("compare").onclick = function () { 
             document.location = '/compareBits.html'; 
             localStorage.setItem("NewAliceArray", JSON.stringify(newAlice));
             localStorage.setItem("NewBobArray", JSON.stringify(newBob));
+            localStorage.setItem("NewOverallAliceArray", JSON.stringify(newOverallA));
+            localStorage.setItem("NewOverallBobArray", JSON.stringify(newOverallB));
+            localStorage.setItem("NewOverallAliceBasis", JSON.stringify(new_a_basis));
+            localStorage.setItem("NewOverallBobBasis", JSON.stringify(new_b_basis));
+            localStorage.setItem("NewPStateArray", JSON.stringify(p_state_array));
         }
 
     }
@@ -1428,11 +1436,11 @@ function clearEverything() {
 
     //Clear all the arrays
     Alice = []; Bob = []; overallA = []; overallB = []; overallE = []; a_basis = []; b_basis = []; e_basis = [];
-    newAlice = []; newBob = []; newOverallA = []; newOverallB = []; new_a_basis = []; new_b_basis = [];
+    newAlice = []; newBob = []; newOverallA = []; newOverallB = []; new_a_basis = []; new_b_basis = []; p_state_array = [];
 
     //Clear arrays counters
     i = 0; j = 0; k = 0;
-    aCount = 0; bCount = 0; eCount = 0;
+    aCount = 0; bCount = 0; eCount = 0; p_state_count = 0; p_state = 0;
 
     //Clear fire() parameters
     h = 0; v = 0; p45 = 0; n45 = 0;

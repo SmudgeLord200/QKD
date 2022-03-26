@@ -19,21 +19,24 @@
         <div class="row border">
             <div class="col-12 border text-center">
                 <p><u>Alice's Bits</u></p>
-                <div id="test">Bits Animation</div>
+                <div id="Alice"></div>
             </div>
 
             <div class="col-12 border text-center mt-5">
                 <p><u>Bob's Bits</u></p>
-                <div id="test2">Bits Animation</div>
+                <div id="Bob"></div>
             </div>
         </div>
 
-        <div class="row p-1 border text-center">
-            <div class="col-6">
+        <div class="row mt-5 border text-center">
+            <div class="col-4">
                 <button type="button" class="btn btn-warning btn-md"
                     onclick="document.location='/gameMainPage.html'">Back</button>
             </div>
-            <div class="col-6">
+            <div class="col-4">
+                <button type="button" class="btn btn-primary btn-md">Compare Bits</button>
+            </div>
+            <div class="col-4">
                 <button type="button" class="btn btn-success btn-md"
                     onclick="document.location='/gameSuccessPage.html'">Next</button>
             </div>
@@ -44,13 +47,7 @@
                 onclick="document.location='/mainPage.html'">Exit</button>
         </div>
     </div>
-
-    <script>
-        var newAliceArray = JSON.parse(localStorage.getItem("NewAliceArray"));
-        var newBobArray = JSON.parse(localStorage.getItem("NewBobArray"));
-        document.getElementById("test").innerHTML = newAliceArray;
-        document.getElementById("test2").innerHTML = newBobArray;
-    </script>
+    <script src="/compare.js"></script>
 </body>
 
 </html>
