@@ -357,8 +357,6 @@ function fire() {
         //Diagonal Basis
         else if (alice_45 === true && bob_45 === true) {
             //Radnomly switch between P45 and N45 basis
-            //Assign corresponding bit value to both arrays
-            //Display the bit sequence to the tables
             //alice switch between xD
             xD = Math.floor(Math.random() * 2);
             //0 is P45, 1 is N45 
@@ -527,7 +525,6 @@ function fire() {
             }
 
             bitsToPush = false;
-
         }
 
         //If the two bases are not equal
@@ -1237,7 +1234,7 @@ function fire() {
 
 //Fast forward 15 Photons
 function fast15Photons() {
-    for (let i = 0; i < 15; i++) {
+    for (var i = 0; i < 15; i++) {
         fire();
     }
 }
@@ -1331,6 +1328,7 @@ function displayTable() {
                 resultBit.classList.add("resultBit");
             }, 1);
         } break;
+        default: break;
     }
     resultBit.innerHTML = Bob[b];
 
@@ -1392,11 +1390,10 @@ function displaySameBaseTable() {
             localStorage.setItem("NewBobArray", JSON.stringify(newBob));
             localStorage.setItem("NewOverallAliceArray", JSON.stringify(newOverallA));
             localStorage.setItem("NewOverallBobArray", JSON.stringify(newOverallB));
-            localStorage.setItem("NewOverallAliceBasis", JSON.stringify(new_a_basis));
-            localStorage.setItem("NewOverallBobBasis", JSON.stringify(new_b_basis));
+            localStorage.setItem("NewAliceBasis", JSON.stringify(new_a_basis));
+            localStorage.setItem("NewBobBasis", JSON.stringify(new_b_basis));
             localStorage.setItem("NewPStateArray", JSON.stringify(p_state_array));
         }
-
     }
 }
 
