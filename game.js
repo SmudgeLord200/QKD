@@ -1457,6 +1457,13 @@ function clearEverything() {
     pol_P45_B.style.visibility = "hidden";
     pol_N45_B.style.visibility = "hidden";
 
+    if (document.getElementById("aliceOpt45").checked == true || document.getElementById("bobOpt45").checked == true) {
+        document.getElementById("aliceOpt45").checked = false;
+        document.getElementById("aliceOptHV").checked = true;
+        document.getElementById("bobOpt45").checked = false;
+        document.getElementById("bobOptHV").checked = true;
+    }
+
     //Clear the bit details table display
     for (var ii = 1; ii < table1.rows.length; ii++) {
 

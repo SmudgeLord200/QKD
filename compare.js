@@ -19,6 +19,7 @@ document.getElementById("Bob").innerHTML = newBobArray.join(' ');
 
 //Compare bits function
 document.getElementById("next").disabled = true;
+var ax = [], bx = [], ax_count = 0, bx_count = 0;
 function compareBits() {
     document.getElementById("next").disabled = false;
 
@@ -55,8 +56,12 @@ function compareBits() {
                             final_count++;
                         } else {
                             //Highlight the different bit (Eve)
-                            console.log("Eve H" + "" + i + "" + newBobArray[i] + "\n");
-                        } break;
+                            console.log("Eve H" + " " + i + " " + newBobArray[i]);
+                        } 
+                        ax[ax_count] = newAliceBasis[i];
+                        bx[bx_count] = newBobBasis[i];
+                        ax_count++; bx_count++;
+                        break;
 
                     case Rectilinear.Vertical:
                         if (newBobArray[i] == v) {
@@ -64,8 +69,12 @@ function compareBits() {
                             final_count++;
                         } else {
                             //Highlight the different bit (Eve)
-                            console.log("Eve V" + "" + i + "" + newBobArray[i] + "\n");
-                        } break;
+                            console.log("Eve V" + " " + i + " " + newBobArray[i]);
+                        } 
+                        ax[ax_count] = newAliceBasis[i];
+                        bx[bx_count] = newBobBasis[i];
+                        ax_count++; bx_count++;
+                        break;
 
                     case Diagonal.P45:
                         if (newBobArray[i] == p45) {
@@ -73,8 +82,12 @@ function compareBits() {
                             final_count++;
                         } else {
                             //Highlight the different bit (Eve)
-                            console.log("Eve P45" + "" + i + "" + newBobArray[i] + "\n");
-                        } break;
+                            console.log("Eve P45" + " " + i + " " + newBobArray[i]);
+                        } 
+                        ax[ax_count] = newAliceBasis[i];
+                        bx[bx_count] = newBobBasis[i];
+                        ax_count++; bx_count++;
+                        break;
 
                     case Diagonal.N45: 
                         if (newBobArray == n45) {
@@ -82,8 +95,12 @@ function compareBits() {
                             final_count++;
                          } else {
                              //Highlight the different bit (Eve)
-                             console.log("Eve N45" + "" + i + "" + newBobArray[i] + "\n");
-                         } break;
+                             console.log("Eve N45" + " " + i + " " + newBobArray[i]);
+                         } 
+                         ax[ax_count] = newAliceBasis[i];
+                         bx[bx_count] = newBobBasis[i];
+                         ax_count++; bx_count++;
+                         break;
                         
                     default: break;
                 }
@@ -91,7 +108,7 @@ function compareBits() {
 
             } else {
                 //Discard the bits (animation here)
-                console.log("Discard" + i + newBobArray[i]);
+                console.log("Discard" + " " + i + " " + newBobArray[i]);
             }
 
         } else { return; }
