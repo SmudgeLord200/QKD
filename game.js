@@ -1371,11 +1371,11 @@ function displaySameBaseTable() {
         p_state_array[p_state_count] = p_state;
         p_state_count++; 
 
-        g++; f++; o++; p++; s++; t++; u++; w++; z++; y++; aa++; bb++;
+        g++; f++; o++; p++; s++; t++; 
 
         p_count++;
     }
-    c++; dd++; 
+    c++; dd++; u++; w++; z++; y++; aa++; bb++;
 
     //Enable the compare buttons when the number of same base bits reach 30
     if (p_count >= 30) {
@@ -1486,6 +1486,14 @@ function clearEverything() {
 
 /* for (i = 0; i < newOverallA.length; i++) {
     if (newOverallA[i] == newOverallB[i]) {
+        console.log(i + ": Yes");
+    } else {
+        console.log(i + ": No");
+    }
+} */
+
+/* for (i = 0; i < new_a_basis.length; i++) {
+    if (new_a_basis[i] == new_b_basis[i]) {
         console.log(i + ": Yes");
     } else {
         console.log(i + ": No");

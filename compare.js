@@ -133,3 +133,5 @@ for (i = 0; i < newAliceBasis.length; i++) {
         console.log(i + ": No");
     }
 }
+
+//newAliceBasis, newBobBasis, newOverallAliceArray, newOverallBobArray, newAliceArray, newBobArray
