@@ -20,6 +20,15 @@ document.getElementById("Bob").innerHTML = newBobArray.join(' ');
 //Compare bits function
 document.getElementById("next").disabled = true;
 var ax = [], bx = [], ax_count = 0, bx_count = 0, i_th = [], i_th_count = 0;
+
+document.getElementById("compare").addEventListener("click", delaycompareBits);
+
+function delaycompareBits() {
+    setTimeout(() => {
+        compareBits();
+    }, 1500);
+}
+
 function compareBits() {
     document.getElementById("next").disabled = false;
 
@@ -133,5 +142,4 @@ for (i = 0; i < newAliceBasis.length; i++) {
         console.log(i + ": No");
     }
 }
-
 //newAliceBasis, newBobBasis, newOverallAliceArray, newOverallBobArray, newAliceArray, newBobArray
