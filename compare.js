@@ -19,7 +19,7 @@ document.getElementById("Bob").innerHTML = newBobArray.join(' ');
 
 //Compare bits function
 document.getElementById("next").disabled = true;
-var ax = [], bx = [], ax_count = 0, bx_count = 0;
+var ax = [], bx = [], ax_count = 0, bx_count = 0, i_th = [], i_th_count = 0;
 function compareBits() {
     document.getElementById("next").disabled = false;
 
@@ -53,71 +53,83 @@ function compareBits() {
                     case Rectilinear.Horizontal:
                         if (newBobArray[i] == h) {
                             finalArray[final_count] = newBobArray[i]; //if match bit value, store it to the final array
-                            final_count++;
                         } else {
                             //Highlight the different bit (Eve)
-                            console.log("Eve H" + " " + i + " " + newBobArray[i]);
+                            finalArray[final_count] = newBobArray[i];
+                            i_th[i_th_count] = i;
+                            console.log("Eve H" + " " + i_th[i_th_count] + " " + newBobArray[i]); i_th_count++;
+                            console.log("Bob different bit at array [" + i + "]: " + newBobArray[i]);
                         } 
                         ax[ax_count] = newAliceBasis[i];
                         bx[bx_count] = newBobBasis[i];
-                        ax_count++; bx_count++;
+                        ax_count++; bx_count++; final_count++;
                         break;
 
                     case Rectilinear.Vertical:
                         if (newBobArray[i] == v) {
                             finalArray[final_count] = newBobArray[i]; //if match bit value, store it to the final array
-                            final_count++;
                         } else {
                             //Highlight the different bit (Eve)
-                            console.log("Eve V" + " " + i + " " + newBobArray[i]);
+                            finalArray[final_count] = newBobArray[i];
+                            i_th[i_th_count] = i;
+                            console.log("Eve V" + " " + i_th[i_th_count] + " " + newBobArray[i]); i_th_count++;
+                            console.log("Bob different bit at array [" + i + "]: " + newBobArray[i]);
                         } 
                         ax[ax_count] = newAliceBasis[i];
                         bx[bx_count] = newBobBasis[i];
-                        ax_count++; bx_count++;
+                        ax_count++; bx_count++; final_count++;
                         break;
 
                     case Diagonal.P45:
                         if (newBobArray[i] == p45) {
                             finalArray[final_count] = newBobArray[i]; //if match bit value, store it to the final array
-                            final_count++;
                         } else {
                             //Highlight the different bit (Eve)
-                            console.log("Eve P45" + " " + i + " " + newBobArray[i]);
+                            finalArray[final_count] = newBobArray[i];
+                            i_th[i_th_count] = i;
+                            console.log("Eve P45" + " " + i_th[i_th_count] + " " + newBobArray[i]); i_th_count++;
+                            console.log("Bob different bit at array [" + i + "]: " + newBobArray[i]);
                         } 
                         ax[ax_count] = newAliceBasis[i];
                         bx[bx_count] = newBobBasis[i];
-                        ax_count++; bx_count++;
+                        ax_count++; bx_count++; final_count++;
                         break;
 
                     case Diagonal.N45: 
-                        if (newBobArray == n45) {
+                        if (newBobArray[i] == n45) {
                             finalArray[final_count] = newBobArray[i];
-                            final_count++;
                          } else {
                              //Highlight the different bit (Eve)
-                             console.log("Eve N45" + " " + i + " " + newBobArray[i]);
+                             finalArray[final_count] = newBobArray[i];
+                             i_th[i_th_count] = i; 
+                             console.log("Eve N45" + " " + i_th[i_th_count] + " " + newBobArray[i]); i_th_count++;
+                             console.log("Bob different bit at array [" + i + "]: " + newBobArray[i]);
                          } 
                          ax[ax_count] = newAliceBasis[i];
                          bx[bx_count] = newBobBasis[i];
-                         ax_count++; bx_count++;
+                         ax_count++; bx_count++; final_count++;
                          break;
-                        
                     default: break;
                 }
 
-
             } else {
                 //Discard the bits (animation here)
-                console.log("Discard" + " " + i + " " + newBobArray[i]);
+                console.log("Discard bit at array [" +  i + "]: " + newBobArray[i]);
             }
 
-        } else { return; }
+        } else { console.log("WTF at " + i); }
     }
-
-
 }
 
 //When the next button is clicked
 document.getElementById("next").onclick = function () {
     document.location = "/gameSuccessPage.html";
 } 
+
+for (i = 0; i < newAliceBasis.length; i++) {
+    if (newOverallAliceArray[i] == newOverallBobArray[i]) {
+        console.log(i + ": Yes");
+    } else {
+        console.log(i + ": No");
+    }
+}

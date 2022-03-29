@@ -9,9 +9,9 @@ var bitsToPush = false, bits_value = 0; //Bits to push to Bob's array after Eve 
 var Rectilinear = { Overall: "H/V", Horizontal: "Horizontal", Vertical: "Vertical" }; //Basis comparison
 var Diagonal = { Overall: "P45/N45", P45: "P45", N45: "N45" }; //Basis comparison
 
-var a_basis = []; //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
-var b_basis = []; //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
-var e_basis = []; //Basis Array all parties, maximum size is 5 since there are 5 rows in the table
+var a_basis = [];
+var b_basis = [];
+var e_basis = [];
 
 var pol_H_A, pol_H_B, pol_V_A, pol_V_B, pol_P45_A, pol_P45_B, pol_N45_A, pol_N45_B, pol_H_E1, pol_H_E2, pol_V_E1, pol_V_E2, pol_P45_E1, pol_P45_E2, pol_N45_E1, pol_N45_E2;
 
@@ -1234,7 +1234,7 @@ function fire() {
 
 //Fast forward 15 Photons
 function fast15Photons() {
-    for (var i = 0; i < 15; i++) {
+    for (var fast = 0; fast < 15; fast++) {
         fire();
     }
 }
@@ -1333,11 +1333,8 @@ function displayTable() {
     resultBit.innerHTML = Bob[b];
 
     //Increase and reset the counters
-    overallCountA++;
-    a++;
-    overallCountB++;
-    b++;
-    m++; n++;
+    overallCountA++; overallCountB++;
+    a++; b++; m++; n++;
 
     rowCount1++;
     if (rowCount1 > 5) { rowCount1 = 1; }
@@ -1347,7 +1344,7 @@ function displayTable() {
 var table2 = document.getElementById("bitsSameBaseTable");
 var row2, rowCount2 = 1;
 var cell1, cell2, cell1Count = 0, cell2Count = 1;
-var c = 0, d = 0, z = 0, y = 0, g = 0, f = 0, o = 0, p = 0, q = 0, r = 0, s = 0, t = 0, u = 0, w = 0, aa = 0, bb = 0, p_count = 0, p_state_count = 0;
+var c = 0, dd = 0, z = 0, y = 0, g = 0, f = 0, o = 0, p = 0, q = 0, r = 0, s = 0, t = 0, u = 0, w = 0, aa = 0, bb = 0, p_count = 0, p_state_count = 0;
 var newAlice = [], newBob = [];
 var newOverallA = [], newOverallB = [], new_a_basis = [], new_b_basis = [];
 document.getElementById("compare").disabled = true;
@@ -1358,7 +1355,7 @@ function displaySameBaseTable() {
     cell2 = row2.cells[cell2Count];
 
 
-    if (overallA[c] == overallB[d]) {
+    if (overallA[c] == overallB[dd]) {
         cell1.innerHTML += Alice[z] + "\n";
         cell2.innerHTML += Bob[y] + "\n";
 
@@ -1374,11 +1371,11 @@ function displaySameBaseTable() {
         p_state_array[p_state_count] = p_state;
         p_state_count++; 
 
-        g++; f++; o++; p++; s++; t++;
+        g++; f++; o++; p++; s++; t++; u++; w++; z++; y++; aa++; bb++;
 
         p_count++;
     }
-    c++; d++; z++; y++; u++; w++; aa++; bb++;
+    c++; dd++; 
 
     //Enable the compare buttons when the number of same base bits reach 30
     if (p_count >= 30) {
@@ -1482,7 +1479,15 @@ function clearEverything() {
     cell2.innerHTML = "";
     cell1Count = 0; cell2Count = 1;
     rowCount2 = 1;
-    c = 0; d = 0; z = 0; y = 0; g = 0; f = 0; o = 0; p = 0; q = 0; r = 0; s = 0; t = 0; u = 0; w = 0; aa = 0; bb = 0; p_count = 0;
+    c = 0; dd = 0; z = 0; y = 0; g = 0; f = 0; o = 0; p = 0; q = 0; r = 0; s = 0; t = 0; u = 0; w = 0; aa = 0; bb = 0; p_count = 0;
 
     document.getElementById("compare").disabled = true;
 }
+
+/* for (i = 0; i < newOverallA.length; i++) {
+    if (newOverallA[i] == newOverallB[i]) {
+        console.log(i + ": Yes");
+    } else {
+        console.log(i + ": No");
+    }
+} */
