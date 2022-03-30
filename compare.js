@@ -31,7 +31,7 @@ function delaycompareBits() {
 
 function compareBits() {
     document.getElementById("next").disabled = false;
-
+    document.getElementById("Bob").innerHTML = "";
     //Loop through the whole array
     for (var i = 0; i < newBobArray.length; i++) {
 
@@ -62,8 +62,10 @@ function compareBits() {
                     case Rectilinear.Horizontal:
                         if (newBobArray[i] == h) {
                             finalArray[final_count] = newBobArray[i]; //if match bit value, store it to the final array
+                            document.getElementById("Bob").innerHTML += "<span style='color:black;'>" + newBobArray[i] + "</span>";
                         } else {
                             //Highlight the different bit (Eve)
+                            document.getElementById("Bob").innerHTML += "<span style='color:red;'>" + newBobArray[i] + "</span>";
                             finalArray[final_count] = newBobArray[i];
                             i_th[i_th_count] = i;
                             console.log("Eve H" + " " + i_th[i_th_count] + " " + newBobArray[i]); i_th_count++;
@@ -77,8 +79,10 @@ function compareBits() {
                     case Rectilinear.Vertical:
                         if (newBobArray[i] == v) {
                             finalArray[final_count] = newBobArray[i]; //if match bit value, store it to the final array
+                            document.getElementById("Bob").innerHTML += "<span style='color:black;'>" + newBobArray[i] + "</span>";
                         } else {
                             //Highlight the different bit (Eve)
+                            document.getElementById("Bob").innerHTML += "<span style='color:red;'>" + newBobArray[i] + "</span>";
                             finalArray[final_count] = newBobArray[i];
                             i_th[i_th_count] = i;
                             console.log("Eve V" + " " + i_th[i_th_count] + " " + newBobArray[i]); i_th_count++;
@@ -92,8 +96,10 @@ function compareBits() {
                     case Diagonal.P45:
                         if (newBobArray[i] == p45) {
                             finalArray[final_count] = newBobArray[i]; //if match bit value, store it to the final array
+                            document.getElementById("Bob").innerHTML += "<span style='color:black;'>" + newBobArray[i] + "</span>";
                         } else {
                             //Highlight the different bit (Eve)
+                            document.getElementById("Bob").innerHTML += "<span style='color:red;'>" + newBobArray[i] + "</span>";
                             finalArray[final_count] = newBobArray[i];
                             i_th[i_th_count] = i;
                             console.log("Eve P45" + " " + i_th[i_th_count] + " " + newBobArray[i]); i_th_count++;
@@ -107,8 +113,10 @@ function compareBits() {
                     case Diagonal.N45: 
                         if (newBobArray[i] == n45) {
                             finalArray[final_count] = newBobArray[i];
+                            document.getElementById("Bob").innerHTML += "<span style='color:black;'>" + newBobArray[i] + "</span>";
                          } else {
                              //Highlight the different bit (Eve)
+                             document.getElementById("Bob").innerHTML += "<span style='color:red;'>" + newBobArray[i] + "</span>";
                              finalArray[final_count] = newBobArray[i];
                              i_th[i_th_count] = i; 
                              console.log("Eve N45" + " " + i_th[i_th_count] + " " + newBobArray[i]); i_th_count++;
@@ -123,6 +131,7 @@ function compareBits() {
                 
             } else {
                 //Discard the bits (animation here)
+                
                 //document.getElementById("Bob").innerHTML += "<span style='color:red;'>" + newBobArray[i] + "</span>";
                 console.log("Discard bit at array [" +  i + "]: " + newBobArray[i]);
             }
