@@ -146,12 +146,10 @@ function compareBits() {
                 }
                 
             } else {
-                //Discard the bits (animation here)
-                //document.getElementById("Bob").innerHTML += "<span style='color:red;'>" + newBobArray[i] + "</span>";
                 console.log("Discard bit at array [" +  i + "]: " + newBobArray[i]);
             }
 
-        } else { console.log("WTF at " + i); }
+        } else { return; }
     }
 }
 
@@ -169,4 +167,3 @@ for (i = 0; i < newAliceBasis.length; i++) {
         console.log(i + ": No");
     }
 }
-//newAliceBasis, newBobBasis, newOverallAliceArray, newOverallBobArray, newAliceArray, newBobArray
