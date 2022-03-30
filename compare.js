@@ -120,9 +120,10 @@ function compareBits() {
                          break;
                     default: break;
                 }
-
+                
             } else {
                 //Discard the bits (animation here)
+                //document.getElementById("Bob").innerHTML += "<span style='color:red;'>" + newBobArray[i] + "</span>";
                 console.log("Discard bit at array [" +  i + "]: " + newBobArray[i]);
             }
 
@@ -133,6 +134,7 @@ function compareBits() {
 //When the next button is clicked
 document.getElementById("next").onclick = function () {
     document.location = "/gameSuccessPage.html";
+    localStorage.setItem("finalArray", JSON.stringify(finalArray));
 } 
 
 for (i = 0; i < newAliceBasis.length; i++) {
