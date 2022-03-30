@@ -14,7 +14,8 @@
     <title>Compare Bits</title>
 
     <style>
-        #Alice, #Bob {
+        #Alice,
+        #Bob {
             font-size: 1.5rem;
         }
     </style>
@@ -22,35 +23,43 @@
 
 <body>
     <div class="container-fluid">
-        <div class="row border">
-            <div class="col-12 border text-center">
+        <div class="row">
+            <div class="col-12 text-center">
                 <p><u>Alice's Bits</u></p>
                 <div id="Alice"></div>
             </div>
 
-            <div class="col-12 border text-center mt-5">
+            <div class="col-12 text-center mt-5">
                 <p><u>Bob's Bits</u></p>
                 <div id="Bob"></div>
             </div>
         </div>
 
-        <div class="row mt-5 border text-center">
-            <div class="col-4">
+        <div class="pt-5 mt-1 text-center">
+            <p><small class="border px-5 py-2" style="background-color:lightgray;">*Same Polarization Base and Same Sub-Basis will be sorted as the final array</small></p>
+            <p><small class="border px-5 py-2" style="background-color:lightgray;">*The eavesdropped bit(s) will be highlighted in <span style="color:red;">red</span></small></p>
+        </div>
+        <div class="row border-top mt-4 pt-2 text-center">
+            <div class="col-3">
                 <button type="button" class="btn btn-warning btn-md"
                     onclick="document.location='/gameMainPage.html'">Back</button>
             </div>
-            <div class="col-4">
-                <button id="compare" type="button" class="btn btn-primary btn-md" >Compare Bits</button> <!-- onclick="compareBits()" -->
+            <div class="col-3">
+                <button id="compare" type="button" class="btn btn-primary btn-md">Compare Bits</button>
+                <!-- onclick="compareBits()" -->
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <button id="next" type="button" class="btn btn-success btn-md">Next</button>
+            </div>
+            <div class="col-3"> <button type="button" class="btn btn-danger btn-md"
+                    onclick="document.location='/mainPage.html'">Exit</button>
             </div>
         </div>
 
-        <div class="d-flex justify-content-end border-top pt-1 mt-2">
+<!--         <div class="d-flex justify-content-end pt-1 mt-2">
             <button type="button" class="btn btn-danger btn-md"
                 onclick="document.location='/mainPage.html'">Exit</button>
-        </div>
+        </div> -->
     </div>
     <script src="/compare.js"></script>
 </body>

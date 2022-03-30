@@ -1303,27 +1303,28 @@ function displayTable() {
     } else { sameBase.innerHTML = "No"; }
 
     //Result Bit
+    resultBit.classList.remove("resultBit");
     switch (b_basis[m]) {
         case Rectilinear.Horizontal: if (a_basis[n] == b_basis[m] && Bob[b] !== h) {
-            resultBit.classList.remove("resultBit");
+            //resultBit.classList.remove("resultBit");
             setTimeout(() => {
                 resultBit.classList.add("resultBit");
             }, 1);
         } break;
         case Rectilinear.Vertical: if (a_basis[n] == b_basis[m] && Bob[b] !== v) {
-            resultBit.classList.remove("resultBit");
+            //resultBit.classList.remove("resultBit");
             setTimeout(() => {
                 resultBit.classList.add("resultBit");
             }, 1);
         } break;
         case Diagonal.P45: if (a_basis[n] == b_basis[m] && Bob[b] !== p45) {
-            resultBit.classList.remove("resultBit");
+            //resultBit.classList.remove("resultBit");
             setTimeout(() => {
                 resultBit.classList.add("resultBit");
             }, 1);
         } break;
         case Diagonal.N45: if (a_basis[n] == b_basis[m] && Bob[b] !== n45) {
-            resultBit.classList.remove("resultBit");
+            //resultBit.classList.remove("resultBit");
             setTimeout(() => {
                 resultBit.classList.add("resultBit");
             }, 1);
