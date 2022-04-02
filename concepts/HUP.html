@@ -78,6 +78,8 @@
 
         .zero {
             font-size: 40px;
+            background-color: black;
+            color: white;
             border: 5px solid #ffc107;
             border-right: transparent;
             box-shadow: 8px 7px 5px 2px rgba(0, 0, 0, .5);
@@ -85,23 +87,11 @@
 
         .one {
             font-size: 40px;
-            background-color: black;
-            color: white;
+            background-color: white;
+            color: black;
             border: 5px solid #ffc107;
             border-left: transparent;
             box-shadow: 8px 7px 5px 2px rgba(0, 0, 0, .5);
-            transition: all 0.5s;
-        }
-
-        .zero:hover {
-            background-color: black;
-            color: white;
-            transition: all 0.5s;
-        }
-
-        .zero:hover+.one {
-            background-color: white;
-            color: black;
         }
     </style>
 </head>
@@ -129,8 +119,14 @@
                         impossible to guess the outcome correctly.
                     </p>
                     <div class="row mt-2 box">
-                        <div class="col-6 zero d-flex justify-content-center align-items-center fw-bold">0</div>
-                        <div class="col-6 one d-flex justify-content-center align-items-center fw-bold">1</div>
+                        <div id="0" class="col-6 zero d-flex justify-content-center align-items-center fw-bold"
+                            onmouseenter="addClr()" onmouseleave="rmClr()">
+                            <p>0</p>
+                        </div>
+                        <div id="1" class="col-6 one d-flex justify-content-center align-items-center fw-bold"
+                            onmouseenter="addClr()" onmouseleave="rmClr()">
+                            <p>1</p>
+                        </div>
                     </div>
                 </div>
 
@@ -143,6 +139,28 @@
         </div>
 
     </div>
+    <script>
+        var zero = document.getElementById("0");
+        var one = document.getElementById("1");
+
+        function addClr() {
+            zero.style.backgroundColor = "white";
+            zero.style.color = "black";
+            one.style.backgroundColor = "black";
+            one.style.color = "white";
+            zero.style.transition= "all 0.5s";
+            one.style.transition= "all 0.5s";
+        }
+
+        function rmClr() {
+            zero.style.backgroundColor = "black";
+            zero.style.color = "white";
+            one.style.backgroundColor = "white";
+            one.style.color = "black";
+            zero.style.transition= "all 0.5s";
+            one.style.transition= "all 0.5s";
+        }
+    </script>
 </body>
 
 </html>
