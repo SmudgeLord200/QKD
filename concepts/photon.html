@@ -15,11 +15,17 @@
 
     <style>
         body {
-            background: repeating-linear-gradient(0deg, #000, #000 2px, #020 2px, #020 4px);
-            color: white;
+            background-image: url("photon_bg.jpg");
+            background-size: cover;
             font-size: large;
+            color: white;
+            font-weight: bold;
         }
 
+        button:hover {
+            box-shadow: 1px 0px 2px black;
+        }
+        
         .react {
             display: flex;
             align-items: center;
@@ -148,7 +154,11 @@
             }
         }
 
-        .react:hover, .react_spoke:hover, .react_spoke--1:hover, .react_spoke--2:hover, .react_spoke--3:hover {
+        .react:hover,
+        .react_spoke:hover,
+        .react_spoke--1:hover,
+        .react_spoke--2:hover,
+        .react_spoke--3:hover {
             animation-play-state: paused;
         }
 
@@ -175,13 +185,15 @@
             font-size: 30px;
             font-style: oblique;
         }
+        /* repeating-linear-gradient(0deg, #000, #000 2px, #020 2px, #020 4px) */
     </style>
 </head>
 
 <body>
+    <!-- Photo by <a href="https://unsplash.com/@sigmund?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sigmund</a> on <a href="https://unsplash.com/s/photos/photon?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> -->
     <div class="container-fluid">
         <div class="row">
-            <h4 class=" pt-3 pb-3 bg-danger text-white text-center fw-bold"><u>Phonton</u></h4>
+            <h4 class=" pt-3 pb-3 bg-danger text-center fw-bold"><u>Phonton</u></h4>
         </div>
 
         <div class="row mx-auto">
