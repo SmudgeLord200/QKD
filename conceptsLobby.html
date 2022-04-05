@@ -15,51 +15,65 @@
 
     <style>
         #back {
-            margin-top: 7.5rem;
+            margin-top: 7rem;
             padding-top: 0.5rem;
         }
 
+        body {
+            background-image: url("lobby.jpg");
+            background-size: cover;
+            font-size: large;
+        }
 
+        h4 {
+            text-shadow: 2px 0px 5px black;
+        }
+
+        button:hover {
+            box-shadow: 1px 0px 2px black;
+        }
     </style>
 
 </head>
 
 <body>
+    <!-- Photo by <a href="https://unsplash.com/@elliottengelmann?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Elliott Engelmann</a> on <a href="https://unsplash.com/s/photos/dark-lobby?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> -->
     <div class="container-fluid">
         <div class="row">
-            <h4 class=" pt-3 pb-3 bg-primary text-white text-center">There are several concepts behind Quantum Key
+            <h4 class=" pt-3 pb-3 text-white text-center">There are several concepts behind Quantum Key
                 Distribution. <br> You are welcome to pick any one of the them from the list below to understand first!
             </h4>
         </div>
 
-        <div class="row text-center pt-5">
+        <div class="row text-center pt-5 mt-3">
             <div class="col-sm-4 pb-4">
-                <button type="button" class="btn btn-primary btn-md"
+                <button type="button" class="btn btn-primary btn-md fw-bold"
                     onclick="document.location='concepts/BB84.html'">The BB84 Protocol</button>
             </div>
             <div class="col-sm-4 pb-4">
-                <button type="button" class="btn btn-warning btn-md"
+                <button type="button" class="btn btn-warning btn-md fw-bold"
                     onclick="document.location='concepts/HUP.html'">Heisenberg's Uncertainty Principle</button>
             </div>
             <div class="col-sm-4 pb-4">
-                <button type="button" class="btn btn-secondary btn-md"
+                <button type="button" class="btn btn-secondary btn-md fw-bold"
                     onclick="document.location='concepts/superposition.html'">Quantum State: Superposition</button>
             </div>
             <div class="col-sm-4 pb-4">
-                <button type="button" class="btn btn-danger btn-md"
+                <button type="button" class="btn btn-danger btn-md fw-bold"
                     onclick="document.location='concepts/photon.html'">Photon</button>
             </div>
             <div class="col-sm-4 pb-4">
-                <button type="button" class="btn btn-success btn-md"
+                <button type="button" class="btn btn-success btn-md fw-bold"
                     onclick="document.location='concepts/p_base.html'">Polarization Base</button>
             </div>
             <div class="col-sm-4 pb-4">
-                <button type="button" class="btn btn-dark btn-md"
-                    onclick="document.location='concepts/QC.html'">Quantum Cryptography</button>
+                <button type="button" class="btn btn-info btn-md fw-bold"
+                    onclick="document.location='concepts/QC.html'">Quantum
+                    Cryptography</button>
             </div>
         </div>
 
-        <div id="back" class="d-flex justify-content-end border-top">
+        <div id="back" class="d-flex justify-content-end">
             <button type="button" class="btn btn-primary btn-md"
                 onclick="document.location='mainPage.html'">Back</button>
         </div>

@@ -22,40 +22,44 @@
             padding-top: 0.5rem;
         }
 
-/*         body {
-            background-image: repeating-linear-gradient(0deg, #000, #000 2px, #020 2px, #020 4px);
-            color: green;
+        body {
+            background-image: url("night.jpg");
+            background-size: cover;
+            font-size: large;
         }
 
-        body {
-            background-image: url("quantum_bg.jpg");
-            https://unsplash.com/photos/pREq0ns_p_E?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
-            background-size: cover;
-            background-blend-mode: luminosity;
-            color: white;
-        } */
+        h2 {
+            text-shadow: 2px 0px 5px black;
+        }
+
+        button:hover {
+            box-shadow: 1px 0px 2px black;
+        }
     </style>
 
 </head>
 
 <body>
+    <!-- Photo by <a href="https://unsplash.com/@flo_stk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Florian Steciuk</a> on <a href="https://unsplash.com/s/photos/speed?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> -->
     <div class="container-fluid">
         <div class="row">
-            <h2 class=" pt-5 pb-3 bg-primary text-white text-center">Welcome to the Quantum Key Distribution Game!</h2>
+            <h2 class=" pt-5 pb-3 text-white text-center fw-bold">Welcome to the Quantum Key Distribution Game!</h2>
         </div>
 
         <div id="btn-sp" class="row text-center">
             <div class="col-sm-6">
-                <button type="button" class="btn btn-secondary btn-lg"
+                <button type="button" class="btn btn-primary btn-lg fw-bold"
                     onclick="document.location='/conceptsLobby.html'">Learn the Concepts</button>
-                <p class="p-tc"><span style="background-color:black;background-clip:content-box;">*Recommended for first-time leaners!</span></p>
+                <p class="p-tc text-white"><span style="text-shadow: 1px 0px black;">*Recommended for
+                        first-time leaners!</span></p>
             </div>
             <div class="col-sm-6">
-                <button type="button" class="btn btn-danger btn-lg"
+                <button type="button" class="btn btn-danger btn-lg fw-bold"
                     onclick="document.location='/gameForeword.html'">Play the Game</button>
             </div>
         </div>
     </div>
 </body>
+<!-- <span style="background-color:black;background-clip:content-box;"></span> -->
 
 </html>
