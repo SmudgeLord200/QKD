@@ -109,6 +109,7 @@
 
         .one {
             color: white;
+            font-weight: bold;
             animation: chgClr 2s normal infinite;
         }
 
@@ -123,7 +124,7 @@
                 transform: translateY(-20px);
             }
 
-            100% {
+            100% {                
                 text-shadow: 4px 4px rgba(0, 0, 0, 0.6);
                 transform: translateY(0px);
             }
@@ -131,16 +132,27 @@
 
         @keyframes chgClr {
             0% {
-                color: #3beeee;
-                text-shadow: 4px 4px rgba(0, 0, 0, 0.6);
-            }
-
-            50% {}
-
-            100% {
                 color: white;
                 text-shadow: 4px 4px rgba(0, 0, 0, 0.6);
+                transform: translateX(15px);
             }
+            50% {
+                text-shadow: 4px 4px rgba(0, 0, 0, 0.2);
+            }
+            100% {
+                color: white;
+                font-size: 120px;
+                text-shadow: 4px 4px rgba(0, 0, 0, 0.6);
+                transform: translateX(60px);
+            }
+        }
+
+        .zero:hover, .one:hover {
+            animation-play-state: paused;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
@@ -160,10 +172,6 @@
                 <span class="fw-bold">hold both bits 0 and 1 value at the same time.</span> <br />
                 This highly increases the computational efficiency in Quantum Cryptography.
             </p>
-
-            <!--             <div class="row mx-auto">
-                <img src="superposition.png" alt="Superposition Qubits" id="super" class="img-fluid waves mx-auto">
-            </div> -->
 
             <div class="container ball text-center mt-5">
                 <div class="ball_outer bit0 mx-2">

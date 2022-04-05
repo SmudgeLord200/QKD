@@ -14,6 +14,14 @@
     <title>Photon</title>
 
     <style>
+        body {
+/*             background: repeating-linear-gradient(0deg, #000, #000 2px, #020 2px, #020 4px);
+            color: white; */
+            font-size: large;
+            /* font-weight: bold; */
+            /* font-family: "Courier New", Courier, monospace; */
+        }
+
         .react {
             display: flex;
             align-items: center;
@@ -54,7 +62,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* background-color: #282C33; */
         }
 
         @keyframes anim_rotate {
@@ -80,10 +87,6 @@
                 border-color: #8BDB81;
             }
 
-            /*             75% {
-                border-color: #8BDB81;
-            } */
-
             100% {
                 border-color: #6A5495;
             }
@@ -102,10 +105,6 @@
                 border-color: #F47340;
             }
 
-            /*            75% {
-                border-color: #EF2F88;
-            } */
-
             100% {
                 border-color: #8843F2;
             }
@@ -123,10 +122,6 @@
             66% {
                 border-color: #5089C6;
             }
-
-            /*             75% {
-                border-color: #035397;
-            } */
 
             100% {
                 border-color: #0032b1;
@@ -153,6 +148,10 @@
             100% {
                 background-color: #193498;
             }
+        }
+
+        .react:hover, .react_spoke:hover, .react_spoke--1:hover, .react_spoke--2:hover, .react_spoke--3:hover {
+            animation-play-state: paused;
         }
 
         #calcite,
@@ -182,10 +181,9 @@
 </head>
 
 <body>
-    <!--box-shadow: 0px 0px 50px rgb(255, 0, 255);-->
     <div class="container-fluid">
         <div class="row">
-            <h4 class=" pt-3 pb-3 bg-danger text-white text-center"><u>Phonton</u></h4>
+            <h4 class=" pt-3 pb-3 bg-danger text-white text-center fw-bold"><u>Phonton</u></h4>
         </div>
 
         <div class="row mx-auto">
