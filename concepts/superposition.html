@@ -14,13 +14,9 @@
     <title>Quantum State: Superposition</title>
 
     <style>
-        .waves {
-            width: 550px;
-            height: 350px;
-        }
-
-        #super {
-            box-shadow: 8px 7px 5px 4px rgba(0, 0, 0, .5);
+        .container {
+            perspective: 1000px;
+            perspective-origin: 50% 50%;
         }
 
         .ball_inner {
@@ -37,39 +33,42 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1) 40%, rgba(0, 0, 0, 0) 50%);
             animation: float 2s normal infinite;
         }
 
         .bit1 {
             /* Created with https://www.css-gradient.com */
-            background: rgba(59, 67, 238, 1.0);
+            /*             background: rgba(59, 67, 238, 1.0);
             background: -webkit-radial-gradient(center, rgba(59, 67, 238, 1.0), rgba(106, 110, 140, 1.0));
             background: -moz-radial-gradient(center, rgba(59, 67, 238, 1.0), rgba(106, 110, 140, 1.0));
-            background: radial-gradient(ellipse at center, rgba(59, 67, 238, 1.0), rgba(106, 110, 140, 1.0));
-
+            background: radial-gradient(ellipse at center, rgba(59, 67, 238, 1.0), rgba(106, 110, 140, 1.0)); */
+            background: radial-gradient(circle at 100px 100px, #5cabff, #000);
         }
 
         .bit0 {
             /* Created with https://www.css-gradient.com */
-            background: rgba(238, 59, 59, 1.0);
+            /*             background: rgb(238, 59, 59);
             background: -webkit-radial-gradient(center, rgba(238, 59, 59, 1.0), rgba(196, 142, 142, 1.0));
             background: -moz-radial-gradient(center, rgba(238, 59, 59, 1.0), rgba(196, 142, 142, 1.0));
-            background: radial-gradient(ellipse at center, rgba(238, 59, 59, 1.0), rgba(196, 142, 142, 1.0));
+            background: radial-gradient(ellipse at center, rgba(238, 59, 59, 1.0), rgba(196, 142, 142, 1.0)); */
+            background: radial-gradient(circle at 100px 100px, #ee3b3b, #000);
         }
 
         .bit10 {
             /* Created with https://www.css-gradient.com */
-            background: rgba(238, 59, 59, 1.0);
-            background: -webkit-radial-gradient(center, rgba(238, 59, 59, 1.0), rgba(69, 70, 198, 1.0));
+            /*             background: rgb(238, 59, 59);
+            background: -webkit-radial-gradient(center, rgba(238, 59, 59, 1.0), #4546c6);
             background: -moz-radial-gradient(center, rgba(238, 59, 59, 1.0), rgba(69, 70, 198, 1.0));
-            background: radial-gradient(ellipse at center, rgba(238, 59, 59, 1.0), rgba(69, 70, 198, 1.0));
+            background: radial-gradient(ellipse at center, rgba(238, 59, 59, 1.0), rgba(69, 70, 198, 1.0)); */
+            background: radial-gradient(circle at 100px 100px, #8F00FF, #000);
         }
 
         .ball_outer:hover {
             animation-play-state: paused;
         }
 
-/*         .ball::after {
+        /*         .ball::after {
             position: absolute;
             width: 50%;
             height: 19%;
@@ -187,14 +186,14 @@
 
             <div class="container ball text-center mt-4">
                 <div class="ball_outer bit0 mx-2">
-                    <div class="ball_inner fw-bold">0</div>
+                    <div class="ball_inner fw-bold"><span>0</span></div>
                 </div>
                 <div class="ball_outer bit1 mx-2">
-                    <div class="ball_inner fw-bold">1</div>
+                    <div class="ball_inner fw-bold"><span>1</span></div>
                 </div>
                 <div class="ball_outer bit10 mx-2" style="position: relative;">
-                    <div class="ball_inner one">1
-                        <div class="zero">0</div>
+                    <div class="ball_inner one"><span>1</span>
+                        <span class="zero">0</span>
                     </div>
                 </div>
             </div>
