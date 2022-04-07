@@ -14,15 +14,6 @@
   <title>The BB84 Protocol</title>
 
   <style>
-    #img_container {
-      position: relative;
-    }
-
-    #filter {
-      width: 90px;
-      height: 100%;
-    }
-
     #canvas_bb84_1 {
       display: block;
       margin-left: auto;
@@ -39,6 +30,96 @@
       background-position: top;
       background-size: cover;
       font-size: large;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .draggable-elements {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 2rem;
+    }
+
+    .draggable {
+      height: 5rem;
+      width: 5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid black;
+      font-size: 4rem;
+      margin: 0rem 0.5rem;
+      cursor: move;
+      transition: opacity 0.2s;
+    }
+
+    .draggable:hover {
+      opacity: 0.5;
+    }
+
+    .droppable-elements {
+      margin: 0 auto;
+      display: table;
+    }
+
+    .droppable {
+      height: 6.5rem;
+      width: 6.5rem;
+      margin: 1rem 2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      font-weight: bold;
+      background-color: white;
+      border: 3px dashed black;
+      transition: border-width 0.2s, transform 0.2s, background-color 0.4s;
+    }
+
+    .droppable span {
+      pointer-events: none;
+    }
+
+    .droppable.droppable-hover {
+      background-color: #bee3f0;
+      border-width: 5px;
+      transform: scale(1.1);
+    }
+
+    .droppable.dropped {
+      border-style: solid;
+    }
+
+    .droppable.dropped span {
+      font-size: 0.75rem;
+    }
+
+    .droppable.dropped img {
+      pointer-events: none;
+      width: 100px;
+      height: 100px;
+    }
+
+    .draggable.dragged {
+      user-select: none;
+      opacity: 0.1;
+      cursor: default;
+    }
+
+    .draggable.dragged:hover {
+      opacity: 0.1;
+    }
+
+    #play-again-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 20%;
     }
   </style>
 </head>
@@ -91,7 +172,7 @@
           </h2>
           <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
             aria-labelledby="panelsStayOpen-headingTwo">
-            <div class="accordion-body clearfix">
+            <div class="accordion-body">
               <p class="mb-0"><strong>During Error Correction,</strong> the two parties compare their chosen
                 polarization bases during
                 key exchange via a public channel. They keep the correct photons and discard the incorrect ones.
@@ -101,10 +182,27 @@
                 In brief, if an eavesdropper intercepts the transmission, the photon will be disturbed, and all of its
                 previous state information is lost. The two parties can sure detect this irregular photon pattern in the
                 error correction phase, thus knowing the presence of an eavesdropper.</p>
-              <div class="text-center"><img src="/concepts/error_correction.png" alt="Error Correction"
+<!--               <div class="text-center"><img src="/concepts/error_correction.png" alt="Error Correction"
                   class="img-fluid">
                 <p class="mb-0 e-text">Error Correction Process</p>
-              </div>
+              </div> -->
+              <!-- Small Drag and Drop Demonstration -->
+              <p class="text-center mt-4 mb-0"><u>Try to Drag and Drop the Polarization Bases into the their corresponding names!</u></p>
+              <section class="draggable-elements">
+                <img src="/Pol-H.png" class="draggable" draggable="true" id="H">
+                <img src="/Pol-V.png" class="draggable" draggable="true" id="V">
+                <img src="/Pol-P45.png" class="draggable" draggable="true" id="P45">
+                <img src="/Pol-N45.png" class="draggable" draggable="true" id="N45">
+              </section>
+
+              <section class="droppable-elements">
+                <div class="droppable" data-draggable-id="H"><span>Horizontal</span></div>
+                <div class="droppable" data-draggable-id="V"><span>Vertical</span></div>
+                <div class="droppable" data-draggable-id="P45"><span>P45</span></div>
+                <div class="droppable" data-draggable-id="N45"><span>N45</span></div>
+              </section>
+              <button id="play-again-btn" class="btn-md btn-success mt-2">Play Again</button>
+              <script src="js/error_correction.js"></script>
             </div>
           </div>
         </div>
@@ -128,8 +226,6 @@
           </div>
         </div>
       </div>
-
-
     </div>
 
     <div class="d-flex justify-content-end pt-1 mt-3">
