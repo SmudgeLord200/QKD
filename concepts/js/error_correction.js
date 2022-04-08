@@ -3,9 +3,15 @@ const droppableElements = document.querySelectorAll(".droppable");
 const totalDraggableItems = 4;
 const totalMatchingPairs = 4; 
 const playAgainBtn = document.getElementById("play-again-btn");
+const msg = document.getElementById("msg");
 var correct = 0;
 
+hideMsg();
 hideBtn();
+
+function hideMsg() {
+    msg.style.visibility = "hidden";
+}
 
 function hideBtn() {
     playAgainBtn.style.visibility = "hidden";
@@ -53,11 +59,12 @@ droppableElements.forEach(elements => {
             const draggableElement = document.getElementById(draggableElementData);
             draggableElement.classList.add("dragged");
             draggableElement.setAttribute("draggable", "false");
-            var path = "/Pol-" + draggableElementData + ".png";
+            var path = "/Photos/Pol-" + draggableElementData + ".png";
             e.target.insertAdjacentHTML("afterbegin", `<img id="${draggableElementData}" src="${path}">`);
             correct++;
             // Game Over
             if (correct == Math.min(totalMatchingPairs, totalDraggableItems)) { 
+                msg.style.visibility = "visible";
                 playAgainBtn.style.visibility = "visible";
             }
         }
@@ -82,5 +89,6 @@ function playAgainBtnClick() {
         droppableElements[i].removeChild(document.getElementsByClassName("droppable")[i].firstChild);
     }
 
+    hideMsg();
     hideBtn();
 }

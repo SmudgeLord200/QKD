@@ -26,7 +26,7 @@
     }
 
     body {
-      background-image: url("binary.jpg");
+      background-image: url("photos/binary.jpg");
       background-position: top;
       background-size: cover;
       font-size: large;
@@ -48,7 +48,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 3px solid black;
+      border: 3px solid #4E11A8; /* #1175A8 */
       font-size: 4rem;
       margin: 0rem 0.5rem;
       cursor: move;
@@ -75,7 +75,7 @@
       text-align: center;
       font-weight: bold;
       background-color: white;
-      border: 3px dashed black;
+      border: 3px dashed #DBA800;
       transition: border-width 0.2s, transform 0.2s, background-color 0.4s;
     }
 
@@ -121,6 +121,14 @@
       margin-right: auto;
       border-radius: 20%;
     }
+
+    .small {
+      font-size: 18px;
+    }
+
+    .msg {
+      margin-bottom: 1rem;
+    }
   </style>
 </head>
 
@@ -153,12 +161,12 @@
                   class="fw-bold">photon detectors</span> equipped
                 with polaroid filters.</p>
               <p>They <span class="fst-italic">randomly switch between the two polarization bases</span>, i.e., <span
-                  class="fw-bold">Rectilinear</span> (horizontal and vertical) basis,
+                  class="fw-bold">Rectilinear</span> (Horizontal and Vertical) basis,
                 and <span class="fw-bold">Diagonal</span> (+45 º/-45º) basis, to transmit the photons. The correct
                 photons will be filtered out <span class="text-danger fw-bold">if
-                  and only if</span> the polarization base chosen by both parties is the same. Otherwise, there is a 50%
-                probability that a wrong photon will be filtered out <span class="fst-italic">(Heisenberg's Uncertainty
-                  Principle)</span>.</p>
+                  and only if</span> the polarization base chosen by both parties is the <span class="fw-bold">same</span>. Otherwise, there is a 50%
+                probability that a wrong photon will be filtered out <span class="fst-italic">(<a href="/concepts/HUP.html">Heisenberg's Uncertainty
+                  Principle</a>)</span>.</p>
             </div>
           </div>
         </div>
@@ -179,20 +187,18 @@
                 According
                 to the nature of quantum physics, <q class="fst-italic">a slight observation of the photon disturbs it
                   in an irreversible way.</q>
-                In brief, if an eavesdropper intercepts the transmission, the photon will be disturbed, and all of its
+                In brief, if an eavesdropper intercepts the transmission, the photon will have a 50% chance of being disturbed, and all of its
                 previous state information is lost. The two parties can sure detect this irregular photon pattern in the
                 error correction phase, thus knowing the presence of an eavesdropper.</p>
-<!--               <div class="text-center"><img src="/concepts/error_correction.png" alt="Error Correction"
-                  class="img-fluid">
-                <p class="mb-0 e-text">Error Correction Process</p>
-              </div> -->
+                
               <!-- Small Drag and Drop Demonstration -->
               <p class="text-center mt-4 mb-0"><u>Try to Drag and Drop the Polarization Bases into the their corresponding names!</u></p>
+              <p class="text-center mb-0 small">*If you have no idea, go check out <a href="/concepts/p_base.html">Polarization Bases</a> to understand more!</p>
               <section class="draggable-elements">
-                <img src="/Pol-H.png" class="draggable" draggable="true" id="H">
-                <img src="/Pol-V.png" class="draggable" draggable="true" id="V">
-                <img src="/Pol-P45.png" class="draggable" draggable="true" id="P45">
-                <img src="/Pol-N45.png" class="draggable" draggable="true" id="N45">
+                <img src="/photos/Pol-H.png" class="draggable" draggable="true" id="H">
+                <img src="/photos/Pol-V.png" class="draggable" draggable="true" id="V">
+                <img src="/photos/Pol-P45.png" class="draggable" draggable="true" id="P45">
+                <img src="/photos/Pol-N45.png" class="draggable" draggable="true" id="N45">
               </section>
 
               <section class="droppable-elements">
@@ -201,6 +207,7 @@
                 <div class="droppable" data-draggable-id="P45"><span>P45</span></div>
                 <div class="droppable" data-draggable-id="N45"><span>N45</span></div>
               </section>
+              <div id="msg" class="msg text-center text-white"><span style="background-color:#01735C;">All Correct!</span></div>
               <button id="play-again-btn" class="btn-md btn-success mt-2">Play Again</button>
               <script src="js/error_correction.js"></script>
             </div>

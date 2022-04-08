@@ -1285,17 +1285,17 @@ function displayTable() {
     }, 1);
 
     //Alice
-    cellA.innerHTML = overallA[overallCountA] + ": " + Alice[a];
+    cellA.innerHTML = a_basis[overallCountA] + ": " + Alice[a];
 
     //Eve
     if (eve_state == true) {
-        cellE.innerHTML = overallE[overallCountE] + ": " + Eve[e];
+        cellE.innerHTML = e_basis[overallCountE] + ": " + Eve[e];
         overallCountE++;
         e++;
     }
 
     //Bob
-    cellB.innerHTML = overallB[overallCountB] + ": " + Bob[b];
+    cellB.innerHTML = b_basis[overallCountB] + ": " + Bob[b];
 
     //Same base?
     if (overallA[overallCountA] == overallB[overallCountB]) {

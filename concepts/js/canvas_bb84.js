@@ -66,12 +66,12 @@ var p_fil_r = new Image();
 var p_fil_r_flip = new Image();
 
 function animate() {
-    p_det.src = "photon_detector.jpg";
-    p_det_flip.src = "photon_detector_flip.jpg"
-    p_fil.src = "p_filter_02.jpg";
-    p_fil_flip.src = "p_filter_02_flip.jpg";
-    p_fil_r.src = "p_filter_02_r.jpg";
-    p_fil_r_flip.src = "p_filter_02_r_flip.jpg";
+    p_det.src = "photos/photon_detector.jpg";
+    p_det_flip.src = "photos/photon_detector_flip.jpg"
+    p_fil.src = "photos/p_filter_02.jpg";
+    p_fil_flip.src = "photos/p_filter_02_flip.jpg";
+    p_fil_r.src = "photos/p_filter_02_r.jpg";
+    p_fil_r_flip.src = "photos/p_filter_02_r_flip.jpg";
 
     window.requestAnimationFrame(animate);
     c.clearRect(0, 0, canvas.width, canvas.height);
