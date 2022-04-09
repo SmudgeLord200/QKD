@@ -17,6 +17,8 @@ var eve = false;
 //Display the corresponding arrays first
 document.getElementById("Alice").innerHTML = newAliceArray.join(' ');
 document.getElementById("Bob").innerHTML = newBobArray.join(' ');
+document.getElementById("a_b").innerHTML = newAliceBasis.join(' ');
+document.getElementById("b_b").innerHTML = newBobBasis.join(' ');
 
 //Compare bits function
 document.getElementById("next").disabled = true;
@@ -35,6 +37,8 @@ function compareBits() {
     document.getElementById("next").disabled = false;
     document.getElementById("Bob").innerHTML = "";
     document.getElementById("Alice").innerHTML = "";
+    document.getElementById("a_b").innerHTML = "";
+    document.getElementById("b_b").innerHTML = "";
 
     //Loop through the whole array
     for (var i = 0; i < newBobArray.length; i++) {
@@ -68,11 +72,15 @@ function compareBits() {
                             finalArray[final_count] = newBobArray[i]; //if match bit value, store it to the final array
                             document.getElementById("Bob").innerHTML += " " + "<span style='color:black;'>" + newBobArray[i] + "</span>" + " ";
                             document.getElementById("Alice").innerHTML += " " + "<span style='color:black;'>" + newAliceArray[i] + "</span>" + " ";
+                            document.getElementById("a_b").innerHTML += " " + "<span style='color:black;'>" + newAliceBasis[i] + "</span>" + " ";
+                            document.getElementById("b_b").innerHTML += " " + "<span style='color:black;'>" + newBobBasis[i] + "</span>" + " ";
                         } else {
                             //Highlight the different bit (Eve)
                             eve = true;
                             document.getElementById("Bob").innerHTML += " " + "<span style='color:red;'>" + newBobArray[i] + "</span>" + " ";
                             document.getElementById("Alice").innerHTML += " " + "<span style='color:black;'>" + newAliceArray[i] + "</span>" + " ";
+                            document.getElementById("a_b").innerHTML += " " + "<span style='color:black;'>" + newAliceBasis[i] + "</span>" + " ";
+                            document.getElementById("b_b").innerHTML += " " + "<span style='color:red;'>" + newBobBasis[i] + "</span>" + " ";
                             finalArray[final_count] = newBobArray[i];
                             i_th[i_th_count] = i;
                             console.log("Eve H" + " " + i_th[i_th_count] + " " + newBobArray[i]); i_th_count++;
@@ -88,11 +96,15 @@ function compareBits() {
                             finalArray[final_count] = newBobArray[i]; //if match bit value, store it to the final array
                             document.getElementById("Bob").innerHTML += " " + "<span style='color:black;'>" + newBobArray[i] + "</span>" + " ";
                             document.getElementById("Alice").innerHTML += " " + "<span style='color:black;'>" + newAliceArray[i] + "</span>" + " ";
+                            document.getElementById("a_b").innerHTML += " " + "<span style='color:black;'>" + newAliceBasis[i] + "</span>" + " ";
+                            document.getElementById("b_b").innerHTML += " " + "<span style='color:black;'>" + newBobBasis[i] + "</span>" + " ";
                         } else {
                             //Highlight the different bit (Eve)
                             eve = true;
                             document.getElementById("Bob").innerHTML += " " + "<span style='color:red;'>" + newBobArray[i] + "</span>" + " ";
                             document.getElementById("Alice").innerHTML += " " + "<span style='color:black;'>" + newAliceArray[i] + "</span>" + " ";
+                            document.getElementById("a_b").innerHTML += " " + "<span style='color:black;'>" + newAliceBasis[i] + "</span>" + " ";
+                            document.getElementById("b_b").innerHTML += " " + "<span style='color:red;'>" + newBobBasis[i] + "</span>" + " ";
                             finalArray[final_count] = newBobArray[i];
                             i_th[i_th_count] = i;
                             console.log("Eve V" + " " + i_th[i_th_count] + " " + newBobArray[i]); i_th_count++;
@@ -108,11 +120,15 @@ function compareBits() {
                             finalArray[final_count] = newBobArray[i]; //if match bit value, store it to the final array
                             document.getElementById("Bob").innerHTML += " " + "<span style='color:black;'>" + newBobArray[i] + "</span>" + " ";
                             document.getElementById("Alice").innerHTML += " " + "<span style='color:black;'>" + newAliceArray[i] + "</span>" + " ";
+                            document.getElementById("a_b").innerHTML += " " + "<span style='color:black;'>" + newAliceBasis[i] + "</span>" + " ";
+                            document.getElementById("b_b").innerHTML += " " + "<span style='color:black;'>" + newBobBasis[i] + "</span>" + " ";
                         } else {
                             //Highlight the different bit (Eve)
                             eve = true;
                             document.getElementById("Bob").innerHTML += " " + "<span style='color:red;'>" + newBobArray[i] + "</span>" + " ";
                             document.getElementById("Alice").innerHTML += " " + "<span style='color:black;'>" + newAliceArray[i] + "</span>" + " ";
+                            document.getElementById("a_b").innerHTML += " " + "<span style='color:black;'>" + newAliceBasis[i] + "</span>" + " ";
+                            document.getElementById("b_b").innerHTML += " " + "<span style='color:red;'>" + newBobBasis[i] + "</span>" + " ";
                             finalArray[final_count] = newBobArray[i];
                             i_th[i_th_count] = i;
                             console.log("Eve P45" + " " + i_th[i_th_count] + " " + newBobArray[i]); i_th_count++;
@@ -128,11 +144,15 @@ function compareBits() {
                             finalArray[final_count] = newBobArray[i];
                             document.getElementById("Bob").innerHTML += " " + "<span style='color:black;'>" + newBobArray[i] + "</span>" + " ";
                             document.getElementById("Alice").innerHTML += " " + "<span style='color:black;'>" + newAliceArray[i] + "</span>" + " ";
+                            document.getElementById("a_b").innerHTML += " " + "<span style='color:black;'>" + newAliceBasis[i] + "</span>" + " ";
+                            document.getElementById("b_b").innerHTML += " " + "<span style='color:black;'>" + newBobBasis[i] + "</span>" + " ";
                          } else {
                              //Highlight the different bit (Eve)
                              eve = true;
                              document.getElementById("Bob").innerHTML += " " + "<span style='color:red;'>" + newBobArray[i] + "</span>" + " ";
                              document.getElementById("Alice").innerHTML += " " + "<span style='color:black;'>" + newAliceArray[i] + "</span>" + " ";
+                             document.getElementById("a_b").innerHTML += " " + "<span style='color:black;'>" + newAliceBasis[i] + "</span>" + " ";
+                             document.getElementById("b_b").innerHTML += " " + "<span style='color:red;'>" + newBobBasis[i] + "</span>" + " ";
                              finalArray[final_count] = newBobArray[i];
                              i_th[i_th_count] = i; 
                              console.log("Eve N45" + " " + i_th[i_th_count] + " " + newBobArray[i]); i_th_count++;
