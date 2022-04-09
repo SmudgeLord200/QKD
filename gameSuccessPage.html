@@ -20,9 +20,13 @@
 
         #msgBox1, #msgBox2 {
             width: 1000px;
-            background-color: cadetblue;
-            transition: visibility 1.2s;
-            transition-delay: 1.2s;
+            /* background-color: cadetblue; */
+            transition: visibility 1.2s 1.2s;
+            /* transition-delay: 1.2s; */
+        }
+
+        body {
+            font-size: large;
         }
     </style>
 </head>
@@ -30,22 +34,23 @@
 <body>
     <div class="container-fluid">
         <div class="row text-center">
-            <p><u>Final Key</u></p>
-            <div id="final"><!-- Final Key Bits Animation --></div>
-            <div id="msgBox1" class="mt-5 border mx-auto" style="visibility: hidden;">Success and Secure!</div>
-            <div id="msgBox2" class="mt-5 mb-5 border mx-auto" style="visibility: hidden;">Eavesdrop!</div>
+            <p class="fw-bold"><u>Final Key</u></p>
+            <!-- Final Key Bits Animation -->
+            <div id="final"></div> 
+            <div id="msgBox1" class="mt-5 border mx-auto alert alert-success fw-bold text-success" style="visibility: hidden;">Success and Secure!</div>
+            <div id="msgBox2" class="mt-2 mb-5 border mx-auto alert alert-danger fw-bold text-danger" style="visibility: hidden;">Eavesdrop! Please take countermeasures!</div>
         </div>
 
         <div class="row p-1 border text-center">
             <div class="col-4">
-                <button type="button" class="btn btn-warning btn-md"
+                <button type="button" class="btn btn-warning btn-md fw-bold"
                     onclick="document.location='/compareBits.html'">Back</button>
             </div>
             <div class="col-4">
-                <button type="button" id="playAgain" class="btn btn-success btn-md">Play Again</button>
+                <button type="button" id="playAgain" class="btn btn-success btn-md fw-bold">Play Again</button>
             </div>
             <div class="col-4">
-                <button type="button" id="exit" class="btn btn-danger btn-md">Exit</button>
+                <button type="button" id="exit" class="btn btn-danger btn-md fw-bold">Exit</button>
             </div>
         </div>
     </div>

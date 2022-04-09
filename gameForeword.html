@@ -16,13 +16,28 @@
         #btn-grp {
             padding-top: 9rem;
         }
+
+        body {
+            background-image: url("photos/game.jpg");
+            background-size: cover;
+            background-position: left center;
+            font-size: large;
+        }
+
+        h2 {
+            text-shadow: 2px 0px 5px black;
+        }
+
+        button:hover {
+            box-shadow: 1px 0px 2px black;
+        }
     </style>
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="row">
-            <h2 class="py-2 bg-primary text-white text-center">Game Foreword</h2>
+            <h2 class="py-2 text-white text-center fw-bold">Game Foreword</h2>
         </div>
 
         <div id="btn-grp" class="row text-center">
@@ -123,17 +138,17 @@
                         </div>
                     </div>
                 </div>
-                <a class="btn btn-secondary btn-lg" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Game
+                <a class="btn btn-danger btn-lg fw-bold" data-bs-toggle="modal" href="#exampleModalToggle" role="button">Game
                     Foreword</a>
-                <p class="pt-2">*Recommended for all-level players!</p>
+                <p class="pt-2 text-white fw-bold">*Recommended for all-level players!</p>
             </div>
 
             <div class="col-sm-6">
-                <button type="button" class="btn btn-success btn-lg" onclick="document.location='/gameMainPage.html'">To
+                <button type="button" class="btn btn-success btn-lg fw-bold" onclick="document.location='/gameMainPage.html'">To
                     the Game</button>
             </div>
 
-            <div class="d-flex justify-content-end border-top pt-1 mt-2">
+            <div class="d-flex justify-content-end pt-1 mt-2">
                 <button type="button" class="btn btn-primary btn-md"
                     onclick="document.location='mainPage.html'">Back</button>
             </div>
