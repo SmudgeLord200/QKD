@@ -16,7 +16,7 @@ if (eve == true) {
 }
 
 document.getElementById("playAgain").onclick = function() {
-    document.location= "/gameForeword.html";
+    document.location= "/gameMainPage.html";
     localStorage.removeItem("finalArray");
     localStorage.removeItem("Eve");
     localStorage.removeItem("NewAliceArray");
